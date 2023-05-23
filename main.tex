@@ -1,35 +1,34 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage[hybrid,smartEllipses]{markdown}
-\usepackage{color}
-
-\title{Décrire un carrefour pour une personne en situation de handicap visuel}
-\author{Jérémy Kalsron}
-\date{April 2023}
+\documentclass[11pt]{report}
+\include{config}
 
 \begin{document}
 
-\maketitle
+\include{title}
 
-% Commandes personnelles
-\newcommand{\todo}[1]{{\color{red}\textbf{TODO} #1}}
+\null\clearpage
 
-% Commandes de vocabulaire
-\newcommand{\pcdv}[1]{personne concernée par la déficience visuelle}
-\newcommand{\pcdvs}[1]{personnes concernées par la déficience visuelle}
+\markdownInput{chapitres/remerciements.md}
 
-\markdownInput{introduction.md}
+\tableofcontents
 
-\markdownInput{etat_art.md}
+\listoffigures
 
-\markdownInput{modelisation.md}
+\listoftables
 
-\markdownInput{description.md}
+\markdownInput{chapitres/introduction.md}
 
-\markdownInput{implementation.md}
+\markdownInput{chapitres/etat_art.md}
 
-\markdownInput{evaluation.md}
+\markdownInput{chapitres/modelisation.md}
 
-\markdownInput{conclusion.md}
+\markdownInput{chapitres/description.md}
+
+\markdownInput{chapitres/implementation.md}
+
+\markdownInput{chapitres/evaluation.md}
+
+\markdownInput{chapitres/conclusion.md}
+
+\printbibliography
 
 \end{document}

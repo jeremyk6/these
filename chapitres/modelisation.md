@@ -14,7 +14,7 @@
 
 \todo
 
-## La modélisation d'un carrefour au sein d'OpenStreetMap
+## La modélisation d’un carrefour au sein d’OpenStreetMap
 
 \todo
 

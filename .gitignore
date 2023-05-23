@@ -4,4 +4,12 @@ _markdown_main
 *.fdb_latexmk
 *.fls
 *.synctex.gz
+*.toc
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.lot
+*.run.xml
+*.markdown.lua
 main.pdf

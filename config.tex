@@ -1,0 +1,33 @@
+% Paquets utilisés
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[hybrid]{markdown}
+\usepackage{fancyhdr}
+\usepackage[style=alphabetic]{biblatex}
+
+% Défini le format des pages (A4, marges)
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+
+% Style avec le bandeau en haut de page
+\pagestyle{fancy}
+
+% Dossier des images
+\graphicspath{ {images/} }
+
+% Bibliographie
+\addbibresource{bibliographie.bib}
+
+% Commandes de commentaires
+% Exemple d'utilisation : \jmf{Voici un commentaire}
+\newcommand*{\gt}[1]{\textcolor{red}{#1}} % Guillaume
+\newcommand*{\ff}[1]{\textcolor{green}{#1}} % Fabien
+\newcommand*{\jmf}[1]{\textcolor{blue}{#1}} % Jean-Marie
+
+% Commandes personnelles
+\newcommand{\todo}[1]{{\color{red}\textbf{TODO} #1}}
+
+% Commandes de vocabulaire
+\newcommand{\pcdv}[1]{personne concernée par la déficience visuelle}
+\newcommand{\pcdvs}[1]{personnes concernées par la déficience visuelle}
