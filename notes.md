@@ -65,3 +65,7 @@ Tâches restantes pour la rédaction:
         - Valérie Gyselinck
         - Florence Gaunet (ne travaille plus sur le sujet depuis 15 ans)
         - (to be continued)
+
+_______
+
+Notes accessibilité : comment créer un alt text en latex pour les tableaux

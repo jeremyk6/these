@@ -13,3 +13,7 @@ _markdown_main
 *.run.xml
 *.markdown.lua
 main.pdf
+main.out
+main.upa
+main.upb
+.DS_Store
