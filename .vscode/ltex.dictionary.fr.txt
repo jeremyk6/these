@@ -13,3 +13,6 @@ newpar
 pcdvs
 audiodécrites
 FeelObject
+instanciable
+exocentrée
+audiodécrite
