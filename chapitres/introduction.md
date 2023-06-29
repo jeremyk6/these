@@ -35,4 +35,6 @@ Le quatrième chapitre présente les trois implémentations réalisées selon le
 
 Le cinquième chapitre se concentre sur les évaluations des différents travaux. \todo.
 
-Enfin, le chapitre de conclusion réalise une synthèse des travaux réalisés et évoque les différentes perspectives qu'il laisse entrevoir.  
+Enfin, le chapitre de conclusion réalise une synthèse des travaux réalisés et évoque les différentes perspectives qu'il laisse entrevoir.
+
+% Positionnement disciplinaire de la thèse : comment je place mon travail par rapport aux informaticiens, aux géographes, et aux informaticiens.

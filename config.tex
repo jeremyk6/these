@@ -28,6 +28,7 @@
 
 % Bibliographie
 \addbibresource{bibliographie.bib}
+\renewcommand*{\labelalphaothers}{}
 
 % Commandes de commentaires
 % Exemple d'utilisation : \jmf{Voici un commentaire}
@@ -38,7 +39,10 @@
 % Commandes personnelles
 \newcommand{\todo}[1]{{\color{red}\textbf{TODO} #1}}
 \newcommand{\missref}[1]{{\color{blue}\textbf{(référence ?)} #1}}
+\newcommand{\addref}[1]{{\color{red}(#1)}}
+\newcommand{\missdef}[1]{{\color{yellow}\textbf{(définition ?)} #1}}
 \newcommand*{\comment}[1]{\pdfcomment[author=Jérémy]{#1}}
+\newcommand*{\addfigure}[1]{\pdfcomment[author=Jérémy, icon=Note]{#1}}
 \newcommand*{\newpar}[1]{\vspace{.7cm}}
 
 % Commandes de vocabulaire
@@ -46,3 +50,5 @@
 \newcommand{\pcdvs}[1]{personnes concernées par la déficience visuelle}
 \newcommand{\ipa}[1]{instructeur pour l'autonomie}
 \newcommand{\ipas}[1]{instructeurs pour l'autonomie}
+\newcommand{\adt}[1]{adaptateur-transcripteur}
+\newcommand{\adts}[1]{adaptateurs-transcripteurs}
