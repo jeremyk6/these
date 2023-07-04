@@ -17,3 +17,5 @@ main.out
 main.upa
 main.upb
 .DS_Store
+bibliography/*.pdf
+bibliography/*.sav
