@@ -69,3 +69,9 @@ Tâches restantes pour la rédaction:
 _______
 
 Notes accessibilité : comment créer un alt text en latex pour les tableaux
+
+Règle de Guillaume : une bonne illustration par sous-partie, construction du texte autour de l'illustration.
+
+Partie 1.3 : comment parler des dispositifs d'interaction avec le texte ? Présenter les outils d'Okeenea. Désambigüiser l'utilité de l'outil dans la description et non dans l'itinéraire.
+
+Un paragraphe sur toutes les méthodes de guidage "aveugle". 

@@ -84,74 +84,30 @@ Une donnée géographique est une donnée, en général tabulaire, à laquelle s
 %
 % Ajouter un tableau résumé à la fin 
 
-Les cartes en reliefs (voir \ref{fig:excartestactiles}) sont un premier exemple de représentation accessible de la donnée géographique. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir \ref{pratiques_ipas}). La revue de littérature de \cite{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
+Les cartes en reliefs sont un premier exemple de représentation accessible de la donnée géographique. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir \ref{pratiques_ipas}) et répondent à des règles de conception précises afin de permettre à leur lecteur d'en discriminer les différents éléments \addref{Wabinski et al., 2022}.
 
-\begin{figure}
-    \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Exemples de cartes tactiles imprimées sur du papier thermogonflé.}
-    \label{fig:excartestactiles}
-\end{figure}
+% Techniques de création de cartes en relief
 
-La génération automatique de cartes en relief basées sur des données géographiques présente de nombreux défis scientifiques et techniques. Une revue de littérature proposée par \cite{Wabinski2019} présente de manière exhaustive les différentes approches existantes. Si d'autres travaux ont adressé la génération de carte à petite échelle, l'état de l'art ci-dessous se concentre sur l'échelle de la rue.
+Il existe plusieurs techniques permettant de concevoir des cartes en reliefs. On peut notamment citer le thermoformage, très utilisé pour créer des cartes à petite échelle en appliquant un plastique chauffé sur un moule en métal. Chaque zone représentée devant d'abord être moulée, il s'agit d'une technique coûteuse, et plus adaptée à une production importante. La fabrication additive ou impression 3D permet de réaliser directement le modèle conçu par ordinateur. Cependant, la durée d'impression est particulièrement longue. De plus, l'épaisseur de l'impression et le matériau utilisé nécessitent la mise en place de dispositifs spécifiques pour utiliser ce medium sur un support interactif \addref{Taylor et al., 2016}. La technique la plus utilisée est aujourd'hui le thermogonflage. Elle consiste à imprimer à l'aide d'une imprimante classique une carte en noir et blanc sur un papier spécial recouvert de microcapsules, qui gonfleront lors d'un passage au four sur les zones noires. Le thermogonflage permet de représenter une carte en 2.1D : il n'est pas possible de moduler la hauteur de relief, elle est uniforme pour chaque élément. Outre sa facilité de production une fois le matériel acquis, un autre avantage du thermogonflage est d'être assez fin, si déposé sur un écran tactile, pour permettre de détecter les pressions, pouvant ainsi servir de support pour un document interactif \addref{Brock et al., 2012}.
 
-La proposition de \cite{Miele2004}, TMAP, permet la réalisation à la demande de cartes tactiles des linéaires de rues. Un service interactif permet à l'utilisateur de définir une emprise et de personnaliser la conception, par exemple au niveau de l'échelle et des éléments labellisés. Ces options vont servir à styliser la donnée, puis la carte est réalisée à l'aide d'une embosseuse braille\footnote{Une embosseuse braille est une imprimante qui permet de retranscrire en relief des caractères brailles. Les machines étant coûteuses et bruyantes, l'embossage tend à être remplacé par le thermogonflage.}. Cependant, le linéaire de rues utilisé pour générer les cartes provient d'une base de données limitée au territoire américain. 
-
-\cite{Minatani2010} proposent une approche équivalente sur le territoire japonais, en proposant une infrastructure technique applicable à d'autres territoires sous réserve de disponibilité de données géographiques équivalentes. La carte est cette fois réalisée par thermogonflage\footnote{Le thermogonflage consiste à imprimer un document en noir et blanc sur un papier spécial contenant des microcapsules. Ces dernières gonflent de manière uniforme sur les zones imprimées lorsque le papier est passé au four.}. Ils insistent par ailleurs sur l'intérêt des repères sensoriels, qui peuvent différer selon l'utilisateur, ce qui implique d'en permettre la personnalisation. 
-
-Les dispositifs précédents sont étendus par \cite{Watanabe2014, Cervenka2016} en utilisant la base de données OpenStreetMap comme source afin de permettre la génération de carte tactile sur n'importe quel territoire.
-
-Les travaux évoqués jusqu'ici reposent sur une stylisation de la donnée géographique. Cette dernière n'a cependant pas été pensée pour une représentation tactile et peut présenter des formes complexes difficiles à discerner. \cite{Stampach2016} s'appuient sur les approches précédentes en insistant sur l’intérêt du processus de généralisation pour la bonne distinction des différents éléments qui composent la carte. Les processus de généralisation pouvant donner un résultat inadéquat, une édition manuelle de la carte reste possible.
-
-\cite{Touya2019} proposent d'aller au-delà de la généralisation pour "schématiser" la carte, c'est-à-dire en proposer une représentation abstraite plus adaptée aux zones urbaines denses. 
-
-Les travaux précédents se reposent sur des bases de données vectorielles. Cependant, même si la couverture des bases peut être mondiale, leur exhaustivité sur le thème de l'accessibilité n'est pas assurée sur tous les territoires. \cite{FillieresRiveau2020} s'intéressent à cette problématique en proposant de générer des cartes en relief par apprentissage profond en utilisant à la fois une photographie aérienne et un filaire de rues vectoriel. 
-
-Au sein du projet ACTIVmap, \cite{Jiang2023} s'intéressent à la génération automatique de carte en relief depuis OpenStreetMap, en adressant l'échelle spécifique du carrefour et les niveaux de détails requis.
 
 \newpar
 
-Les travaux de génération de cartes tactiles reposent sur des techniques différentes. Ils ne s'intéressent pas à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir \ref{tab:ea_relief}).
+La littérature propose des approches automatisées de génération de carte en relief en se basant sur des données géographiques. TMACS \addref{Minatani et al., 2010} est une proposition fondée sur des bases de données propriétaires auxquelles une stylisation particulière est appliquée. Une difficulté de cette approche concerne l'emprise des données qui limite la possibilité de générer des cartes en tout lieu. Pour répondre à cette problématique, \addref{Watanabe et al., 2014; Červenka, 2016} étendent ce dispositif en utilisant la base de données OpenStreetMap comme source. Dans les deux cas cependant la donnée manque de généralisation. \addref{Stampach et al., 2016} s'appuient sur une approche similaire et insistent sur l’intérêt du processus de généralisation pour la bonne distinction des différents éléments qui composent la carte. \addref{Touya et al., 2019} proposent d'aller au-delà de la généralisation pour "schématiser" la carte, c'est-à-dire en proposer une représentation abstraite plus adaptée aux zones urbaines denses. La présence de données d'accessibilité fines n'étant pas assurée sur l'intégralité du territoire, quelle que soit la base de données, \addref{Fillières-Riveau et al., 2020} s'intéressent à la génération de cartes en relief par apprentissage profond en utilisant à la fois une photographie aérienne et une base de données vectorielles. Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \addref{Touya et al., 2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \addref{Brock et al., 201X}.
 
-Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \cite{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \cite{Brock2015}.
+\newpar
 
-% Revoir les colonnes, citer le tableau dans le texte.
-
-\begin{table}
-\begin{center}
-\scriptsize
-\begin{tabular}{ | l | l | l | l | l | l | l | }
-    Publication & Technique & Généralisé & Automatisé & Couverture & Échelle & Support \tabularnewline
-    \hline
-    \cite{Miele2004} & Stylisation & Non & Complet & États-Unis & Rues & Embossage \tabularnewline
-    \cite{Minatani2010} & Stylisation & Non & Complet & Japon & Rues & Thermogonflage \tabularnewline
-    \cite{Watanabe2014, Cervenka2016} & Stylisation & Non & Complet & Mondiale & Rues & Thermogonflage \tabularnewline
-    \cite{Stampach2016} & Stylisation & Oui & Partiel & Mondiale & Rues & Thermogonflage \tabularnewline
-    \cite{FillieresRiveau2020} & Apprentissage profond & Non & Complet & Mondiale & Rues & Impression 3D \tabularnewline
-    \cite{Jiang2023} & Stylisation & Oui & Partiel & Mondiale & Carrefours & Thermogonflage \tabularnewline
-\end{tabular}
-\end{center}
-\caption{Résumé des points abordés pour chaque entrée de l'état de l'art sur les cartes tactiles.}
-\label{tab:ea_relief}
-\end{table}
-
-% Illustrer l'intérêt d'une carte audiotactile VS carte tactile classique
+Au sein du projet ACTIVmap, \addref{Jiang et al., 202X} s'intéressent à la génération automatique de carte en relief depuis OpenStreetMap. Les défis de ce travail concernent à la fois la généralisation et le placement des éléments pour maintenir une carte lisible, mais également le placement des interacteurs qui permettent de déclencher les audiodescriptions embarquées sur un dispositif tactile. 
 
 \label{ea_cartetactile}
 
-### La sonorisation des données géographiques
+### La sonorisation des cartes
 
-Sonoriser la donnée géographique, de manière indépendante ou de concert avec un autre dispositif sensoriel, est un autre moyen de la rendre accessible. Plusieurs approches sont abordées par la littérature.
+Sonoriser la donnée géographique, de manière indépendante ou de concert avec un autre dispositif sensoriel, est un autre moyen de la rendre accessible.
 
 % Approche par son spécifique
 
-La proposition de \cite{Josselin2016} consiste à sonoriser une carte topographique en associant un son à chaque couleur et en modulant son volume selon sa dominance dans la carte pour recréer un paysage sonore ou une composition spécifique.
-
-\cite{Schito2018} proposent d'explorer les données continues telles que les Modèles Numériques de Terrain (MNT) en modulant la hauteur, la balance stéréo et la longueur d'un son.
-
-Cependant, les techniques évoquées ci-dessus visent à explorer des données à petite échelle, elles ne sont donc pas adaptées aux données à l'échelle de la rue. Pour ces dernières, la littérature propose plutôt de verbaliser l'information.
-
-\newpar
+Plusieurs approches présentes dans la littérature proposent de sonoriser les données géographiques à l'aide de sons spécifiques. La proposition de \addref{Josselin, 2016} associe des sons à chaque couleur dominante d'une carte topographique. Pour les données continues telles que les modèles numériques de terrain (MNT), \addref{Schito, 2018} propose d'utiliser des techniques de sons binauraux. Les paysages sonores peuvent également être utilisés pour immerger l'utilisateur dans un environnement urbain \addref{Edler, 2019}. Ces techniques visent à décrire des cartes à petite échelle et ne sont donc pas adaptées aux informations comme l'accessibilité qui sont à une échelle plus fine. Pour ces dernières, la littérature propose plutôt de verbaliser l'information.
 
 % Décrire une donnée générique : de la donnée vers le texte
 % Utilisé dans plein de cas d'utilisation pour décrire des choses qui ne sont pas forcément liées à l'accessibilité
