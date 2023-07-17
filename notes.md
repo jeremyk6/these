@@ -75,3 +75,12 @@ Règle de Guillaume : une bonne illustration par sous-partie, construction du te
 Partie 1.3 : comment parler des dispositifs d'interaction avec le texte ? Présenter les outils d'Okeenea. Désambigüiser l'utilité de l'outil dans la description et non dans l'itinéraire.
 
 Un paragraphe sur toutes les méthodes de guidage "aveugle". 
+
+________
+
+12/07/2023
+
+Partir de Sound and geographic visualisation, Krygier, 1994
+
+https://link.springer.com/chapter/10.1007/978-3-319-07926-4_24
+
