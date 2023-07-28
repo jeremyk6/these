@@ -10,7 +10,7 @@ La déficience visuelle correspond à la perte de tout ou partie de la vue. On q
 
 La sévérité de l'atteinte visuelle affecte la capacité des personnes à se déplacer en autonomie \cite{homere_2023}. Au-delà de l'atteinte visuelle, les handicaps associés peuvent également contribuer à rendre le déplacement plus difficile. En ce sens, les besoins peuvent varier d'une personne à une autre.
 
-\subsection{Les mécanismes sensoriels mobilisés par les PSDV}
+\subsection{Les mécanismes cognitifs mobilisés par les PSDV}
 
 %
 % Stratégies de déplacement (technique de la canne blanche, chien guide, écholocation)
@@ -73,18 +73,45 @@ Pour les carrefours spécifiquement, à l'instar des aménageurs, les \ipas{} mo
 
 \todo{}
 
-\section{Rendre accessible les représentations des données géographiques}
+\section{Les dispositifs pour rendre accessibles les données géographiques}
 
+% Dans cette partie, chaque sous section se termine avec un focus sur l'existant au sujet des carrefours.
 % Introduire les données géographiques et les bases de données les plus communes (OpenStreetMap)
 
-Une donnée géographique est une donnée, en général tabulaire, à laquelle sont accolées des informations spatiales. Elles peuvent être utilisées pour concevoir des cartes, mais également au sein de dispositifs de guidage. Pour être mobilisées par des \pcdvs, il est nécessaire d'en proposer une représentation accessible par le biais du toucher ou du son.
+Une donnée géographique est une donnée, en général tabulaire, à laquelle sont accolées des informations spatiales. Elles peuvent être utilisées pour concevoir des cartes, mais également au sein de dispositifs d'aide au guidage. Pour être mobilisées par des \pcdvs, il est nécessaire d'en proposer une représentation accessible par d'autres sens que la vue. Cette partie s'intéresse à présenter les dispositifs décrits au sein de la littérature, ainsi que ceux effectivement mobilisés dans leur quotidien par les personnes concernées.
 
-\subsection{La conception des cartes en relief}
+\subsection{Les descriptions autosuffisantes}
+
+% Définition : une description autosuffisante c'est un texte mobilisable tel quel. Il n'y a pas d'interactions entre l'utilisateur et le texte.
+
+% Une description verbale/textuelle aide à la construction d'une carte mentale
+
+Une carte mentale construite à partir d'une description verbale partage ses propriétés avec une carte mentale dérivée d'une expérience visuelle, dont les relations spatiales entre les entités \cite{Denis1992}. Par ailleurs, elle permet d'inférer des relations spatiales non-explicitement indiquées dans la description, et ainsi d'adopter un point de vue exocentré \cite{Avraamides2004}. Une description verbale peut ainsi être mobilisée par les \pcdvs{} afin de construire une représentation mentale d'un espace.
+
+% Concevoir une description pour une PCDV
+
+La littérature se concentre principalement sur la description d'itinéraires. Du point des sciences cognitives, de nombreux travaux se sont intéressés aux principes et pratiques pour communiquer efficacement la connaissance d’un itinéraire, en analysant les éléments qui le constituent et influent sur sa qualité \cite{Allen2000,Lovelace1999}. Les recherches qui se focalisent sur la question de la déficience visuelle abordent la description d'itinéraires en fonction des environnements intérieurs ou extérieurs.
+
+Un modèle pour la création de description d'itinéraires en intérieur est proposé par \cite{Troeger2020}. Il repose sur des descriptions validées par des utilisateurs concernés et comprend plusieurs séquences de directions augmentées de repères. Une approche similaire est abordée par \cite{Kulyukin2008} pour le guidage au sein d'un commerce, dont les descriptions sont générées automatiquement à l'aide d'un graphe topologique représentant ce dernier.
+
+Pour le guidage extérieur, \cite{gaunet_verbal_2006} décrit une suite d’instructions de guidage auxquelles sont associées une forme verbale, permettant de décrire un cheminement au sein de la ville. Celui-ci peut notamment comprendre une indication d’orientation angulaire ou relative à une voie de circulation. Une autre grammaire de description est élaborée par \cite{Constantinescu2019}. \cite{Balata2016} proposent une approche similaire et génèrent automatiquement les descriptions à l'aide d'un graphe piéton enrichi par des repères. Chaque instruction est basée sur un patron et déclenchée selon le type de segment parcouru.
+
+% Quels sont les dispositifs proposant des descriptions pour le guidage (plutôt dans la partie in situ ?)
+
+% Ce qui existe pour les carrefours
+
+\newpar{}
+
+Il existe peu de littérature visant spécifiquement la manière de décrire un carrefour. On peut cependant citer les travaux de \cite{gaunet_verbal_2006} qui intègrent au sein de l'itinéraire une description basique des carrefours, indiquant leur nombre de branches ainsi que l'orientation de chacune d'elle.
+
+La génération automatique de description de carrefours est adressée par \cite{Guth2019}. En se basant sur la littérature en instruction et mobilité, ils proposent un schéma de base de données non relationnel contenant les principaux attributs permettant de décrire le décrire le carrefour, sa forme et les équipements permettant de le traverser. La description générée n'est pas phrasée mais verbalisée sous la forme de séquence d'éléments. Par ailleurs, la base de donnée n'est pas dérivée de données réelles.
+
+\subsection{Les cartes en relief}
 
 %
 % Ajouter un tableau résumé à la fin 
 
-Les cartes en reliefs (voir \ref{fig:excartestactiles}) sont un premier exemple de représentation accessible de la donnée géographique. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir \ref{pratiques_ipas}). La revue de littérature de \cite{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
+Les cartes en reliefs (voir \ref{fig:excartestactiles}) permettent d'explorer une représentation de la donnée géographique accessible au toucher. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir \ref{pratiques_ipas}). La revue de littérature de \cite{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
 
 \begin{figure}
     \centering
@@ -139,7 +166,7 @@ Dans tous les cas, la carte en relief seule ne permet pas de représenter une ha
 
 \label{ea_cartetactile}
 
-\subsection{La sonorisation des données géographiques}
+\subsection{Les cartes sonores et audiotactiles}
 
 Sonoriser la donnée géographique, de manière indépendante ou de concert avec un autre dispositif sensoriel, est un autre moyen de la rendre accessible. Plusieurs approches sont abordées par la littérature.
 
@@ -163,16 +190,19 @@ L'aide à a navigation peut permettre en cours d'itinéraire d'obtenir des infor
 
 \todo{}
 
-\subsection{La description des carrefours}
+\subsection{Les dispositifs d'aide in situ}
 
-% Décrire un carrefour
-
-Il existe peu de littérature visant spécifiquement la description de carrefours. Les travaux de \addref{Gaunet, 2006} intègrent au sein de l'itinéraire une description basique des branches des carrefours. La génération automatique de description de carrefours est adressée par \addref{Guth et al., 2019}, qui propose un schéma de base de données permettant de décrire succinctement la configuration générale du carrefour et l'enchaînement des éléments de chaque traversée. Cette base de donnée est complétée manuellement, et non générée depuis des données géographiques.
+% Cannes électroniques, balises de guidage, balises sonores
 
 \todo{}
 
-\subsection{Contributions de la thèse}
+\subsection{La réalité virtuelle et les maquettes interactives}
 
+\todo{}
+
+\subsection{Synthèse et conclusion}
+
+% Contribution de la thèse
 % Élements de contexte pour expliquer dans quel cadre s'inscrit le travail
 % Question générale de représenter par du texte des éléments présents sous une autre forme.
 % Est-ce que ce travail adresse tous les besoins ? S'il ne les adresse pas, est-ce que cette approche peut intéresser.
