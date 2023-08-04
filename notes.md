@@ -84,3 +84,6 @@ Partir de Sound and geographic visualisation, Krygier, 1994
 
 https://link.springer.com/chapter/10.1007/978-3-319-07926-4_24
 
+________
+
+Est-ce que l'on peut ajouter un alt text 
