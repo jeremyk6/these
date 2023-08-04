@@ -61,6 +61,9 @@ Pour les carrefours spécifiquement, à l'instar des aménageurs, les \ipas{} mo
 
 \section{L'accessibilité dans les données géographiques}
 
+% Parler des dispositifs d'accessibilité (BEV, etc., voir CEREMA)
+% Parler de leur représentation dans les BDD et de leur qualité
+
 \todo{}
 
 \subsection{Que sont les données d'accessibilité ?}
@@ -86,7 +89,11 @@ Une donnée géographique est une donnée, en général tabulaire, à laquelle s
 
 % Une description verbale/textuelle aide à la construction d'une carte mentale
 
+% Temporalité : travaux
+
 Une carte mentale construite à partir d'une description verbale partage ses propriétés avec une carte mentale dérivée d'une expérience visuelle, dont les relations spatiales entre les entités \cite{Denis1992}. Par ailleurs, elle permet d'inférer des relations spatiales non-explicitement indiquées dans la description, et ainsi d'adopter un point de vue exocentré \cite{Avraamides2004}. Une description verbale peut ainsi être mobilisée par les \pcdvs{} afin de construire une représentation mentale d'un espace.
+
+\newpar{}
 
 % Concevoir une description pour une PCDV
 
@@ -102,14 +109,18 @@ Pour le guidage extérieur, \cite{gaunet_verbal_2006} décrit une suite d’inst
 
 \newpar{}
 
-Il existe peu de littérature visant spécifiquement la manière de décrire un carrefour. On peut cependant citer les travaux de \cite{gaunet_verbal_2006} qui intègrent au sein de l'itinéraire une description basique des carrefours, indiquant leur nombre de branches ainsi que l'orientation de chacune d'elle.
+Il existe peu de littérature visant spécifiquement la manière de décrire un carrefour. On peut cependant citer les travaux de \cite{gaunet_verbal_2006} qui intègrent au sein de l'itinéraire une description basique des carrefours, indiquant leur nombre de branches ainsi que l'orientation de chacune d'elle (voir \ref{fig:exdesccarrefour}).
 
-La génération automatique de description de carrefours est adressée par \cite{Guth2019}. En se basant sur la littérature en instruction et mobilité, ils proposent un schéma de base de données non relationnel contenant les principaux attributs permettant de décrire le décrire le carrefour, sa forme et les équipements permettant de le traverser. La description générée n'est pas phrasée mais verbalisée sous la forme de séquence d'éléments. Par ailleurs, la base de donnée n'est pas dérivée de données réelles.
+\begin{figure}
+    \centering
+    \includegraphics{images/placeholder.jpg}
+    \caption{La description des carrefours proposée par \cite{gaunet_verbal_2006} est intégrée à l'itinéraire. Les branches du carrefour sont indiquées.}
+    \label{fig:exdesccarrefour}
+\end{figure}
+
+La génération automatique de description de carrefours est adressée par \cite{Guth2019}. En se basant sur la littérature en instruction et mobilité, ils proposent un schéma de base de données non relationnel contenant les principaux attributs permettant de décrire le carrefour, sa forme et les équipements permettant de le traverser. La description générée n'est pas phrasée mais verbalisée sous la forme de séquence d'éléments. Par ailleurs, la base de donnée n'est pas dérivée de données réelles.
 
 \subsection{Les cartes en relief}
-
-%
-% Ajouter un tableau résumé à la fin 
 
 Les cartes en reliefs (voir \ref{fig:excartestactiles}) permettent d'explorer une représentation de la donnée géographique accessible au toucher. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir \ref{pratiques_ipas}). La revue de littérature de \cite{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
 
@@ -120,6 +131,8 @@ Les cartes en reliefs (voir \ref{fig:excartestactiles}) permettent d'explorer un
     \label{fig:excartestactiles}
 \end{figure}
 
+\newpar{}
+
 La génération automatique de cartes en relief basées sur des données géographiques présente de nombreux défis scientifiques et techniques. Une revue de littérature proposée par \cite{Wabinski2019} présente de manière exhaustive les différentes approches existantes. Si d'autres travaux ont adressé la génération de carte à petite échelle, l'état de l'art ci-dessous se concentre sur l'échelle de la rue.
 
 La proposition de \cite{Miele2004}, TMAP, permet la réalisation à la demande de cartes tactiles des linéaires de rues. Un service interactif permet à l'utilisateur de définir une emprise et de personnaliser la conception, par exemple au niveau de l'échelle et des éléments labellisés. Ces options vont servir à styliser la donnée, puis la carte est réalisée à l'aide d'une embosseuse braille\footnote{Une embosseuse braille est une imprimante qui permet de retranscrire en relief des caractères brailles. Les machines étant coûteuses et bruyantes, l'embossage tend à être remplacé par le thermogonflage.}. Cependant, le linéaire de rues utilisé pour générer les cartes provient d'une base de données limitée au territoire américain. 
@@ -128,19 +141,21 @@ La proposition de \cite{Miele2004}, TMAP, permet la réalisation à la demande d
 
 Les dispositifs précédents sont étendus par \cite{Watanabe2014, Cervenka2016} en utilisant la base de données OpenStreetMap comme source afin de permettre la génération de carte tactile sur n'importe quel territoire.
 
+\newpar{}
+
 Les travaux évoqués jusqu'ici reposent sur une stylisation de la donnée géographique. Cette dernière n'a cependant pas été pensée pour une représentation tactile et peut présenter des formes complexes difficiles à discerner. \cite{Stampach2016} s'appuient sur les approches précédentes en insistant sur l’intérêt du processus de généralisation pour la bonne distinction des différents éléments qui composent la carte. Les processus de généralisation pouvant donner un résultat inadéquat, une édition manuelle de la carte reste possible.
 
 \cite{Touya2019} proposent d'aller au-delà de la généralisation pour "schématiser" la carte, c'est-à-dire en proposer une représentation abstraite plus adaptée aux zones urbaines denses. 
 
-Les travaux précédents se reposent sur des bases de données vectorielles. Cependant, même si la couverture des bases peut être mondiale, leur exhaustivité sur le thème de l'accessibilité n'est pas assurée sur tous les territoires. \cite{FillieresRiveau2020} s'intéressent à cette problématique en proposant de générer des cartes en relief par apprentissage profond en utilisant à la fois une photographie aérienne et un filaire de rues vectoriel. 
+\newpar{}
 
-Au sein du projet ACTIVmap, \cite{Jiang2023} s'intéressent à la génération automatique de carte en relief depuis OpenStreetMap, en adressant l'échelle spécifique du carrefour et les niveaux de détails requis.
+Les bases de données vectorielles, bien qu'ayant parfois une couverture mondiale, n'assurent pas une exhaustivité sur leur échelle entière sur le thème de l'accessibilité. L'imagerie aérienne, en fonction de sa résolution, peut permettre de distinguer ces éléments. \cite{FillieresRiveau2020} s'intéressent à cette problématique en proposant de générer des cartes en relief par apprentissage profond en utilisant à la fois une photographie aérienne et un filaire de rues vectoriel. 
 
 \newpar{}
 
-Les travaux de génération de cartes tactiles reposent sur des techniques différentes. Ils ne s'intéressent pas à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir \ref{tab:ea_relief}).
+Le sujet de la génération de cartes tactiles à l'échelle spécifique du carrefour est adressé au sein du projet ACTIVmap par \cite{Jiang2023} en utilisant les données OpenStreetMap et en accordant une attention particulière aux échelles et niveaux de détails requis.
 
-Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \cite{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \cite{Brock2015}.
+Les travaux de génération de cartes tactiles reposent sur des techniques différentes. Ils ne s'intéressent pas à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir \ref{tab:ea_relief}). Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \cite{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \cite{Brock2015}. Ce sujet est abordé dans \ref{ea_cartessonores}.
 
 % Revoir les colonnes, citer le tableau dans le texte.
 
@@ -168,35 +183,49 @@ Dans tous les cas, la carte en relief seule ne permet pas de représenter une ha
 
 \subsection{Les cartes sonores et audiotactiles}
 
-Sonoriser la donnée géographique, de manière indépendante ou de concert avec un autre dispositif sensoriel, est un autre moyen de la rendre accessible. Plusieurs approches sont abordées par la littérature.
+\label{ea_cartessonores}
 
-% Approche par son spécifique
-
-La proposition de \cite{Josselin2016} consiste à sonoriser une carte topographique en associant un son à chaque couleur et en modulant son volume selon sa dominance dans la carte pour recréer un paysage sonore ou une composition spécifique.
-
-\cite{Schito2018} proposent d'explorer les données continues telles que les Modèles Numériques de Terrain (MNT) en modulant la hauteur, la balance stéréo et la longueur d'un son.
-
-Cependant, les techniques évoquées ci-dessus visent à explorer des données à petite échelle, elles ne sont donc pas adaptées aux données à l'échelle de la rue. Pour ces dernières, la littérature propose plutôt de verbaliser l'information.
+Un état des lieux des techniques mobilisables pour sonoriser les données géographiques est proposé par \cite{Krygier1994}, qui distingue notamment les sons réalistes, qui peuvent correspondre à une description verbale ou un son imitant le réel, et les sons abstraits.
 
 \newpar{}
 
-% Décrire une donnée générique : de la donnée vers le texte
-% Utilisé dans plein de cas d'utilisation pour décrire des choses qui ne sont pas forcément liées à l'accessibilité
+% Les sons réalistes
 
-% L'aide à la navigation
+Parmi les sons réalistes, on trouve notamment les paysages sonores. \cite{Porteous1985} définit un paysage sonore comme \pquote{l'environnement sonore global d'une région}. Il représente l'ambiance sonore telle qu'elle est réellement perçue en un lieu. La proposition de \cite{Josselin2016} s'appuie sur la notion de paysage sonore pour sonoriser une carte topographique en associant un son à chaque couleur et en modulant son volume selon sa dominance dans la carte. Le son produit peut ainsi représenter un paysage sonore. Une alternative sous la forme d'une composition musicale originale est également proposée et répond plutôt à la définition d'un son abstrait tel que proposé par \cite{Krygier1994}.
 
-L'aide à a navigation peut permettre en cours d'itinéraire d'obtenir des informations sur celui-ci pour s'orienter. Il peut être mobilisé à la fois par des personnes voyantes, et par des \pcdvs{} à travers un GPS par exemple. Les informations fournies lors de la navigation se doivent d'être claires pour être efficaces. La littérature s'est intéressée à la manière de décrire un itinéraire. \addref{Gaunet, 2006} propose ainsi une suite d’instructions verbales de guidage en zone urbaine.
+% Les sons abstraits
 
+Ces derniers sont  modulés par des variables sonores telles que le volume ou la durée et peuvent être directement corrélés à des données. C'est l'approche choisie par \cite{Schito2018} qui proposent d'explorer les données continues telles que les Modèles Numériques de Terrain (MNT) en faisant correspondre leurs valeurs aux variables sonores.
 
-\todo{}
+\newpar{}
+
+% La cartographie sonore multimodale
+
+Les techniques évoquées ci-dessus visent à explorer des données par le son uniquement. Mais, comme le propose \cite{Krygier1994}, ce dernier peut être utilisé de concert avec un autre dispositif sensoriel pour proposer une représentation multimodale apportant une dimension supplémentaire à la visualisation, cette dernière pouvant être utilisée pour représenter une variable supplémentaire. C'est dans ce sens que la proposition de \cite{Bearman2010} modélise la précision positionnelle de bâtiments en établissant un son spécifique pour chaque valeur de cette variable. Une approche similaire de \cite{Foteinou2022} s'intéresse à la durée des incendies en modulant la longueur du son joué au survol d'une entité.
+
+Ces dispositifs multimodaux utilisent une interface d'ordinateur standard pour permettre à l'utilisateur d'interagir avec la carte, rendant leur usage impossible par un utilisateur déficient visuel. Pour répondre à cette problématique, la littérature s'est intéressée à la sonorisation des cartes tactiles.
+
+\newpar{}
+
+% Les cartes audiotactiles
+
+Les cartes dites audio-tactiles se sont développées sur la base des dispositifs en relief interactifs. On en trouve de nombreux exemples parmi lesquels \cite{Loetzsch1994} ou encore \cite{Landau2001}, basés sur une interface tactile reliée à un ordinateur et permettant d'interagir avec celui-ci à l'aide d'un programme spécifique.
+Talking TMAP \cite{Miele2006} est une extension de TMAP \cite{Miele2004} permettant d'interagir avec la carte pour obtenir des informations sur l'élément touché par synthèse vocale et repose sur le matériel conçu par \cite{Landau2001}. L'émergence des écrans tactiles grand public a permis la conception d'outils plus accessibles \cite{Brock2015} comme DERi.
 
 \subsection{Les dispositifs d'aide in situ}
 
-% Cannes électroniques, balises de guidage, balises sonores
+% Cannes électroniques
+
+% Balises de guidage, balises sonores
+
+% GPS
 
 \todo{}
 
 \subsection{La réalité virtuelle et les maquettes interactives}
+
+% Références :
+% - The Sound of Being There: Audiovisual Cartography with Immersive Virtual Environments, Hruby, 2019
 
 \todo{}
 
@@ -206,5 +235,19 @@ L'aide à a navigation peut permettre en cours d'itinéraire d'obtenir des infor
 % Élements de contexte pour expliquer dans quel cadre s'inscrit le travail
 % Question générale de représenter par du texte des éléments présents sous une autre forme.
 % Est-ce que ce travail adresse tous les besoins ? S'il ne les adresse pas, est-ce que cette approche peut intéresser.
+
+Résumé des modalités de chaque entrée de l'état de l'art (voir \ref{tab:ea_resume}).
+
+\begin{table}
+\begin{center}
+\scriptsize
+\begin{tabular}{ | l | l | l | l | l | l | }
+    Production & Localisation & Interaction & Référentiel & Usage & Échelle \tabularnewline
+    \hline
+\end{tabular}
+\end{center}
+\caption{Résumé des modalités de chaque entrée de l'état de l'art.}
+\label{tab:ea_resume}
+\end{table}
 
 \todo{}
