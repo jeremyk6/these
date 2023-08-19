@@ -87,3 +87,7 @@ https://link.springer.com/chapter/10.1007/978-3-319-07926-4_24
 ________
 
 Est-ce que l'on peut ajouter un alt text 
+
+_____
+
+Forme : "Cette possibilité est exploitée par [x]" [x] = les auteurs, pas la publications. Voir comment faire (citep ?)

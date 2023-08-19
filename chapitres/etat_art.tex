@@ -18,7 +18,7 @@ La sévérité de l'atteinte visuelle affecte la capacité des personnes à se d
 
 Plusieurs stratégies sont mises en place par les personnes concernées lors de leur déplacement pour compenser l'absence de vision à l'aide des autres sens. La principale concerne la canne blanche, qui joue un rôle double. Elle permet en premier lieu de détecter les obstacles et objets présents sur son chemin. Mais elle joue également un rôle social en signalant aux autres usagers que la personne qui la porte est aveugle ou malvoyante. Par ailleurs, il existe des cannes blanches électroniques, équipées de capteurs pouvant détecter des obstacles à distance. Ces dernières sont cependant moins utilisées que leur variante traditionnelle. 
 
-Mais la canne blanche n'est pas suffisante pour se repérer dans l'espace, son champ d'action se limitant à une surface réduite face à l'utilisateur, au contraire de l'ouïe qui va permettre à la personne d'appréhender l'espace en écoutant les sons de l'environnement urbain. Détecter un moteur à l'arrêt peut par exemple permettre de repérer un passage piéton en aval d'une voiture. Les dispositifs sonores en ville qui équipent certains feux vont permettre à la fois de repérer une traversée, mais également de la réaliser en sécurité. L'ouïe joue également un rôle fort dans l'écholocation, c’est-à-dire la capacité à utiliser les échos pour percevoir des objets. \todo{}
+Mais la canne blanche n'est pas suffisante pour se repérer dans l'espace. Son champ d'action se limite à une surface réduite face à l'utilisateur, au contraire de l'ouïe qui va permettre à la personne d'appréhender l'espace en écoutant les sons de l'environnement urbain. Détecter un moteur à l'arrêt peut par exemple permettre de repérer un passage piéton en aval d'une voiture. Les dispositifs sonores en ville qui équipent certains feux vont permettre à la fois de repérer une traversée, mais également de la réaliser en sécurité. L'ouïe joue également un rôle fort dans l'écholocation, c’est-à-dire la capacité à utiliser les échos pour percevoir des objets. \todo{}
 
 % Au-delà de l'écholocation, parler de proprioception
 
@@ -31,14 +31,6 @@ En cognition spatiale, une carte mentale correspond à un modèle conceptuel d'u
 La carte mentale peut être alimentée par les déplacements habituels des personnes qui repèrent l'environnement. Mais elle peut également l'être à l'aide de différents dispositifs. Une carte tactile peut aider à comprendre un espace non familier. Mais les personnes peuvent également utiliser un GPS piéton qui pourra décrire en cours de route l'itinéraire, l'infrastructure et les points d'intérêt croisés sur le chemin.
 
 % Parler des causes de la déficience visuelle (DMLA, accident) ? Pourquoi parle-t-on de handicaps associés (conclusion de la sous-partie) ?
-
-\todo{}
-
-\subsection{L'infrastructure existante pour se repérer en ville}
-
-\label{ea_infrastructure}
-
-L'espace urbain dispose d'infrastructures pour permettre aux \pcdvs de se repérer et de confirmer le cheminement qu'elles suivent. Bien qu'il n'existe aucune norme d'implantation \comment{à vérifier}, le Centre d'études et d'expertise sur les risques, l'environnement, la mobilité et l'aménagement (CEREMA) produit des documents techniques pour conseiller les aménageurs sur l'implantation d'une infrastructure efficace. Cependant, les équipements ne sont aujourd'hui pas présents sur l'intégralité du territoire et, surtout, peuvent être négligés et ainsi se muer en difficulté supplémentaire.
 
 \todo{}
 
@@ -55,24 +47,59 @@ L'Association Francophone des Instructeurs pour l'Autonomie des personnes Défic
     \label{fig:il_carte}
 \end{figure}
 
-Dans ce contexte, le rôle de l'\ipa{} est d'accompagner la personne aveugle ou malvoyante dans la compensation de la perte de la vue par l'usage des autres sens, en apprenant à la personne à utiliser une canne blanche, à mobiliser des repères, et à découvrir l'infrastructure urbaine. Elle peut, pour cela, mobiliser des cartes en relief. S'il existe des outils de conception automatisée (voir \ref{ea_cartetactile}), la pratique de réalisation des cartes en relief est aujourd'hui majoritairement artisanale \comment{Erreur insertion figure ?!}.
+Dans ce contexte, le rôle de l'\ipa{} est d'accompagner la personne aveugle ou malvoyante dans la compensation de la perte de la vue par l'usage des autres sens. Elle peut, pour cela, mobiliser des cartes en relief. S'il existe des outils de conception automatisée (voir \ref{ea_cartetactile}), la pratique de réalisation des cartes en relief est aujourd'hui majoritairement artisanale \comment{Erreur insertion figure ?!}.
 
 Pour les carrefours spécifiquement, à l'instar des aménageurs, les \ipas{} mobilisent à la fois les typologies standards et les branches. \todo{}
 
 \section{Les données géographiques et l'accessibilité}
 
-\todo{}
-
 \subsection{Que sont les données d'accessibilité ?}
 
 % Définir les données géographiques et leur type : couche, graphe, etc.
+
+Dans un \gls{sig}, les données sont généralement représentées sous la forme de couches dont l'empilement compose la carte, à la manière des logiciels de dessin assisté par ordinateur (voir \ref{fig:geodatalayers}). On distingue principalement les données raster et les données vectorielles. Les premières correspondent à une grille dont chaque cellule contient une valeur, et permettent de stocker par exemple des images ou des reliefs. Les secondes correspondent à des données structurées ou non auxquelles est accolée une abstraction géométrique de la réalité. Il s'agit principalement de données tabulaires avec une ou plusieurs colonnes de géométrie, ces dernières pouvant être des points, des lignes ou des polygones. Une couche est ainsi une table telle qu'on peut la définir dans un \gls{sgbdr} \cite{AschanLeygonie2019}. Le paradigme en couches n'est pas la seule manière de représenter les données géographiques : il est par exemple possible de les représenter sous forme de graphe \cite{Palacio2003}.
+
+\begin{figure}
+    \centering
+    \resizebox{\linewidth}{!}{\includegraphics{images/layers.png}}
+    \caption{
+        Représentation en couches de données géographiques.}
+    \label{fig:geodatalayers}
+\end{figure}
+
+\newpar{}
+
 % Parler des dispositifs d'accessibilité (BEV, etc., voir CEREMA): pas d'exhaustivité sur les dispositifs, précision plus forte dans Modélisation
 
-\todo{}
+Une donnée d'accessibilité est une donnée géographique qui décrit les conditions d'accès d'un lieu au regard des nécessités des personnes ayant des besoins spécifiques, comprenant les personnes en situation de handicap, mais également les personnes avec une poussette ou un bagage \cite{Ding2014}. L'espace urbain dispose d'infrastructures pour permettre à une \gls{pcdv} de se repérer et de confirmer le cheminement qu'elles suit. À ce titre, en France, le \gls{cerema} produit des documents techniques à destination des aménageurs pour les guider sur les dispositifs existants et les bonnes pratiques pour les implanter (voir \ref{fig:ea_exemple_cerema_bev}). \comment{Référencer la partie de modélisation qui sera plus exhaustive sur le sujet}
+
+\begin{figure}
+    \centering
+    \resizebox{\linewidth}{!}{\includegraphics{images/ea_exemple_cerema_bev.png}}
+    \caption{Exemple issu de \cite{CEREMA2022} sur les bonnes pratiques d'implation de \gls{bev}.}
+    \label{fig:ea_exemple_cerema_bev}
+\end{figure}
+
+% Parler des modèles de données qui permettent de contenir des informations sur l'accessibilité
+% Netex, Géostandard, CityGML
+
+\newpar{}
+
+% Je reprécise 
+% Je cite les principaux modèles (note de bas de page pour citer d'autres modèles -CityJSON-).
+% Géostandard, NeTEx, GTFS, CityGML, OSM
+
+Les modèles de données standardisés utilisés dans les domaines de l'urbanisme et du transport peuvent intégrer une dimension liée à l'\gls{accessibilité}. CityGML \cite{Groeger2012}, pensé pour proposer une représentation 3D de l'espace urbain, est prévu pour être étendu à des usages spécifiques \cite{Biljecki2018}. Cette possibilité est exploitée par \cite{Wheeler2020} pour y intégrer les cheminements piéton et leurs conditions d'accessibilité. La norme \gls{gtfs} \cite{GTFS}, prévu pour modéliser les réseaux de transport, comporte quelques champs permettant de décrire l'accessibilité d'un cheminement ou d'un arrêt. Il vise à être supplanté en Europe par \gls{netex} \cite{NeTEx}, prévu pour le même usage, mais couvre un périmètre fonctionnel plus large en permettant notamment une représentation plus complète des cheminements piéton et de leur accessibilité. 
+En France, la \gls{lom}, promulguée en 2019, impose aux collectivités de collecter et publier les données d'accessibilité de la voirie à 200 mètres autour des arrêts de transports en commun. Le formalisme utilisé, normalisé par le \gls{cnig}, est un dérivé du \gls{netex} pensé pour la description fine des cheminements piéton.
 
 \subsection{Les bases de données existantes}
 
+L'acquisition des données géographiques est un processus généralement mené par des professionnels. Cela est également vrai pour les données d'accessibilité pour lesquelles la précision demandée nécessite une opération manuelle particulièrement longue et des relevés sur le terrain \cite{Beale2006}. % Je parle ici des BDD créées par les professionnels
+
+Cependant, l'émergence de l'\gls{igv} a apporté une nouvelle perspective à la collecte de données, permettant d'augmenter leur disponibilité sur des zones et des thèmes auparavant peu couverts \cite{Goodchild2007}, dont l'accessibilité. % Je parle ici des BDD issues des données collaboratives
+
 % Parler de leur représentation dans les BDD et de leur qualité : cette bdd modélise les choses comme ça et couvre ce territoire. Tableau comparatif.
+% Temporalité : travaux
 % Cycle des feux : on sait le modéliser mais la donnée n'existe pas. 
 
 % Justification utilisation OSM : plein de paradigmes de modélisation de cartographie fine (CityGML, Netex, etc.). Le plus fexible pour nos besoins = OSM.
@@ -84,15 +111,13 @@ Pour les carrefours spécifiquement, à l'instar des aménageurs, les \ipas{} mo
 % Dans cette partie, chaque sous section se termine avec un focus sur l'existant au sujet des carrefours.
 % Introduire les données géographiques et les bases de données les plus communes (OpenStreetMap)
 
-Une donnée géographique est une donnée, en général tabulaire, à laquelle sont accolées des informations spatiales. Elles peuvent être utilisées pour concevoir des cartes, mais également au sein de dispositifs d'aide au guidage. Pour être mobilisées par des \pcdvs, il est nécessaire d'en proposer une représentation accessible par d'autres sens que la vue. Cette partie s'intéresse à présenter les dispositifs décrits au sein de la littérature, ainsi que ceux effectivement mobilisés dans leur quotidien par les personnes concernées.
+Les données géographiques peuvent être utilisées pour concevoir des cartes, mais également au sein de dispositifs sensoriels permettant à une \gls{pcdv} de les explorer. Pour cela, il est nécessaire d'en proposer une représentation accessible par d'autres sens que la vue. Cette partie s'intéresse à présenter les dispositifs décrits au sein de la littérature, ainsi que ceux effectivement mobilisés dans leur quotidien par les personnes concernées.
 
 \subsection{Les descriptions autosuffisantes}
 
 % Définition : une description autosuffisante c'est un texte mobilisable tel quel. Il n'y a pas d'interactions entre l'utilisateur et le texte.
 
 % Une description verbale/textuelle aide à la construction d'une carte mentale
-
-% Temporalité : travaux
 
 Une carte mentale construite à partir d'une description verbale partage ses propriétés avec une carte mentale dérivée d'une expérience visuelle, dont les relations spatiales entre les entités \cite{Denis1992}. Par ailleurs, elle permet d'inférer des relations spatiales non-explicitement indiquées dans la description, et ainsi d'adopter un point de vue exocentré \cite{Avraamides2004}. Une description verbale peut ainsi être mobilisée par les \pcdvs{} afin de construire une représentation mentale d'un espace.
 
@@ -159,8 +184,6 @@ Les bases de données vectorielles, bien qu'ayant parfois une couverture mondial
 Le sujet de la génération de cartes tactiles à l'échelle spécifique du carrefour est adressé au sein du projet ACTIVmap par \cite{Jiang2023} en utilisant les données OpenStreetMap et en accordant une attention particulière aux échelles et niveaux de détails requis.
 
 Les travaux de génération de cartes tactiles reposent sur des techniques différentes. Ils ne s'intéressent pas à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir \ref{tab:ea_relief}). Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \cite{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \cite{Brock2015}. Ce sujet est abordé dans \ref{ea_cartessonores}.
-
-% Revoir les colonnes, citer le tableau dans le texte.
 
 \begin{table}
 \begin{center}

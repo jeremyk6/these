@@ -7,6 +7,7 @@
 \usepackage[numbers]{natbib}
 \usepackage{hyperref}
 \usepackage{pdfcomment}
+\usepackage{glossaries}
 
 % Défini le format des pages (A4, marges)
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
@@ -52,3 +53,20 @@
 \newcommand{\ipas}[1]{instructeurs pour l'autonomie}
 \newcommand{\adt}[1]{adaptateur-transcripteur}
 \newcommand{\adts}[1]{adaptateurs-transcripteurs}
+
+% Glossaire
+\newacronym{sig}{SIG}{Système d'Information Géographique}
+\newacronym{sgbdr}{SGBDR}{Système de Gestion de Bases de Données Relationnelles}
+\newacronym{pcdv}{PCDV}{Personne Concernée par la Déficience Visuelle}
+\newacronym{cerema}{CEREMA}{Centre d'Études et d'expertise sur les Risques, l'Environnement, la Mobilité et l'Aménagement}
+\newacronym{bev}{BEV}{Bandes d'Éveil de Vigilance}
+\newacronym{igv}{IGV}{Information Géographique Volontaire}
+\newacronym{gtfs}{GTFS}{General Transit Feed Specification}
+\newacronym{netex}{NeTEx}{Network Timetable Exchange}
+\newacronym{lom}{LOM}{Loi d'Orientation des Mobilités}
+\newacronym{cnig}{CNIG}{Conseil National de l'Information Géolocalisée}
+\newglossaryentry{accessibilité}{
+   name = accessibilité,
+   description = Facilité d'accès à un lieu quel que soient les besoins spécifiques des personnes
+}
+\makenoidxglossaries

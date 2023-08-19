@@ -1,1 +1,0 @@
-{"rule":"FR_SPELLING_RULE","sentence":"^\\QLors de mises en situation, ou pour documenter un itinéraire, l'\\ipa pourra également réaliser une carte en relief du lieu étudié.\\E$"}
