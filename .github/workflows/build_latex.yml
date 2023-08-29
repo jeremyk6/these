@@ -6,6 +6,10 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v3
+      - name : Add commit number to the title page
+        run: |
+          commit_id=$(git rev-parse HEAD)
+          cat title.tex | sed "s/% CI_COMMIT_INSERTION/Commit $commit_id/" | tee title.tex
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
