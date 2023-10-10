@@ -91,3 +91,76 @@ Est-ce que l'on peut ajouter un alt text
 _____
 
 Forme : "Cette possibilité est exploitée par [x]" [x] = les auteurs, pas la publications. Voir comment faire (citep ?)
+
+État de l'art : expliquer l'intérêt particulier d'une/+sieurs publications pour mon travail.
+
+Cadre de synthèse à la fin de chaque section. Parfois pour la cohérence, le cadre est écrit avant le reste pour cadrer le discours.
+
+________
+
+Traversée de la rue, version StreetMix : https://streetmix.net/jeremy.kalsron/4 .
+
+_________
+
+citet quand je veux parler des auteurs (genre Machin et al. [42] disent (...))
+
+__________
+
+Carrefour : identifier les cas complexes
+
+Une page de carrefours complexes avec commentaires pour expliquer leur complexité : pas exhaustive de la complexité.
+
+___________
+
+Présenter d'abord les carrefours + cas particuliers
+Présenter ensuite les traversées + cas particuliers
+
+
+___________
+
+Lors du dépôt, il faut demander une extension du délai pour le rapporteur (pas de relecture pendant les vacances de noël).
+
+_____
+
+# Dans 2.1
+
+Définir ce qu'est un graphe routier
+ --- Définir ce qu'est un carrefour
+    --- Définir ce qu'est une branche
+    --- Définir ce qu'est une traversée
+	--- Définir ce qu'est un trottoir
+	--- Définir ce qu'est un îlot
+
+Définir du flou pour la définition du carrefour dans le cas d'une branche qui ne se traverse pas.
+
+Ce qui est de l'ordre de la définition : une traversée est un chemin = un ensemble d'arêtes.
+
+La traversée est un chemin qui peut passer par un îlot, qui ne fait pas partie du graphe routier.
+	Dans le graphe on peut identifier des nœuds précis, en indiquant des chemins qui ne sont pas dans la classe des routes. Mes îlots appartiennent à des chemins qui ne sont pas dans la classe des routes.
+
+Théorie des graphes : notion de relation, pour définir la manière dont les choses s'organisent spatialement.
+
+Définition graphe = définition formelle sans ambigüité. + définition textuelle pour s'adresser aux deux communautés.
+
+Voir HDR Didier Josselin.
+
+Dans l'esenmble des nodes qui sont des kerbs, il y a un sous ensemble de nodes.
+Autres manières : on considère que les nœuds 
+
+Définition de graphes multimodaux
+
+https://excalidraw.com/#room=34ca2fe54b2f418751c3,xmkPzLd1nuXnPKPOGuWVVw
+
+https://demo.hedgedoc.org/DxG6vwfQTg-DWkW5y_pO4g#
+
+----
+Réunion du 03/10 :
+Remplacer couverture par partition
+
+Définition 4 : Sortir "Cette fonction $f_t$ est appelée **fonction d'adjacence** du trottoir $G_t$." de la définition pour l'ajouter dans le corps du texte.
+
+✅ Définition 5 : Tous les nœuds internes sont dans Vr (pas la peine de se limiter à 3 nœuds)
+
+✅ Définition 6 : Il existe un edge qui passe des nœuds purement de la branche aux nœuds dans le cœur de carrefour. Actuellement j'indique que les nœuds sont communs, mais pas les edges.
+
+Expliquer les propriétés des différents éléments : où s'arrête la branche ? Une branche permet de relier deux carrefours ? Exemple : un rond point à deux branches. Est-ce qu'un carrefour a un minimum de 3 branches. La définition doit inclure tous les cas bizarres qui m'intéressent, et que ça va inclure ou exclure.
