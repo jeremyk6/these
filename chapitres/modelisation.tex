@@ -28,7 +28,7 @@ Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu 
 Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de nous reposer sur une approche graphe afin de le définir et de le délimiter dans un réseau routier. Les définitions suivantes en définissent la structure :
 
 \begin{definition}
-    On appelle \textbf{couverture} d'un graphe $G_0 = (V_0,E_0)$ connexe et plongé dans le plan un ensemble de sous-graphes connexes $\mathcal{G_0}$ tels que:
+    On appelle \textbf{couverture} d'un graphe $G_0 = (V_0,E_0)$ et plongé dans le plan un ensemble de sous-graphes $\mathcal{G_0}$ tels que:
     \begin{itemize}
         \item Si $G_1=(V_1, E_1) \in \mathcal{G_0}$ et $G_2=(V_2, E_2) \in \mathcal{G_p}$, alors $E_1 \cap E_2 = \emptyset$
         \item $\forall e \in E_p$, $\exists!~G_1=(V_1, E_1) \in \mathcal{G_p}$ tel que $e \in E_1$
@@ -40,7 +40,7 @@ Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de 
 \end{definition}
 
 \begin{definition}
-    On défini un \textbf{graphe multimodal} comme un graphe $G = (V,E)$ connexe et plongé dans le plan et muni d'une couverture $\{G_r=(V_r, E_r), G_p = (V_p, E_p)\}$ composée d'un \textbf{graphe routier} $G_r$ et d'un \textbf{graphe piéton} $G_p$.
+    On défini un \textbf{graphe multimodal} comme un graphe $G = (V,E)$ plongé dans le plan et muni d'une couverture $\{G_r=(V_r, E_r), G_p = (V_p, E_p)\}$ composée d'un \textbf{graphe routier} $G_r$ et d'un \textbf{graphe piéton} $G_p$.
 
     Remarque: l'intersection entre $V_r$ et $V_p$ peut ne pas être vide.
 
@@ -95,6 +95,8 @@ Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de 
         \item Chaque branche est connectée à un ou deux coeurs de carrefour
         \item Un coeur de carrefour est au minimum connecté à deux branches distinctes
     \end{itemize}
+
+    Remarque: un cœur de carrefour ne peut pas être un chemin.
 
     Exemples:
     \begin{itemize}
@@ -158,8 +160,6 @@ Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de 
     \caption{Traversée de la première branche du carrefour.}
     \label{fig:modelisation_traversee}
 \end{figure}
-
-\todo{}
 
 \subsection{Les repères au sein du carrefour}
 

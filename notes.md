@@ -164,3 +164,15 @@ Définition 4 : Sortir "Cette fonction $f_t$ est appelée **fonction d'adjacence
 ✅ Définition 6 : Il existe un edge qui passe des nœuds purement de la branche aux nœuds dans le cœur de carrefour. Actuellement j'indique que les nœuds sont communs, mais pas les edges.
 
 Expliquer les propriétés des différents éléments : où s'arrête la branche ? Une branche permet de relier deux carrefours ? Exemple : un rond point à deux branches. Est-ce qu'un carrefour a un minimum de 3 branches. La définition doit inclure tous les cas bizarres qui m'intéressent, et que ça va inclure ou exclure.
+
+--------
+
+Réunion du 10/10
+
+Est-ce qu'on vire les carrefours qui ne se traversent pas ?
+
+Correction de la définition :
+✅ - Un cœur de carrefour ne doit pas être un chemin (rajouter dans la définition 6)
+- Une couverture est un sous-graphe connexe, sauf dans le cas de deux branches qui partent d'un carrefour. Exemple : https://excalidraw.com/#room=24c0b85ef564425c64aa,RvLTnA8ZLBMc_Q2WbDzE9A. Enlever la nécessité de connexité dans la définition 1 : virer connexe partout et vérifier qu'il n'y a pas de conséquences. Il pourrait y en avoir si la connexité est importante à un endroit.
+
+Il faut garder le cas des étudiants pour les perspectives/la conclusion pour montrer qu'il y aura besoin d'un nouveau modèle.
