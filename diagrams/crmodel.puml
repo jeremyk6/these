@@ -1,0 +1,80 @@
+@startuml
+
+enum Direction {
+    IN
+    OUT
+}
+
+object Lane {
+    int id
+}
+object Bus
+object Road
+
+object Way {
+    int id
+    string name
+}
+
+object Node {
+    int id
+    float x
+    float y
+}
+object AbstractNode
+object NodeDecorator
+object TrafficLight
+object PedestrianTrafficLight
+object Crosswalk
+
+object Branch {
+    int id
+}
+
+object Intersection
+
+object PedestrianNode {
+    int id
+}
+object Sidewalk
+object Island
+object Crossing
+
+'Relations
+
+'Decorator part
+Node -r-|> AbstractNode
+NodeDecorator -l-|> AbstractNode
+AbstractNode "1" -r-* "1" NodeDecorator
+TrafficLight -u-|> NodeDecorator
+PedestrianTrafficLight -u-|> NodeDecorator
+Crosswalk -u-|> NodeDecorator
+
+'Way part
+Way "*" o-r- "2" Node
+
+'Lanes part
+Way "1" *-u- "*" Lane
+Lane <|-r- Bus
+Lane <|-r- Road
+Lane o-l- Direction
+
+'Branch part
+Branch "1" o-r- "*" Way
+Intersection "1" *-r- "*" Branch
+Branch "1" *-d- "1" Crossing
+
+'Pedestrian node part
+Way "*" o-d- "0..2" PedestrianNode
+Sidewalk -r-|> PedestrianNode
+Island -l-|> PedestrianNode
+PedestrianNode "2" -d-o "*" Crosswalk
+
+'Crossing part
+Crossing o-r- Crosswalk
+
+'Placement commands
+PedestrianTrafficLight -d[hidden]- TrafficLight
+Crosswalk -u[hidden]- PedestrianTrafficLight
+
+@enduml

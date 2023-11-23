@@ -1,0 +1,22 @@
+@startuml
+
+object Node {
+    int id
+    float x
+    float y
+}
+
+object AbstractNode
+
+object NodeDecorator
+
+object Crosswalk
+object TrafficLight
+
+Node -r-|> AbstractNode
+NodeDecorator -u-|> AbstractNode
+AbstractNode "1" -* "1" NodeDecorator
+Crosswalk -u-|> NodeDecorator
+TrafficLight -u-|> NodeDecorator
+
+@enduml

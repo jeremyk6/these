@@ -12,6 +12,9 @@
 \usepackage{array}
 \usepackage{csquotes}
 \usepackage{amssymb}
+\usepackage{fontawesome}
+\usepackage{plantuml}
+\usepackage{subcaption}
 
 % Défini le format des pages (A4, marges)
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
@@ -58,6 +61,10 @@
 \newcommand{\adt}[1]{adaptateur-transcripteur}
 \newcommand{\adts}[1]{adaptateurs-transcripteurs}
 
+% Commandes de mise en forme
+\newcommand{\osmkey}[1]{\faKey\texttt{~#1}}
+\newcommand{\osmvalue}[1]{\faFileTextO\texttt{~#1}}
+
 % Définitions
 \newtheorem{definition}{Définition} 
 
@@ -82,4 +89,5 @@
 \newacronym[firstplural=Instructeurs en Autonomie de la Vie Journalière]{iavj}{IAVJ}{Instructeur en Autonomie de la Vie Journalière}
 \newacronym[firstplural=Instructeurs pour l'Autonomie des personnes déficientes visuelles]{ia}{IA}{Instructeur pour l'Autonomie des personnes déficientes visuelles}
 \newacronym{crdv}{CRDV}{Centre de Rééducation pour Déficients Visuels}
+\newacronym[firstplural=Personnes à mobilité réduite]{pmr}{PMR}{Personne à mobilité réduite}
 \makenoidxglossaries

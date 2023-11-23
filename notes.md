@@ -54,8 +54,8 @@ Tâches restantes pour la rédaction:
 - Déterminer comment évaluer les descriptions textuelles
 - Terminer l'implémentation du plugin QGIS + générer une description des arrêts de bus (côté test de l'implémentation)
 - Définir un style LaTeX
-- 
--Jury de thèse : qui ? Rapporteurs avant l'été.
+
+- Jury de thèse : qui ? Rapporteurs avant l'été.
     - Rapporteurs :
         - Myriam Servière
         - Didier Josselin
@@ -125,11 +125,11 @@ _____
 # Dans 2.1
 
 Définir ce qu'est un graphe routier
- --- Définir ce qu'est un carrefour
-    --- Définir ce qu'est une branche
-    --- Définir ce qu'est une traversée
-	--- Définir ce qu'est un trottoir
-	--- Définir ce qu'est un îlot
+- Définir ce qu'est un carrefour
+	- Définir ce qu'est une branche
+    - Définir ce qu'est une traversée
+	- Définir ce qu'est un trottoir
+	- Définir ce qu'est un îlot
 
 Définir du flou pour la définition du carrefour dans le cas d'une branche qui ne se traverse pas.
 
@@ -171,7 +171,46 @@ Réunion du 10/10
 Est-ce qu'on vire les carrefours qui ne se traversent pas ?
 
 Correction de la définition :
-✅ - Un cœur de carrefour ne doit pas être un chemin (rajouter dans la définition 6)
-✅  Une couverture est un sous-graphe connexe, sauf dans le cas de deux branches qui partent d'un carrefour. Exemple : https://excalidraw.com/#room=24c0b85ef564425c64aa,RvLTnA8ZLBMc_Q2WbDzE9A. Enlever la nécessité de connexité dans la définition 1 : virer connexe partout et vérifier qu'il n'y a pas de conséquences. Il pourrait y en avoir si la connexité est importante à un endroit.
+- [x] Un cœur de carrefour ne doit pas être un chemin (rajouter dans la définition 6)
+- [x] Une couverture est un sous-graphe connexe, sauf dans le cas de deux branches qui partent d'un carrefour. Exemple : https://excalidraw.com/#room=24c0b85ef564425c64aa,RvLTnA8ZLBMc_Q2WbDzE9A. Enlever la nécessité de connexité dans la définition 1 : virer connexe partout et vérifier qu'il n'y a pas de conséquences. Il pourrait y en avoir si la connexité est importante à un endroit.
 
 Il faut garder le cas des étudiants pour les perspectives/la conclusion pour montrer qu'il y aura besoin d'un nouveau modèle.
+
+----------------------------
+
+# TODO
+
+- [ ] Partie OSM : Parler du cycle des feux pour aborder l'évolutivité de la sémantique d'OSM
+- [ ] ODBL : NOTE DE BAS DE PAGE
+- [ ] Mots en anglais en italique
+- [ ] Figure quand tu fais un renvoi en minuscule
+- [ ] Régler la césure pour le retour à la ligne des mots inconnus de LaTeX (exemple: OpenStreetMap)
+- [ ] Ne pas mettre d'espace avant les : (babel ajoute un espace insécable automatiquement)
+- [ ] Nombre en toute lettre
+
+---------
+
+Réunion du 17 octobre
+
+2.3 oui 2.4 - Présenter le modèle du carrefour dont vous êtes le héros
+
+2.3.3 - Présenter l'algorithmique sur le graphe pour instancier le modèle depuis OSM
+
+3.1 - Présentation de la chaîne 
+
+Version projetée du graphe
+
+Modifier le plan : exo, à la carte, ego
+
+3.3.3 - La description dans la carte
+
+Au fur et à mesure de mes parties, j'augmente l'interaction entre l'utilisateur et la donnée/la carte/le graphe.
+
+2.3.3.1 - Graphe routier
+2.3.3.2 - Graphe piéton
+2.3.3.3 - Correspondance OSM-UML
+
+---
+Réunion 07/11/2023
+
+Notion de stroke (vrai terme). Quand tu prends une branche, si tu arrives à un autre carrefour et tu les agrèges pour avoir une enfilade de branche.
