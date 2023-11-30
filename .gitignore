@@ -16,6 +16,7 @@ main.pdf
 main.out
 main.upa
 main.upb
+main-plantuml.*
 .DS_Store
 bibliography/*.pdf
 bibliography/*.sav
