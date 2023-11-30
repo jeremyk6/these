@@ -1,3 +1,3 @@
-$ENV{'PLANTUML_JAR'}='/usr/share/plantuml/plantuml.jar';
+$ENV{'PLANTUML_JAR'}='/usr/share/java/plantuml.jar';
 $ENV{'GRAPHVIZ_DOT'}='/usr/bin/dot';
 $pdflatex = 'lualatex %O %S -shell-escape';
