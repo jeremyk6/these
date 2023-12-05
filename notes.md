@@ -214,3 +214,26 @@ Au fur et à mesure de mes parties, j'augmente l'interaction entre l'utilisateur
 Réunion 07/11/2023
 
 Notion de stroke (vrai terme). Quand tu prends une branche, si tu arrives à un autre carrefour et tu les agrèges pour avoir une enfilade de branche.
+---
+Réunion du 23/11
+
+Dans la partie modélisation, on fait référence à OSM mais on peut généraliser à d'autres graphes si la donnée existe.
+
+Perspective: qualification intrinsèque: détecter les endroits qui ont une description insuffisante pour les DV.
+
+Conclusion : 
+----
+Réunion du 27/11:
+
+- Annoncer ce qui va se passer dans chaque partie.
+- Ne pas avoir deux titres qui se suivent (rajouter un morceau de phrase)
+- Modèle de données pétés sur Gtihub
+
+Partie description:
+
+1. De la donnée au texte
+2. Cas 1. Description exocentrée
+3. Cas 2. Description à la carte
+4. Cas 3. Description égocentré
+
+4.2 : Ajouter en annexe les travaux d'Ali et des garçons, voire 4.4. Enrichir les descriptions.

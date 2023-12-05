@@ -19,6 +19,9 @@
 % Défini le format des pages (A4, marges)
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
 
+% Défini la profondeur de numérotation
+\setcounter{secnumdepth}{4}
+
 % Style avec le bandeau en haut de page
  
 \fancypagestyle{main}{
@@ -50,7 +53,7 @@
 \newcommand{\pquote}[1]{{<< #1 >>}}
 \newcommand*{\comment}[1]{\pdfcomment[author=Jérémy]{#1}}
 \newcommand*{\addfigure}[1]{\pdfcomment[author=Jérémy, icon=Note]{#1}}
-\newcommand*{\newpar}[1]{\vspace{.7cm}}
+\newcommand*{\newpar}[1]{\vspace{.3cm}}
 
 
 % Commandes de vocabulaire
