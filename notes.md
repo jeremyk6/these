@@ -231,9 +231,68 @@ Réunion du 27/11:
 
 Partie description:
 
+On va du moins interactif vers le plus interactif. Texte structuré du plus linéaire vers le moins linéaire.
+
 1. De la donnée au texte
 2. Cas 1. Description exocentrée
-3. Cas 2. Description à la carte
+3. Cas 2. Description dans la carte
 4. Cas 3. Description égocentré
 
 4.2 : Ajouter en annexe les travaux d'Ali et des garçons, voire 4.4. Enrichir les descriptions.
+
+Cas 4. Différence dans les interactions: le carrefour dont vous êtes le héros + le poc. Différences: le carrefour dont vous êtes le héros: n nœuds reliés VS 4 nœuds reliés. Le modèle est le même.
+
+_______
+
+05/12
+
+2.1.2 : citer le chapitre du bouquin + travail de Lisa
+
+________
+
+18/12/2023
+
+3.1.
+A-t-on besoin de se placer dans un contexte geodata to text ? On souhaite se placer dans le contexte où l'utilisateur travaille sur un SIG. Si on dit qu'on s'intéresse aux géomaticien, on s'intéresse à son outil (SIG) et on veut que notre modèle s'intègre à un SIG.
+
+Présenter la contrainte d'avoir un utilisateur géomaticien qui utilise mon modèle dans un SIG.
+
+cheminement: je veux fournir un outil aux usager finaux, je veux le rendre flexible. Mais il manque un maillon: le géomaticien.
+Je déroule l'exemple des boulangeries.
+
+3.2.
+
+/!\ Ne pas cofondre l'utilisateur des outils et l'utilisateur des descriptions.
+- Utilisateur de l'outil: le géomaticien
+- Utilisateur de la description: 
+
+Quelles sont les informations que je peux présenter de manière exocentré. En direction de, etc. Notions plus abstraites que le plan de la description + exemple sans validation pour l'utilisateur. Solliciter biblio autour de la position relative. Le modèle permet des variations.
+
+3.3.
+
+Le modèle permet au géomaticien de créer du texte en un point: génération du texte depuis plusieurs entités géographiques, génération d'une nouvelle géométrie sur un nouveau point contenant le texte.
+
+3.4.
+
+
+~~Implémentation~~ Expérimentation
+
+---
+19/01/2024
+
+Définir ce qu'est une description. Qu'est-ce qu'elle permet de d'obtenir. J'ai ça en entrée, j'ai ça en sortie. Et voilà comment le réaliser. Ça pê un texte annoté, au sens TAL / Texte augmenté. Annotation sur tout ou partie du texte.
+
+Données spatiales structurées -> 
+	Description = procédé de transformation qui permet de décrire les données structurées sous la forme de texte augmenté -> 
+	Texte structuré  
+
+Illustrer le texte structuré.
+
+Sous use-case:
+
+______
+
+Comment tu fabriques ce traitement SIG ? Tu sais que tu veux générer le texte.
+
+Traitement SIG: production des données nécessaires pour un template de texte. Termes: algorithmes.
+
