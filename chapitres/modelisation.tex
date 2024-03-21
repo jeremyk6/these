@@ -273,6 +273,8 @@ Par ailleurs, les pratiques sont localement variées. Le journal d'un utilisateu
 
 \section{Un modèle de carrefour}
 
+\label{sec:modelisation_crmodel}
+
 Pour utiliser la donnée \gls{osm} dans un contexte spécifique, il est préconisé de la manipuler à l'aide d'un modèle de donnée spécialisé intermédiaire \cite{Touya2014}. Nous proposons dans un premier temps une modélisation objet générique de la donnée \gls{osm}, que nous appliquons dans un second temps à la modélisation du carrefour. Enfin, nous présentons les méthodes permettant d'instancier ce modèle depuis OpenStreetMap.
 
 \subsection{OSM-Objet : une modélisation objet de la donnée OpenStreetMap}
@@ -420,6 +422,8 @@ Pour instancier CrModel, il est nécessaire de disposer d'un graphe routier dont
 \end{itemize}
 
 \section{Segmenter un carrefour dans le graphe d'\gls{osm}}
+
+\label{sec:modelisation_crseg}
 
 Du point de vue d'un piéton, la bordure entre le cœur de carrefour et les branches (voir définition \ref{def:modelisation_couverture_routiere_complète}) sera généralement située au niveau des passages piétons pour chaque branche du carrefour. Si une branche n'a pas de passage piéton, cette séparation sera située là où les véhicules s'arrêtent (feu de circulation, panneau stop, etc.) comme illustré à la figure \ref{fig:modelisation_limite_carrefourA}. En cas d'absence de toute signalisation, la limite sera placée aussi près que possible pour éviter d'étendre sa zone dans la branche adjacente, comme illustré à la figure \ref{fig:modelisation_limite_carrefourB}.
 
@@ -707,6 +711,8 @@ Enfin, pour chaque carrefour assemblé de cette manière, on identifie ses banch
 
 \subsection{Calcul des informations piétonnes}
 
+\label{sec:modelisation_calcul_info_pietonnes}
+
 À partir d'un carrefour segmenté, il est maintenant possible de déduire des informations piétonnes utiles pour l'instanciation de CrModel, notamment les trottoirs, les îlots, et les traversées de branches. Ces étapes sont détaillées dans les sous-parties suivantes.
 
 \subsubsection{Aggrégation des trottoirs}
@@ -720,7 +726,7 @@ Enfin, pour chaque carrefour assemblé de cette manière, on identifie ses banch
 
 Dans \gls{osm}, les trottoirs identifiés sous forme de sémantique sur le réseau routier ne sont pas aggrégés en une entité unique: chaque tronçon de route indique s'il présente ou non un trottoir à sa droite ou à sa gauche. Si l'on veut considérer une entité trottoir complète, il est nécessaire d'aggréger les tronçons correspondants et déterminer de quel côté le trottoir est situé.
 
-La génération est réalisée de la manière suivante: d'abord, les branches issues de la segmentation (voir figure \ref{fig:modelisation_segmentation_step5}) ne sont pas ordonnées, donc nous les ordonnons dans le sens des aiguilles d'une montre (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.2). Pour chaque branche du carrefour, une par une dans le sens des aiguilles d'une montre, on part du nœud situé à l'extrémité de l'arête la plus à droite et on parcours le graphe en tournant toujours à gauche jusqu'à atteindre une seconde extrêmité (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.3). Le chemin traversé correspond alors à un trottoir (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.4). Si l'arête est traversée dans sa direction, le trottoir est situé à sa gauche, sinon il est situé à sa droite. Si aucune sémantique n'indique l'absence de trottoir, on considère qu'il est présent. Nous avons fait ce choix car la majorité des villes ont des trottoirs, et la donnée \gls{osm} n'est pas encore suffisamment renseignée sur la sémantique associée.
+La génération est réalisée de la manière suivante: d'abord, les branches issues de la segmentation (voir figure \ref{fig:modelisation_segmentation_step5}) ne sont pas ordonnées, donc nous les ordonnons dans le sens des aiguilles d'une montre en calculant le chemin longeant la bordure du graphe (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.2). Pour chaque branche du carrefour, une par une dans le sens des aiguilles d'une montre, on part du nœud situé à l'extrémité de l'arête la plus à droite et on parcours le graphe en tournant toujours à gauche jusqu'à atteindre une seconde extrêmité (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.3). Le chemin traversé correspond alors à un trottoir (voir figure \ref{fig:modelisation_calcul_pieton_trottoirs}.4). Si l'arête est traversée dans sa direction, le trottoir est situé à sa gauche, sinon il est situé à sa droite. Si aucune sémantique n'indique l'absence de trottoir, on considère qu'il est présent. Nous avons fait ce choix car la majorité des villes ont des trottoirs, et la donnée \gls{osm} n'est pas encore suffisamment renseignée sur la sémantique associée.
 
 \subsubsection{Génération des îlots}
 

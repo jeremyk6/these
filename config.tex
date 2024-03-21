@@ -15,6 +15,20 @@
 \usepackage{fontawesome}
 \usepackage{plantuml}
 \usepackage{subcaption}
+\usepackage{listings}
+\usepackage{makecell}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%algorithm2e (francisable)
+
+% Alignement des cellules makecell à gauche
+\renewcommand{\cellalign}{tl}
+\renewcommand{\theadalign}{tl}
+
+% Francisation des commandes algorithmiques
+\algrenewcommand\algorithmicfor{\textbf{pour}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicend{\textbf{fin}}
 
 % Défini le format des pages (A4, marges)
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
@@ -93,4 +107,8 @@
 \newacronym[firstplural=Instructeurs pour l'Autonomie des personnes déficientes visuelles]{ia}{IA}{Instructeur pour l'Autonomie des personnes déficientes visuelles}
 \newacronym{crdv}{CRDV}{Centre de Rééducation pour Déficients Visuels}
 \newacronym[firstplural=Personnes à mobilité réduite]{pmr}{PMR}{Personne à mobilité réduite}
+\newacronym{limos}{LIMOS}{Laboratoire d'Informatique, de Modélisation et d'Optimisation des Systèmes}
+\newacronym{ign}{IGN}{Institut National de l’Information Géographique et Forestière}
+\newacronym{irit}{IRIT}{Institut de Recherche en Informatique de Toulouse}
+\newacronym{deri}{DERi}{Document En Relief Interactif}
 \makenoidxglossaries
