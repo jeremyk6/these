@@ -28,10 +28,25 @@ Cette partie présente une expérimentation visant à décrire textuellement un 
 
 Le texte préparé pour cette expérimentation est issu d'échanges avec des personnes liées à la déficience visuelle, notamment des personnes concernées, des \gls{ia}, des architectes urbains et des entreprises de mobilité. L'objectif est ici d'obtenir un aperçu synthétique de la configuration du carrefour: sa forme, ses branches et les manières de le traverser. Pour décrire la forme du carrefour, bien que non-normalisé, un consensus à la fois mobilisés par les urbanistes et usagers existe autour des appelations <<~en croix~>>, <<~en T~>>, etc \cite{fogliaroni2018}, qui donne à la fois une information sur le nombre de branches et sur la forme générale du carrefour. Pour chaque branche, on détermine le nombre de voies, le type de véhicule qui circule dessus, et les sens de circulation. Enfin, on détermine pour chaque branche s'il existe une traversée, c'est-à-dire la possibilité de passer d'un trottoir à l'autre, et on décrit l'accessibilité des passages piéton qui y sont associés. Par ailleurs, toutes les descriptions ont lieu dans le sens de sens des aiguilles d'une montre en partant de la branche la plus au nord. Le plan de la description est présenté sur la figure \ref{fig:experimentation_plan_description}.
 
-\begin{figure}
-    \centering
-    \resizebox{10cm}{!}{\includegraphics{images/experimentation/plan_description.pdf}}
-    \caption{Exemple de description souhaitée pour un carrefour en croix en suivant le plan établi.}
+\begin{figure}[ht]
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{images/experimentation/ortho_carrefour.png} 
+    \end{minipage}
+    \begin{minipage}[b]{0.45\linewidth}
+        \footnotesize
+        \textbf{Description générale}\\
+        Le carrefour à l'intersection du cours Sablon et de l'avenue Carnot est un carrefour à 4 branches.\\
+        \textbf{Description des branches}\\
+        (...)\\
+        La branche numéro deux qui s'appelle avenue Carnot est composée d'une voie de bus sortante, et une voie de circulation et une voie de bus entrante.\\
+        (...)\\
+        \textbf{Description des traversées}\\
+        (...)\\
+        La branche numéro trois se traverse en trois fois. Les passages piétons ne sont pas tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.\\
+        (...)
+    \end{minipage}
+    \caption{Exemple de description souhaitée pour un carrefour en croix en suivant le plan établi. Source: IGN BD Ortho 2020.}
     \label{fig:experimentation_plan_description}
 \end{figure}
 
@@ -43,60 +58,72 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
 
 \newpar{}
 
-\textbf{La description générale} présente une vue synthétique du carrefour: nom des branches et type de carrefour. Une difficulté réside dans la variabilité du nombre de branches et de leur nom. Nous avons décidé ici de stocker les noms de branche au sein d'un unique champ dans le format JSON. Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte. La donnée peut alors suivre le schéma tabulaire ci-dessous:
+\textbf{La description générale} présente une vue synthétique du carrefour: nom des branches et type de carrefour. Une difficulté réside dans la variabilité du nombre de branches et de leur nom. Nous avons décidé ici de stocker les noms de branche au sein d'un unique champ dans le format JSON. La donnée peut alors suivre le schéma tabulaire défini en table \ref{tab:experimentation_desc_generale}.
 
 \newpar{}
 
-\begin{center}
-    \footnotesize
-    \begin{tabular}{ | l | l |}
-        \textbf{Nombre branche} & \textbf{Noms branches}\\
-        \hline
-        4 & 
-        \makecell{
-            \texttt[\\
-            \hspace{0.5cm}\texttt{\{"type": "avenue","name": "Carnot"\}},\\
-            \hspace{0.5cm}\texttt{\{"type": "cours","name": "Sablon"\}}\\
-            \texttt]
-        }
-    \end{tabular}
-\end{center}
+\begin{table}[ht]
+    \begin{center}
+        \footnotesize
+        \begin{tabular}{ | l | l |}
+            \textbf{Nombre branche} & \textbf{Noms branches}\\
+            \hline
+            4 & 
+            \makecell{
+                \texttt[\\
+                \hspace{0.5cm}\texttt{\{"type": "avenue","name": "Carnot"\}},\\
+                \hspace{0.5cm}\texttt{\{"type": "cours","name": "Sablon"\}}\\
+                \texttt]
+            }
+        \end{tabular}
+    \end{center}
+    \caption{Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte.}
+    \label{tab:experimentation_desc_generale}
+\end{table}
 
 \newpar{}
 
-\textbf{La description des branches} doit indiquer pour chaque branche son numéro et, dans le sens des aiguilles d'une montre, les voies qui le composent. À l'instar des noms de branche, le nombre de voies est également variable. Par ailleurs, il doit être possible de décrire un enchaînement de voies de types et de sens différents. À l'instar de la solution précédente, ces informations seront stockées dans une unique colonne au format JSON. On peut alors définir le schéma tabulaire suivant:
+\textbf{La description des branches} doit indiquer pour chaque branche son numéro et, dans le sens des aiguilles d'une montre, les voies qui le composent. À l'instar des noms de branche, le nombre de voies est également variable. Par ailleurs, il doit être possible de décrire un enchaînement de voies de types et de sens différents. À l'instar de la solution précédente, ces informations seront stockées dans une unique colonne au format JSON. On peut alors définir le schéma tabulaire en table \ref{tab:experimentation_desc_branches}.
 
 \newpar{}
 
-\begin{center}
-    \footnotesize
-    \begin{tabular}{ | l | l |}
-        \textbf{N° branche} & \textbf{Voies}\\
-        \hline
-        2 & 
-        \makecell{
-            \texttt[\\
-            \hspace{0.5cm}\texttt{\{"number": 1,"direction": "sortante","type": "bus"\}},\\
-            \hspace{0.5cm}\texttt{\{"number": 1,"direction": "entrante","type": "car"\}}\\
-            \texttt]
-        }
-    \end{tabular}
-\end{center}
+\begin{table}[ht]
+    \begin{center}
+        \footnotesize
+        \begin{tabular}{ | l | l |}
+            \textbf{N° branche} & \textbf{Voies}\\
+            \hline
+            2 & 
+            \makecell{
+                \texttt[\\
+                \hspace{0.5cm}\texttt{\{"number": 1,"direction": "sortante","type": "bus"\}},\\
+                \hspace{0.5cm}\texttt{\{"number": 1,"direction": "entrante","type": "car"\}}\\
+                \texttt]
+            }
+        \end{tabular}
+    \end{center}
+    \caption{Le champ voie décrit l'enchainement des voies du la branche. Pour chaque couple de direction et de type, le nombre de voies contigües concernées est indiqué.}
+    \label{tab:experimentation_desc_branches}
+\end{table}
 
 \newpar{}
 
-\textbf{La description des traversées} affiche une vue synthétique par branche de la traversée quand elle est présente. On ne décrit pas chaque passage piéton mais les caractéristiques générales de la traversées: nombre de passages piétons, présence intégrale, partielle, ou nulle de feux et de pavage tactile.
+\textbf{La description des traversées} affiche une vue synthétique par branche de la traversée quand elle est présente. On ne décrit pas chaque passage piéton mais les caractéristiques générales de la traversées: nombre de passages piétons, présence intégrale, partielle, ou nulle de feux et de pavage tactile. Le schéma tabulaire est présenté en table \ref{tab:experimentation_desc_traversées}.
 
 \newpar{}
 
-\begin{center}
-    \footnotesize
-    \begin{tabular}{ | l | l | l | l | }
-        \textbf{N° branche} & \textbf{Nombre passages piéton} & \textbf{Feux piétons} & \textbf{Pavage tactile}\tabularnewline
-        \hline
-        3 & 2 & complet & complet
-    \end{tabular}
-\end{center}
+\begin{table}[ht]
+    \begin{center}
+        \footnotesize
+        \begin{tabular}{ | l | l | l | l | }
+            \textbf{N° branche} & \textbf{Nombre passages piéton} & \textbf{Feux piétons} & \textbf{Pavage tactile}\tabularnewline
+            \hline
+            3 & 2 & complet & complet
+        \end{tabular}
+    \end{center}
+    \caption{Pour chaque branche, les caractéristiques de la traversée sont renseignées.}
+    \label{tab:experimentation_desc_traversées}
+\end{table}
 
 \subsubsection{Préparation des patrons textuels}
 
@@ -128,12 +155,12 @@ Le texte préparé implique d'avoir accès à des données liées à la voirie �
 
 \newpar{}
 
-Nous avons déjà présenté les méthodes mobilisées pour délimiter un carrefour et ses branches dans la partie \ref{sec:modelisation_crseg}. Ces méthodes ont été implémentées en Python au sein d'un outil nommé crseg et publié sous la forme d'un logiciel libre\footnote{https://github.com/jmtrivial/crossroads-segmentation}, qui permet, à partir du graphe de données issu d'\gls{osm} de délimiter les carrefours et, pour chaque carrefours, séparer son cœur de ses branches. Il présente plusieurs paramètres détaillés en partie \ref{sec:modelisation_crseg} et sur la forge logicielle de l'outil \todo{Présenter les subtilités de l'implémentation}. Il permet, en sortie, d'obtenir pour chaque région du carrefour (cœur du carrefour, branches, bordures) les nœuds correspondants au format JSON (voir figure \ref{fig:experimentation_crseg_json}).
+Nous avons déjà présenté les méthodes mobilisées pour délimiter un carrefour et ses branches dans la partie \ref{sec:modelisation_crseg}. Ces méthodes ont été implémentées en Python au sein d'un outil nommé crseg et publié sous la forme d'un logiciel libre\footnote{https://github.com/jmtrivial/crossroads-segmentation}, qui permet, à partir du graphe de données issu d'\gls{osm} de délimiter les carrefours et, pour chaque carrefours, séparer son cœur de ses branches. Il présente plusieurs paramètres détaillés en partie \ref{sec:modelisation_crseg} et sur la forge logicielle de l'outil. Il permet, en sortie, d'obtenir pour chaque région du carrefour (cœur du carrefour, branches, bordures) les nœuds correspondants au format JSON (voir figure \ref{fig:experimentation_crseg_json}).
 
 \begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Les données obtenues par crseg permettent d'identifier les nœuds appartenant à la branche. Il définit également quelle extrémité de la branche est lié au cœur de carrefour, et quelle extrémité est liée à l'extérieur.}
+    \includegraphics{images/experimentation/donnees_crseg.pdf}
+    \caption{Les données obtenues par crseg permettent d'identifier les nœuds appartenant à la branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crseg_json}
 \end{figure}
 
@@ -143,14 +170,18 @@ Faisant suite à la délimitation du carrefour, nous présentions dans la partie
 
 \begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Les informations piétonnes calculées à partir de crseg ne forment pas de nouvelle géométrie mais existent sous forme sémantique sur les tronçons originaux.}
+    \includegraphics{images/experimentation/donnees_crmodel.pdf}
+    \caption{Les informations piétonnes calculées à partir de crseg ne forment pas de nouvelle géométrie mais existent sous forme sémantique sur les tronçons originaux. Seules les traversées multiples forment de nouvelles géométries en étant composées des nœuds de passage piéton permettant de passer d'un trottoir à l'autre sur une branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crmodel_info_pietonne}
 \end{figure}
 
 \newpar{}
 
-crmodel comprend, au-delà de la création de ces nouvelles informations, une seconde étape: l'instanciation du modèle CrModel, présenté en partie \ref{sec:modelisation_crmodel}. Celui-ci est prévu pour représenter un carrefour et intégrer au sein d'un modèle objets tous les éléments nécessaires à sa description, facilitant la manipulation des données. En partant du modèle, l'outil permet d'exporter un format GeoJSON spécifique pouvant être intégré dans un SIG et définissant ppur chaque entité le type d'objet concerné (tronçon de route, branche, passage piéton, traversée) et les attributs associés.
+crmodel comprend, au-delà de la création de ces nouvelles informations, une seconde étape: l'instanciation du modèle CrModel, présenté en partie \ref{sec:modelisation_crmodel}. Celui-ci est prévu pour représenter un carrefour et intégrer au sein d'un modèle objets tous les éléments nécessaires à sa description, facilitant la manipulation des données. En partant du modèle, l'outil permet d'exporter un format GeoJSON spécifique pouvant être intégré dans un SIG et définissant pour chaque entité le type d'objet concerné (tronçon de route, branche, passage piéton, traversée) et les attributs associés.
+
+\newpar{}
+
+L'outil crmodel en ligne de commande embarque crseg et permet de visualiser le résultat de la segmentation avec la commande \texttt{crmodel -c x y} (x et y correspondant à la position approximative du centre du carrefour). Celle-ci peut être ajustée à l'aide des paramètres pour obtenir un résultat satisfaisant. On peut alors ajouter \texttt{-o carrefour.geojson} pour obtenir le fichier à intégrer à QGIS. Pour faciliter son utilisation par un utilisateur final, le géomaticien peut embarquer l'outil dans un traitement graphique exposant ses paramètres.
 
 \subsubsection{Transformation des données}
 
@@ -249,8 +280,8 @@ Le second s'appelle "Assembler des descriptions" et va permettre de générer le
 Les outils en place, l'utilisateur final (l'\gls{ia}) va pouvoir générer des descriptions sur plusieurs territoires. Pour cela il doit suivre les étapes suivantes:
 
 \begin{enumerate}
-    \item Utiliser crmodel pour obtenir les données intrinsèques du carrefour, les données piétonnes, et les attributs d'accessibilité. L'outil en ligne de commande embarque crseg et permet de visualiser le résultat de la segmentation avec la commande \texttt{crmodel -c x y} (x et y correspondant à la position approximative du centre du carrefour). Celle-ci peut être ajustée à l'aide des paramètres pour obtenir un résultat satisfaisant. On peut alors ajouter \texttt{-o carrefour.geojson} pour obtenir le fichier à intégrer à QGIS.
-    \item Ouvrir le fichier carrefour.geojson dans QGIS et exécuter le premier traitement préparé le géomaticien pour transformer les données (figure \ref{fig:experimentation_chaine_donnees_qgis}).
+    \item Utiliser crmodel pour obtenir les données intrinsèques du carrefour, les données piétonnes, et les attributs d'accessibilité. Comme évoqué précédemment, le géomaticien peut avoir préparé une boîte à outil pour l'utiliser de manière graphique.
+    \item Exécuter le premier traitement préparé le géomaticien pour transformer les données  de crmodel en couche prêtes pour la description (figure \ref{fig:experimentation_chaine_donnees_qgis}).
     \item Exécuter le second traitement pour obtenir la description finale. Il est possible de personnaliser le résultat en sélectionnant les patrons préparés, et en ajustant la présence et la forme des parties. 
 \end{enumerate}
 
@@ -258,7 +289,7 @@ L'intégralité du processus réalisé par l'utilisateur final est illustré en 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
+    \includegraphics[width=\textwidth]{images/experimentation/pipeline_utilisateur.pdf}
     \caption{L'exécution de la chaîne complète est simplifiée par les outils réalisés en amont par le géomaticien. Les complexités des traitements de données et de la réalisation du texte sont masquées derrière des boîtes à outils dont la prise en main est facilitée.}
     \label{fig:experimentation_processus_realisation_utilisateur}
 \end{figure}
@@ -305,8 +336,8 @@ Le projet ACTIVmap, dans lequel s'inscrit cette thèse, est porté par trois act
 
 \begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Un fichier \gls{deri}, le document correspondant, et la tablette une fois assemblée.}
+    \includegraphics[width=\textwidth]{images/experimentation/exemple_deri.pdf}
+    \caption{À gauche, contenu d'un fichier .deri et extrait du fichier XML d'interaction pour la légende de la carte de droite. On remarque que sont définis séparément les interacteurs (Poi) et les textes à jouer (Text), liés ensemble par une interaction (Trigger). À droite, une tablette \gls{deri} assemblée et en cours d'utilisation. Source: preuve de concept ACTIVmap.}
     \label{fig:experimentation_exemple_deri}
 \end{figure}
 
@@ -372,7 +403,7 @@ Les méthodes présentées dans cette partie ont été appliquées à la génér
         \centering
         \includegraphics[width=\textwidth]{images/placeholder.jpg}
     \end{subfigure}
-    \caption{Deux cartes audiotactiles réalisées dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
+    \caption{Deux cartes audiotactiles réalisées par Markie Jiang \cite{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
     \label{fig:experimentation_exemples_cartes_audiotactiles}
 \end{figure}
 
@@ -380,34 +411,61 @@ Les méthodes présentées dans cette partie ont été appliquées à la génér
 
 % Inspiré des interactions avec un téléphone
 
-Dans l'expérimentation précédente, nous avons proposé les méthodes permettant de générer une carte audiotactile pour \gls{deri} à partir d'une carte et de données géographiques décrites. Dans sa version actuelle, \gls{deri} permet de définir un son par interaction et par interacteur. Cela correspond bien à un usage exploratoire de la carte, mais cela limite la quantité d'information que l'on peut faire figurer. Par exemple, en fonction de l'échelle de la carte il n'est pas possible de faire figurer tous les services (commerces, banques, bureaux de postes, etc) d'une branche pour des contraintes de lisibilité, la densité des interacteurs nécessaires pouvant être trop importante ou le texte trop long si présent sur un seul interacteur. Par ailleurs, il pourrait être souhaitable de décrire la branche au-delà de ce que la carte affiche. Pour répondre à cette problématique dont l'objectif est de réfléchir à de nouveaux usages, nous avons défini avec l'\gls{irit} une nouvelle version du format de fichier \gls{deri} permettant de naviguer virtuellement dans un graphe de texte à partir d'un unique interacteur. Le fonctionnement de ce nouveau format et son application possible à la navigation virtuelle au sein d'une branche sont détaillées dans cette partie.
+Dans l'expérimentation précédente, nous avons proposé les méthodes permettant de générer une carte audiotactile pour \gls{deri} à partir d'une carte et de données géographiques décrites. Dans sa version actuelle, \gls{deri} permet de définir un son par interaction et par interacteur. Cela correspond bien à un usage exploratoire de la carte, mais cela limite la quantité d'information que l'on peut faire figurer. Par exemple, en fonction de l'échelle de la carte il n'est pas possible de faire figurer tous les services (commerces, banques, bureaux de postes, etc) d'une branche pour des contraintes de lisibilité, la densité des interacteurs nécessaires pouvant être trop importante ou le texte trop long si présent sur un seul interacteur. Par ailleurs, il pourrait être souhaitable de décrire la branche au-delà de ce que la carte affiche. Pour répondre à cette problématique dont l'objectif est de réfléchir à de nouveaux usages, l'\gls{irit} propose de faire figurer des informations multiples sur un seul interacteur sous la forme d'un graphe de texte navigable par glissement du doigt, à l'instar de la navigation actuellement implémentée sur les smartphones \missref{}. Nous avons proposé ensemble une nouvelle version du format de fichier \gls{deri} permettant d'implémenter un graphe de texte au sein d'un unique interacteur. Le fonctionnement de ce nouveau format et son application possible à la navigation virtuelle au sein d'une branche sont détaillées dans cette partie.
 
 \subsubsection{\gls{deri} 2: un nouveau format pour naviguer dans un graphe de textes}
 
-À l'instar de la première version, un fichier \gls{deri} 2 est également un fichier zip contenant une image du document et un fichier d'interaction. Ce dernier est maintenant au format JSON et comprend les mêmes sections que précédemment. Égaement, un interacteur peut être lié à une ressource par interaction. Il sera ainsi possible d'accéder à la ressource "1" par simple appui ou à la ressource "2" par double appui. La différence majeure se situe dans la capacité des ressources à être lié à d'autres ressources en fonction d'une nouvelle interaction. En déclenchant depuis un interacteur une ressource donnée, un curseur virtuel est placé sur cette ressource. Une nouvelle interaction réalisée sur le même interacteur pourra déplacer ce curseur vers une nouvelle ressource. Outre les appuis, les glisser dans les quatres directions ont été introduits pour permettre la navigation dans le graphe. 
-
-\newpar{}
-
-Dans cette expérimentation, la description interactive d'une branche va s'intéresser aux commerces et services de la rue qu'elle représente. Le graphe souhaité et les textes associés sont illustrés en figure \ref{fig:experimentation_deri2_exemple}.
+À l'instar de la première version, un fichier \gls{deri} 2 est également un fichier zip contenant une image du document et un fichier d'interaction. Ce dernier est maintenant au format JSON et comprend les mêmes sections que précédemment. La différence majeure se situe dans la capacité des ressources à être liées à d'autres ressources en fonction d'une nouvelle interaction. En déclenchant depuis un interacteur une ressource donnée, un curseur virtuel est placé sur cette ressource. Une nouvelle interaction réalisée sur le même interacteur pourra déplacer ce curseur vers une nouvelle ressource. Les ressources forment ainsi un graphe au sein duquel il est possible de naviguer par interaction. Outre les appuis, les glisser dans les quatres directions ont été introduits pour permettre la navigation dans le graphe. La figure \ref{fig:experimentation_deri2_exemple} illustre le fonctionnement de ce nouveau format.
 
 \begin{figure}[ht]
     \centering
     \includegraphics{images/placeholder.jpg}
-    \caption{À chaque trottoir de la branche sont rattachés les commerces qui lui correspondent, et pour chaque commerce il est possible d'obtenir des informations supplémentaires (horaires d'ouverture). Les passages piétons sont également indiqués pour permettre de traverser sur le trottoir d'en face.}
+    \caption{Le fichier JSON d’interaction décrit un graphe de texte navigable par interaction. La carte de droite illustre le passage d'un texte à un autre selon l'interaction réalisée.}
     \label{fig:experimentation_deri2_exemple}
 \end{figure}
 
-\subsubsection{Générer un graphe de texte pour la navigation au sein d'une branche}
+Cette nouvelle représentation sous forme de graphe permet de spatialiser les descriptions, avec une notion d'avant et d'après. Dans cette expérimentation, nous avons choisi d'appliquer ce nouveau format  à la description interactive d'une branche, et en particulier de ses commerces et services. L'objectif est ici de pouvoir naviguer depuis le début de la branche de commerce en commerce, et d'entrer virtuellement à l'interieur de ceux-ci pour obtenir des informations supplémentaires sur chacun d'eux. Une illustration des textes souhaités est présentée en figure \ref{fig:experimentation_deri2_template}.
 
-Deux types de données différentes sont ici à considérer: les interacteurs et les graphes. La couche des interacteurs sera similaire à celle présentée en partie \ref{sec:experimentation_poc1}. 
+\newpar{}
 
-La forme des données à générer devant être de type graphe, chaque élément décrit sera un nœud contenant ses informations et ses voisins. La forme des données à générer est la suivante:
+\begin{figure}[ht]
+    \centering
+    \includegraphics{images/placeholder.jpg}
+    \caption{Pour chaque type d'objet décrit, un patron textuel spécifique est appliqué.}
+    \label{fig:experimentation_deri2_template}
+\end{figure}
 
+\subsubsection{Traitement des données pour la génération du graphe}
 
+À l'instar de la première preuve de concept, les données mobilisées seront issues de crmodel pour les informations du carrefour, complétées d'\gls{osm} pour les commerces. Pour réaliser ces textes, il est nécessaire de concevoir un graphe par branche. Ce graphe sera réalisé de la manière suivante:
 
-Les données mobilisées sont issues de crmodel pour les branches d'un carrefour, complétées d'\gls{osm} pour les commerces. crmodel fournit sémantiquement les trottoirs
+\begin{itemize}
+    \item Pour chaque branche, on estime quels commerces se situent sur son trottoir de droite et sur son trottoir de gauche.
+    \item Un graphe de proximité des commerces par trottoir est réalisé. Chaque nœud permettra d'indiquer le nom et l'adresse du commerce.
+    \item Un nœud supplémentaire est ajouté par commerce. Il est relié au nœud du commerce concerné et permet d'indiquer des informations supplémentaires telles que les horaires d'ouverture et les services proposés.
+    \item Aux graphe de proximité des commerces sont insérés les nœuds des passages piétons présents sur la branches. Leurs deux extrémités permettent de naviguer d'un trottoir à l'autre.
+\end{itemize}
 
-Il est possible de mobiliser les outils et méthodes présentés en partie 
+\newpar{}
+
+La construction de ce graphe pour une branche est illustrée en figure \ref{fig:experimentation_deri2_construction_graphe}. Elle peut être automatisée sous QGIS et présentée sous la forme d'une boîte de traitement.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics{images/placeholder.jpg}
+    \caption{La construction du graphe d'interaction pour une branche d'un carrefour s'effectue en plusieurs étapes.}
+    \label{fig:experimentation_deri2_construction_graphe}
+\end{figure}
+
+L'implémentation des patrons textuels est ensuite réalisée avec QGIS2Desc pour chaque type de nœud du graphe (commerce, passage piéton, etc).
+
+\subsubsection{Construction du fichier \gls{deri} 2}
+
+Le fichier 
+
+\todo{}
+
+\subsubsection{Exemple de carte audiotactile générée}
 
 \todo{}
 
