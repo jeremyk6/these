@@ -3,17 +3,6 @@
 
 Dans ce chapitre, nous allons présenter des expérimentations visant à appliquer à des cas d'usage concrets les méthodes présentées dans les chapitres précédents.
 
-% 1. Cas d'usage: je veux produire quelque chose
-% 2. J'utilise les chapitres 2 et 3 pour générer ce que je veux générer
-
-% \section{QGIS2Desc: Un plugin QGIS pour personnaliser la description}
-
-% % Transcription: 6 mn
-
-% Dans le chapitre \ref{chap:description}, nous avons présenté un cadre permettant de réaliser une description au sein d'un SIG en partant de données géographiques. Dans cette partie, nous allons présenter son implémentation au sein du SIG QGIS. 
-
-% \todo{}
-
 \section{Du graphe OpenStreetMap à la description exocentrée}
 
 \label{sec:implementation_segmentation}
@@ -332,7 +321,7 @@ Le projet ACTIVmap, dans lequel s'inscrit cette thèse, est porté par trois act
 
 \label{sec:experimentation_poc1}
 
-\gls{deri} \missref{} est une application développée au sein de l'\gls{irit}. Elle permet de transformer une tablette tactile en support tactile interactif. Son fonctionnement est le suivant: au sein de l'application est ouvert un fichier spécifique qui définit sur l'écran des interacteurs qui à l'appui déclenchent un son enregistré ou synthétisé. Plusieurs types d'appui sont pris en compte (simple appui, double appui), et il est possible sur un interacteur de déclencher des sons différents selon le type d'appui. Un document tactile correspondant au fichier et imprimé sur papier thermogonflé est posé sur l'écran et maintenu par la coque. L'épaisseur du papier permet aux interactions d'être détectée par l'écran tactile et de jouer les sons déclenchés par l'utilisateur lors de l'appui sur un interacteur. La figure \ref{fig:experimentation_exemple_deri} présente le dispositif.
+\gls{deri} \cite{Brock2012} est une application développée au sein de l'\gls{irit}. Elle permet de transformer une tablette tactile en support tactile interactif. Son fonctionnement est le suivant: au sein de l'application est ouvert un fichier spécifique qui définit sur l'écran des interacteurs qui à l'appui déclenchent un son enregistré ou synthétisé. Plusieurs types d'appui sont pris en compte (simple appui, double appui), et il est possible sur un interacteur de déclencher des sons différents selon le type d'appui. Un document tactile correspondant au fichier et imprimé sur papier thermogonflé est posé sur l'écran et maintenu par la coque. L'épaisseur du papier permet aux interactions d'être détectée par l'écran tactile et de jouer les sons déclenchés par l'utilisateur lors de l'appui sur un interacteur. La figure \ref{fig:experimentation_exemple_deri} présente le dispositif.
 
 \begin{figure}
     \centering
@@ -341,7 +330,7 @@ Le projet ACTIVmap, dans lequel s'inscrit cette thèse, est porté par trois act
     \label{fig:experimentation_exemple_deri}
 \end{figure}
 
-\gls{deri} peut être utilisé pour réaliser toute sorte de documents audiotactiles, dont des cartes pour prendre connaissance d'un lieu \missref{}. En revanche, ces réalisations à l'instar de celles des \gls{ia} sont aujourd'hui manuelles. L'objectif de cette expérimentation est de permettre la génération d'une carte audiotactile de carrefour sous la forme d'un fichier \gls{deri}. La chaîne permettant d'obtenir le document final combine les description développées au \gls{limos} et les cartes tactiles développées à l'\gls{ign}.
+\gls{deri} peut être utilisé pour réaliser toute sorte de documents audiotactiles, dont des cartes pour prendre connaissance d'un lieu. En revanche, ces réalisations à l'instar de celles des \gls{ia} sont aujourd'hui manuelles. L'objectif de cette expérimentation est de permettre la génération d'une carte audiotactile de carrefour sous la forme d'un fichier \gls{deri}. La chaîne permettant d'obtenir le document final combine les description développées au \gls{limos} et les cartes tactiles développées à l'\gls{ign}.
 
 \subsubsection{Assembler la carte et les descriptions}
 
@@ -353,7 +342,7 @@ La réalisation d'une carte audiotactile à partir des travaux cités soulève l
 
 \begin{itemize}
     \item \textbf{Quels éléments décrire ?} \\
-    Le choix des éléments à décrire dépendra de la taille et de l'usage de la carte (voir les exemples présentés en partie \todo{}). Les outils présentés en partie \ref{sec:implementation_segmentation}, en particulier les traitements intégrés à QGIS2Desc, permettent d'étendre les possibilités de description à des données non-intégrées à crmodel aujourd'hui. Outre l'accessibilité, il est alors possible de décrire d'autres points d'intérêts pouvant servir de repère tels que les commerces ou les arrêts de bus.
+    Le choix des éléments à décrire dépendra de la taille et de l'usage de la carte (voir les exemples présentés en partie \ref{sec:experimentation_exemples_cartes_audiotactiles}). Les outils présentés en partie \ref{sec:implementation_segmentation}, en particulier les traitements intégrés à QGIS2Desc, permettent d'étendre les possibilités de description à des données non-intégrées à crmodel aujourd'hui. Outre l'accessibilité, il est alors possible de décrire d'autres points d'intérêts pouvant servir de repère tels que les commerces ou les arrêts de bus.
     \item \textbf{Où et comment placer les interacteurs pour maintenir la lisibilité de la carte ?} \\
     Les sons joués par \gls{deri} sont déclenchés par des interacteurs. Les interacteurs sont intégrés à une couche indépendante des données géographiques à décrire. Par exemple, l'interacteur permettant de décrire un passage piéton peut être placé à côté de celui-ci et non-pas sur le symbole représentant le passage piéton pour ne pas gêner sa lisibilité. Une grande densité d'interacteurs peut également poser des problèmes de lisibilité, et il est alors souhaitable de les fusionner. Le placement des interacteur est un problème qui n'a aujourd'hui pas encore été abordé et fait partie des perspectives évoquées par \cite{Jiang2023}. Leur placement est ici défini à la main.
     \item \textbf{Comment définir le texte d'un interacteur ?} \\
@@ -366,12 +355,14 @@ Une illustration de la chaîne de traitement partant des données jusqu'au lien 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
+    \includegraphics[width=\textwidth]{images/experimentation/pipeline_creation_deri1.pdf}
     \caption{Cette chaîne présente la méthode choisie pour définir le texte des interacteurs de la carte tactile en fonction des objets qu'ils représentent. Ce lien est fait en utilisant l'idenfiant \gls{osm} commun au texte et à la carte.}
     \label{fig:experimentation_lien_carte_texte}
 \end{figure}
 
 \subsubsection{Générer un fichier \gls{deri}}
+
+\label{sec:experimentation_generer_deri}
 
 À partir du fichier du fichier des interacteurs décrits et de la carte, il est possible de générer un fichier \gls{deri}, mais une transformation de la forme et des coordonnées doit être effectuée. Un fichier \gls{deri} correspond à un fichier zip contenant la carte dans un format image pour un affichage à l'écran (pour tester les interactions) et un fichier XML définissant les interactions. Ce dernier est séparé en trois parties principales: définition de la position et de la forme des interacteurs, définition des ressources (textes à lire ou fichiers audio), et définition pour chaque interacteur de la ressource jouée pour une interaction donnée (simple appui, double appui, etc.) (voir figure \ref{fig:experimentation_exemple_deri}). 
 
@@ -391,17 +382,19 @@ Le processus de transformation, à l'instar des précédents, peut être automat
 
 \subsubsection{Exemples de cartes audiotactiles générées}
 
+\label{sec:experimentation_exemples_cartes_audiotactiles}
+
 Les méthodes présentées dans cette partie ont été appliquées à la génération de cartes audiotactiles de différentes tailles et répondant à différents usages. La figure \ref{fig:experimentation_exemples_cartes_audiotactiles} présente quelques exemples de résultats.
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
+        \includegraphics[width=\textwidth]{images/experimentation/poc1_a4.png}
     \end{subfigure}
     \begin{subfigure}[t]{.49\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
+        \includegraphics[width=\textwidth]{images/experimentation/poc1_a5.png}
     \end{subfigure}
     \caption{Deux cartes audiotactiles réalisées par Markie Jiang \cite{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
     \label{fig:experimentation_exemples_cartes_audiotactiles}
@@ -411,7 +404,7 @@ Les méthodes présentées dans cette partie ont été appliquées à la génér
 
 % Inspiré des interactions avec un téléphone
 
-Dans l'expérimentation précédente, nous avons proposé les méthodes permettant de générer une carte audiotactile pour \gls{deri} à partir d'une carte et de données géographiques décrites. Dans sa version actuelle, \gls{deri} permet de définir un son par interaction et par interacteur. Cela correspond bien à un usage exploratoire de la carte, mais cela limite la quantité d'information que l'on peut faire figurer. Par exemple, en fonction de l'échelle de la carte il n'est pas possible de faire figurer tous les services (commerces, banques, bureaux de postes, etc) d'une branche pour des contraintes de lisibilité, la densité des interacteurs nécessaires pouvant être trop importante ou le texte trop long si présent sur un seul interacteur. Par ailleurs, il pourrait être souhaitable de décrire la branche au-delà de ce que la carte affiche. Pour répondre à cette problématique dont l'objectif est de réfléchir à de nouveaux usages, l'\gls{irit} propose de faire figurer des informations multiples sur un seul interacteur sous la forme d'un graphe de texte navigable par glissement du doigt, à l'instar de la navigation actuellement implémentée sur les smartphones \missref{}. Nous avons proposé ensemble une nouvelle version du format de fichier \gls{deri} permettant d'implémenter un graphe de texte au sein d'un unique interacteur. Le fonctionnement de ce nouveau format et son application possible à la navigation virtuelle au sein d'une branche sont détaillées dans cette partie.
+Dans l'expérimentation précédente, nous avons proposé les méthodes permettant de générer une carte audiotactile pour \gls{deri} à partir d'une carte et de données géographiques décrites. Dans sa version actuelle, \gls{deri} permet de définir un son par interaction et par interacteur. Cela correspond bien à un usage exploratoire de la carte, mais cela limite la quantité d'information que l'on peut faire figurer. Par exemple, en fonction de l'échelle de la carte il n'est pas possible de faire figurer tous les services (commerces, banques, bureaux de postes, etc) d'une branche pour des contraintes de lisibilité, la densité des interacteurs nécessaires pouvant être trop importante ou le texte trop long si présent sur un seul interacteur. Par ailleurs, il pourrait être souhaitable de décrire la branche au-delà de ce que la carte affiche. Pour répondre à cette problématique dont l'objectif est de réfléchir à de nouveaux usages, l'\gls{irit} propose de faire figurer des informations multiples sur un seul interacteur sous la forme d'un graphe de texte navigable par glissement du doigt, à l'instar de la navigation actuellement implémentée sur les smartphones. Nous avons proposé ensemble une nouvelle version du format de fichier \gls{deri} permettant d'implémenter un graphe de texte au sein d'un unique interacteur. Le fonctionnement de ce nouveau format et son application possible à la navigation virtuelle au sein d'une branche sont détaillées dans cette partie.
 
 \subsubsection{\gls{deri} 2: un nouveau format pour naviguer dans un graphe de textes}
 
@@ -419,21 +412,12 @@ Dans l'expérimentation précédente, nous avons proposé les méthodes permetta
 
 \begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Le fichier JSON d’interaction décrit un graphe de texte navigable par interaction. La carte de droite illustre le passage d'un texte à un autre selon l'interaction réalisée.}
+    \includegraphics[width=\textwidth]{images/experimentation/exemple_deri2.pdf}
+    \caption{Le fichier JSON d’interaction décrit un graphe de texte navigable par interaction. La carte de droite illustre le passage d'un texte à un autre selon l'interaction réalisée. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_deri2_exemple}
 \end{figure}
 
-Cette nouvelle représentation sous forme de graphe permet de spatialiser les descriptions, avec une notion d'avant et d'après. Dans cette expérimentation, nous avons choisi d'appliquer ce nouveau format  à la description interactive d'une branche, et en particulier de ses commerces et services. L'objectif est ici de pouvoir naviguer depuis le début de la branche de commerce en commerce, et d'entrer virtuellement à l'interieur de ceux-ci pour obtenir des informations supplémentaires sur chacun d'eux. Une illustration des textes souhaités est présentée en figure \ref{fig:experimentation_deri2_template}.
-
-\newpar{}
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Pour chaque type d'objet décrit, un patron textuel spécifique est appliqué.}
-    \label{fig:experimentation_deri2_template}
-\end{figure}
+Cette nouvelle représentation sous forme de graphe permet de spatialiser les descriptions, avec une notion d'avant et d'après. Dans cette expérimentation, nous avons choisi d'appliquer ce nouveau format  à la description interactive d'une branche, et en particulier de ses commerces et services. L'objectif est ici de pouvoir naviguer depuis le début de la branche de commerce en commerce, et d'entrer virtuellement à l'interieur de ceux-ci pour obtenir des informations supplémentaires sur chacun d'eux. 
 
 \subsubsection{Traitement des données pour la génération du graphe}
 
@@ -448,38 +432,134 @@ Cette nouvelle représentation sous forme de graphe permet de spatialiser les de
 
 \newpar{}
 
-La construction de ce graphe pour une branche est illustrée en figure \ref{fig:experimentation_deri2_construction_graphe}. Elle peut être automatisée sous QGIS et présentée sous la forme d'une boîte de traitement.
+La construction de ce graphe peut être automatisée sous QGIS et présentée à l'utilisateur sous la forme d'une boîte de traitement. Un exemple de graphe pour une branche est présenté en figure \ref{fig:experimentation_deri2_graphe_branche}.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{La construction du graphe d'interaction pour une branche d'un carrefour s'effectue en plusieurs étapes.}
-    \label{fig:experimentation_deri2_construction_graphe}
+    \includegraphics[width=\textwidth]{images/experimentation/exemple_graphe_poc2.pdf}
+    \caption{Exemple de graphe généré pour une branche. Seules la topologie et la sémantique comptent pour la navigation, la géométrie présentée dans cette exemple est factice pour être lisible. Source: Contributeurs OpenStreetMap.}
+    \label{fig:experimentation_deri2_graphe_branche}
 \end{figure}
 
 L'implémentation des patrons textuels est ensuite réalisée avec QGIS2Desc pour chaque type de nœud du graphe (commerce, passage piéton, etc).
 
 \subsubsection{Construction du fichier \gls{deri} 2}
 
-Le fichier 
+La construction du fichier \gls{deri} 2 est similaire au processus présenté en partie \ref{sec:experimentation_generer_deri}. En entrée du processus de création, on retrouve la carte et le fichier d'interacteurs, cette fois-ci complétés des couches représentant les graphes de chaque branche tels que décrits précédemment. Les interacteurs sont toujours placés manuellement et chacun référence un graphe, ce dernier contenant le texte.
 
-\todo{}
+\newpar{}
+
+Les interactions sont définies de la manière suivante: lors d'un double appui sur l'interacteur, la première ressource appelée correspond au premier nœud du trottoir gauche de la branche. Un glissement vers le haut ou le bas permet de naviguer de commerces en commerces le long de la branche. Sur le trottoir gauche, lors d'un glissement vers la gauche, on accède au nœud supplémentaire du commerce, et inversement pour le trottoir de droite. De la même manière, sur le trottoir de gauche, en étant positionné sur un nœud de passage piéton, un glissement vers la droite permet de changer de trottoir, et inversement pour le trottoir de droite.
 
 \subsubsection{Exemple de carte audiotactile générée}
 
-\todo{}
+Les méthodes détaillées ci-dessus n'ont pas été automatisée mais appliquée manuellement pour réaliser une branche sur le carrefour du Pont des Demoiselles de Toulouse présenté en partie \ref{sec:experimentation_exemples_cartes_audiotactiles}. Ce dernier a été choisi car plusieurs cartes tactiles avaient déjà été réalisées pour ce carrefour. La figure \ref{fig:experimentation_deri2_exemple_carte} illustre le graphe obtenu pour la branche visée et une partie du texte associé. 
 
-\section{Le carrefour dont vous êtes le héros  : naviguer dans une description égocentrée}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/experimentation/exemple_poc2.pdf}
+    \caption{La carte tactile en version A5 limitant la représentation des branches, le graphe permet de naviguer au-delà pour prendre connaissance des commerces qu'elle peut contenir.}
+    \label{fig:experimentation_deri2_exemple_carte}
+\end{figure}
 
-Les outils de la partie précédente ont été présentés sur une chaîne de traitement permettant la réalisation d'une description exocentrée de carrefour sous la forme d'un texte figé. L'étape d'assemblage présentée génère un document HTML, mais il est possible de l'étendre pour générer d'autres types de documents balisés. Dans cette partie, nous présentons une expérimentation permettant de décrire textuellement le carrefour en apportant une dimension interactive à la navigation virtuelle au sein de celui-ci. Pour cela, le carrefour sera modélisé sous la forme d'un graphe.
+\section{Le carrefour dont vous êtes le héros: naviguer dans une description égocentrée}
 
-\todo{}
+La navigation dans un graphe de texte a été explorée dans la partie précédente en mobilisant les nouvelles fonctions permises par \gls{deri} 2. Cette dernière repose d'une part sur les interactions avec une carte, et d'autre part sur un texte forcément exocentré où chaque nœud contient un texte indépendant du contexte. Dans cette partie, en se détachant du medium tactile, nous proposons une expérimentation permettant de naviguer dans un graphe de texte sous la forme d'une description égocentrée. L'objectif est de permettre à l'utilisateur de naviguer dans une description textuelle d'un carrefour en se déplaçant virtuellement à l'intérieur de celui-ci. 
 
 \subsection{Texte souhaité et forme des données}
 
-Au contraire de la description exocentrée qui présente l'intégralité du carrefour au sein d'un texte, la description egocentrée 
+La particularité de la description égocentrée au regard des précédentes concerne la forme du texte, qui sera présenté de manière orientée et à la première personne. Il peut s'agir par exemple de la description du déplacement à effectuer pour se rendre sur un passage piéton: <<~Tourner légèrement à gauche pour trouver le prochain passage piéton~>>. La réalisation d'une description de ce type implique de disposer d'un graphe de données et d'une information textuelle adaptée. Un exemple de graphe et de textes souhaités pour décrire une partie d'un cheminement est présenté en figure \ref{fig:experimentation_description_egocentree}.
 
-\todo{}
+\begin{figure}[ht]
+    \begin{minipage}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{images/experimentation/ortho_carrefour_ego.pdf} 
+    \end{minipage}
+    \begin{minipage}[b]{0.45\linewidth}
+        \footnotesize
+        Le prochain passage piéton se trouve légèrement à gauche.\\\\\\\\
+    \end{minipage}
+    \caption{Exemple de descriptions égocentrées passant sur le même passage piéton. On remarque que la description est contextualisée par rapport à l'endroit d'où l'utilisateur provient. Un élément n'est ainsi pas toujours décrit par le même texte. Source: IGN BD Ortho 2020.}
+    \label{fig:experimentation_description_egocentree}
+\end{figure}
+
+Une problématique de la description égocentrée concerne les angles et les distances. Les \gls{pcdv} ont une capacité de discrimination angulaire et d’estimation des distances très dépendante des conditions de l’environnement \cite{ratelle_manuel_2019}. Sur ces aspects, nous pouvons choisir de laisser l'indication floue pour ne pas induire en erreur l'utilisateur, par exemple en indicant <<~Tourner légèrement à gauche~>> plutôt que <<~Tourner à 45 degrés à gauche~>>. Par ailleurs, les données mobilisées seront de toutes façons trop imprécises pour permettre un haut niveau de détail dans les descriptions métriques.
+
+\newpar{}
+
+La manière de naviguer textuellement dans le carrefour que nous proposons est inspirée des livres-jeux tels que les <<~Livres dont vous êtes le héros~>>, où le lecteur est amené à faire des choix pour avancer dans l'histoire, les chapitres constituant un graphe de texte. Dans notre cas, une subtilité provient de la nécessité de conserver l'information de la provenance, pour indiquer notamment l'orientation et fournir des informations telles que <<~Continuez tout droit~>> ou <<~Tournez à gauche~>>. Les liens entre les nœuds seront ainsi modélisés de la manière suivante: pour chaque nœud $n$ du graphe, on a une liste qui associe à chaque nœud voisin $n_{source}$ une liste qui associe à chaque nœud voisin $n_{cible}$ une question et un texte correspondant si celle-ci est sélectionnée. Pour le graphe en figure \ref{fig:experimentation_description_egocentree}, on obtiendrait en étant positionné sur le nœud $n2$:
+
+\begin{itemize}
+    \item Depuis $n1$
+        \begin{itemize}
+            \item Vers $n1$
+                \begin{itemize}
+                    \item Question: <<~Faire demi-tour~>>
+                    \item Texte: <<~Faites demi-tour et continuez sur le trottoir gauche de la branche 2~>>
+                \end{itemize}
+            \item Vers $n3$
+                \begin{itemize}
+                    \item Question: << Aller en direction du trottoir opposé. >>
+                    \item Texte: <<~Tournez à gauche pour accéder au passage piéton. Vous pouvez le repérer à l'aide de la bande d'éveil de vigilance.~>>
+                \end{itemize}
+            \item Vers $n4$
+                \begin{itemize}
+                    \item \dots
+                \end{itemize}
+        \end{itemize}
+    \item Depuis $n3$
+        \begin{itemize}
+            \item \dots
+        \end{itemize}
+\end{itemize}
+
+Cette information peut être matérialisée sous la forme d'un tableau de donnée dont un extrait est proposé en table \ref{tab:experimentation_desc_egocentree}.
+
+\begin{table}[ht]
+    \begin{center}
+        \footnotesize
+        \begin{tabular}{ | l | l | l | p{3.1cm} | p{6.2cm} | }
+            \textbf{Nœud courant} & \textbf{Depuis} & \textbf{Vers} & \textbf{Question} & \textbf{Texte}\\
+            \hline
+            2 & 1 & 1 & << Faire demi-tour >> & << Faites demi-tour et continuez sur le trottoir gauche de la branche 2 >> \\
+            2 & 1 & 3 & << Aller en direction du trottoir opposé. >> & << Tournez à gauche pour accéder au passage piéton. Vous pouvez le repérer à l'aide de la bande d'éveil de vigilance. >>
+        \end{tabular}
+    \end{center}
+    \caption{Pour matérialiser les listes imbriquées précédentes, une ligne correspond pour un nœud à une source et une destination. Ainsi, si un nœud a trois voisins, il sera représenté par trois lignes par voisin, soit neuf lignes.}
+    \label{tab:experimentation_desc_egocentree}
+\end{table}
+
+\subsection{Obtention du graphe et génération des informations textuelles}
+
+Un graphe piéton d'une telle précision, contenant les trottoirs et les passages piéton sous forme linéaire, n'est pas disponible sur tous les territoires. Sur \gls{osm}, en France, peu de villes en disposent mais l'on peut citer notamment Paris ou Orange. Ce sont ces données qui seront mobilisables pour l'expérimentation. 
+
+\newpar{}
+
+L'obtention du graphe est ainsi très directe depuis OpenStreetMap. Il est simplifié pour ne conserver qu'une arête entre les points d'intérêts à considérer. crmodel ne délimitant le carrefour que sur le réseau routier, il est possible de l'utiliser pour découper à chaque branche le trottoir sur l'arête adjacente, ou délimiter le carrefour manuellement. Cette seconde solution est ici choisie, notamment pour créer manuellement les nœuds correspondants à la direction à l'extrémité de chaque trottoir.
+
+\newpar{}
+
+Pour chaque nœud du graphe, les nœuds voisins sont repérés pour reconstituer la table \ref{tab:experimentation_desc_egocentree}. Enfin, les textes correspondants aux questions et aux textes peuvent être générés à l'aide de QGIS2Desc en mobilisant les informations contenues dans les points d'intérêt et dans les arêtes les reliants. Pour indiquer dans le texte la direction correspondante, l'algorithme suivant peut être appliqué: pour chaque nœud de direction, on regarde si le chemin le plus court de notre position vers celui-ci implique de passer par le nœud de destination. Si oui, on indique que le cheminement pointe dans cette direction. De cette manière, un cheminement peut mener à plusieurs directions. Cet algorithme peut être empaqueté dans une fonction pour faciliter son usage lors de la conception du patron.
+
+\subsection{Implémentation au sein d'une application web}
+
+Sur la base des données préparées en partie précédente, il serait possible de générer un fichier ad hoc utilsiable un interpréteur pour naviguer dans le carrefour à la manière d'une fiction HTML. En réalité, l'implémentation de cette expérimentation prédate le modèle présenté en partie \ref{sec:implementation_segmentation}. Ici, la description est générée automatiquement à partir d'un graphe dessiné à la main sur QGIS et contenant les informations souhaitées. Ce graphe est ensuite exporté dans un format XML propre à l'implémentation et interprété par une application web. Quatre carrefours ont été réalisés de cette manière et sont accessibles en ligne\footnote{https://carrefours.activmap.limos.fr}. Le code source également disponible sous licence libre\footnote{https://gitlab.limos.fr/jeremyk6/carrefourV2}. Une capture de l'application réalisée est proposée en figure \ref{fig:experimentation_egocentre_screen}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/experimentation/carrefour_heros.png}
+    \caption{L'application web permet de naviguer dans un carrefour à la manière d'un livre dont vous êtes le héros.}
+    \label{fig:experimentation_egocentre_screen}
+\end{figure}
 
 \section{Conclusion du chapitre}
 
+Dans ce chapitre, nous avons présenté différentes expérimentations réalisées dans le cadre de cette thèse, couvrant la réalisation de description de types et de supports variés.
+
+\newpar{}
+
+Nous avons présenté les implémentations des méthodes présentées aux chapitres \ref{chap:modelisation} et \ref{chap:description} sous la forme d'outils mobilisables dans un \gls{sig} comme QGIS. Nous avons esquissé, en mobilisant ces méthodes et outils, la faisabilité de la génération de descriptions exocentrées indépendantes ou intégrées à une carte audiotactiles dans le cadre de travaux communs avec les autres membres du projet ACTIVmap. Nous avons également proposé une nouvelle manière de naviguer dans une description textuelle de carrefour sous la forme d'une description égocentrée.
+
+\newpar{}
+
+Les textes, méthodes, et outils présentés dans ce chapitre doivent être évaluées pour en mesurer la qualité et l'efficacité. Il s'agit de l'objet du chapitre suivant.
