@@ -15,7 +15,7 @@ Cette partie présente une expérimentation visant à décrire textuellement un 
 
 \subsubsection{Préparation du texte}
 
-Le texte préparé pour cette expérimentation est issu d'échanges avec des personnes liées à la déficience visuelle, notamment des personnes concernées, des \gls{ia}, des architectes urbains et des entreprises de mobilité. L'objectif est ici d'obtenir un aperçu synthétique de la configuration du carrefour: sa forme, ses branches et les manières de le traverser. Pour décrire la forme du carrefour, bien que non-normalisé, un consensus à la fois mobilisés par les urbanistes et usagers existe autour des appelations <<~en croix~>>, <<~en T~>>, etc \cite{fogliaroni2018}, qui donne à la fois une information sur le nombre de branches et sur la forme générale du carrefour. Pour chaque branche, on détermine le nombre de voies, le type de véhicule qui circule dessus, et les sens de circulation. Enfin, on détermine pour chaque branche s'il existe une traversée, c'est-à-dire la possibilité de passer d'un trottoir à l'autre, et on décrit l'accessibilité des passages piéton qui y sont associés. Par ailleurs, toutes les descriptions ont lieu dans le sens de sens des aiguilles d'une montre en partant de la branche la plus au nord. Le plan de la description est présenté sur la figure \ref{fig:experimentation_plan_description}.
+Le texte préparé pour cette expérimentation est issu d'échanges avec des personnes liées à la déficience visuelle, notamment des personnes concernées, des \gls{ia}, des architectes urbains et des entreprises de mobilité. L'objectif est ici d'obtenir un aperçu synthétique de la configuration du carrefour: sa forme, ses branches et les manières de le traverser. Pour décrire la forme du carrefour, bien que non-normalisé, un consensus à la fois mobilisés par les urbanistes et usagers existe autour des appelations <<~en croix~>>, <<~en T~>>, etc \citep{fogliaroni2018}, qui donne à la fois une information sur le nombre de branches et sur la forme générale du carrefour. Pour chaque branche, on détermine le nombre de voies, le type de véhicule qui circule dessus, et les sens de circulation. Enfin, on détermine pour chaque branche s'il existe une traversée, c'est-à-dire la possibilité de passer d'un trottoir à l'autre, et on décrit l'accessibilité des passages piéton qui y sont associés. Par ailleurs, toutes les descriptions ont lieu dans le sens de sens des aiguilles d'une montre en partant de la branche la plus au nord. Le plan de la description est présenté sur la figure \ref{fig:experimentation_plan_description}.
 
 \begin{figure}[ht]
     \begin{minipage}[b]{0.45\linewidth}
@@ -35,7 +35,7 @@ Le texte préparé pour cette expérimentation est issu d'échanges avec des per
         La branche numéro trois se traverse en trois fois. Les passages piétons ne sont pas tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.\\
         (...)
     \end{minipage}
-    \caption{Exemple de description souhaitée pour un carrefour en croix en suivant le plan établi. Source: IGN BD Ortho 2020.}
+    \caption[Exemple de description de carrefour]{Exemple de description souhaitée pour un carrefour en croix en suivant le plan établi. Source: IGN BD Ortho 2020.}
     \label{fig:experimentation_plan_description}
 \end{figure}
 
@@ -66,7 +66,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
             }
         \end{tabular}
     \end{center}
-    \caption{Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte.}
+    \caption[Schéma tabulaire de la description générale]{Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte.}
     \label{tab:experimentation_desc_generale}
 \end{table}
 
@@ -91,7 +91,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
             }
         \end{tabular}
     \end{center}
-    \caption{Le champ voie décrit l'enchainement des voies du la branche. Pour chaque couple de direction et de type, le nombre de voies contigües concernées est indiqué.}
+    \caption[Schéma tabulaire de la description des branches]{Le champ voie décrit l'enchainement des voies du la branche. Pour chaque couple de direction et de type, le nombre de voies contigües concernées est indiqué.}
     \label{tab:experimentation_desc_branches}
 \end{table}
 
@@ -110,7 +110,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
             3 & 2 & complet & complet
         \end{tabular}
     \end{center}
-    \caption{Pour chaque branche, les caractéristiques de la traversée sont renseignées.}
+    \caption[Schéma tabulaire de la description des traversées]{Pour chaque branche, les caractéristiques de la traversée sont renseignées.}
     \label{tab:experimentation_desc_traversées}
 \end{table}
 
@@ -121,18 +121,22 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
 En disposant du texte final et de la forme des données, on peut maintenant définir les patrons textuels de chaque partie. Un patron textuel correspond à un texte conditionnel dont le contenu pourra varier selon les attributs de la donnée décrite. Un exemple de patron applicable à la description générale est présenté par l'algorithme \ref{alg:experimentation_patron_generale}.
 
 \begin{algorithm}
-\begin{algorithmic}
-    \State $texte:=$ \texttt{"Le carrefour à l'intersection de"}
-    \For{{chaque $type$, $nom$ dans $NomsBranches$}}
-        \State $texte \leftarrow texte + type + nom$
-    \EndFor
-    \State $texte \leftarrow texte +$\texttt{"est un carrefour à"}$+ NombreBranches+$\texttt{"branches".}
-\end{algorithmic}
-\caption{Patron textuel de la description générale}
+    \SetKwInOut{Input}{entrées}\SetKwInOut{Output}{sortie}
+    \Input{NombreBranches: nombre de branches du carrefour\\NomsBranches: liste de noms de branches}
+    \Output{Texte}
+    \vspace{0.3cm}
+    $texte \leftarrow $ \texttt{"Le carrefour à l'intersection de"}\\
+    \ForEach{$type$, $nom$ dans $NomsBranches$} {
+        $texte \leftarrow texte + type + nom$
+    }
+    $texte \leftarrow texte +$\texttt{"est un carrefour à"}$+ NombreBranches+$\texttt{"branches".}
+    \vspace{0.3cm}
+    \caption[Patron textuel de la description générale]{Patron textuel de la description générale}
+
 \label{alg:experimentation_patron_generale}
 \end{algorithm}
 
-On remarque que le patron présenté ci-dessus ne correspond pas exactement au texte souhaité. Exécuté avec les données précédentes, le texte obtenu serait "Le carrefour à l'intersection avenue Carnot cours Sablon est un carrefour à 4 branches". Il manque en effet les prépositions pour avenue et cours (<<~de l'~>> et <<~du~>>), de même qu'un "et" entre les deux noms de branche. Cet aspect est adressé dans l'implémentation présentée en partie suivante.
+On remarque que le patron présenté ci-dessus ne correspond pas exactement au texte souhaité. Exécuté avec les données précédentes, le texte obtenu serait <<~Le carrefour à l'intersection avenue Carnot cours Sablon est un carrefour à 4 branches~>>. Il manque en effet les prépositions pour avenue et cours (<<~de l'~>> et <<~du~>>), de même qu'un <<~et~>> entre les deux noms de branche. Cet aspect est adressé dans l'implémentation présentée en partie suivante.
 
 \subsection{Intégration du canevas dans un \gls{sig}}
 
@@ -149,7 +153,7 @@ Nous avons déjà présenté les méthodes mobilisées pour délimiter un carref
 \begin{figure}
     \centering
     \includegraphics{images/experimentation/donnees_crseg.pdf}
-    \caption{Les données obtenues par crseg permettent d'identifier les nœuds appartenant à la branche. Source: Contributeurs OpenStreetMap.}
+    \caption[Données produites par crseg]{Les données obtenues par crseg permettent d'identifier les nœuds appartenant à la branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crseg_json}
 \end{figure}
 
@@ -160,7 +164,7 @@ Faisant suite à la délimitation du carrefour, nous présentions dans la partie
 \begin{figure}
     \centering
     \includegraphics{images/experimentation/donnees_crmodel.pdf}
-    \caption{Les informations piétonnes calculées à partir de crseg ne forment pas de nouvelle géométrie mais existent sous forme sémantique sur les tronçons originaux. Seules les traversées multiples forment de nouvelles géométries en étant composées des nœuds de passage piéton permettant de passer d'un trottoir à l'autre sur une branche. Source: Contributeurs OpenStreetMap.}
+    \caption[Données produites par crmodel]{Les informations piétonnes calculées à partir de crseg ne forment pas de nouvelle géométrie mais existent sous forme sémantique sur les tronçons originaux. Seules les traversées multiples forment de nouvelles géométries en étant composées des nœuds de passage piéton permettant de passer d'un trottoir à l'autre sur une branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crmodel_info_pietonne}
 \end{figure}
 
@@ -190,7 +194,7 @@ Le format GeoJSON, pratique pour proposer un export rapide de l'intégralité de
         \caption{Les données transformées correspondent au format établi par l'utilisateur en partie \ref{sec:experimentation_forme_donnees}.}
         \label{fig:experimentation_transformation_resultat_qgis}
     \end{subfigure}
-    \caption{La chaîne de traitements de données sous QGIS permet de partir du GeoJSON fourni par crmodel pour obtenir un format exploitable pour la description.}
+    \caption[Chaîne de traitement de données sous QGIS]{La chaîne de traitements de données sous QGIS permet de partir du GeoJSON fourni par crmodel pour obtenir un format exploitable pour la description.}
     \label{fig:experimentation_chaine_donnees_qgis}
 \end{figure}
 
@@ -200,11 +204,11 @@ Les données adaptées à la description en notre possession, nous pouvons maint
 
 \newpar{}
 
-Le premier s'appelle "Concevoir une description" et va permettre l'implémentation d'un patron de description à partir d'une couche. Il prend en entrée une couche à décrire et offre à l'utilisateur un champ de texte permettant de définir le patron en Python. Plusieurs facilitations sont proposées, notamment en permettant l'accès simplifié aux attributs de la couche. Par ailleurs, pour répondre à la problématique des prépositions soulevées en partie \ref{sec:experimentation_preparation_patron}, il est possible d'utiliser le réalisateur de texte JSRealB \cite{molins2015} pour segmenter tout ou partie du texte en syntagmes et permettre la gestion des prépositions, des pluriels, des déterminants, des conjonctions, etc. Enfin, Il est possible d'ajouter au texte un ensemble de métadonnées qu permettrons de le sélectionner lors de l'étape d'assemblage. En sortie du traitement, la couche d'origine est complétée de deux champs supplémentaires au format JSON:
+Le premier s'appelle <<~Concevoir une description~>> et va permettre l'implémentation d'un patron de description à partir d'une couche. Il prend en entrée une couche à décrire et offre à l'utilisateur un champ de texte permettant de définir le patron en Python. Plusieurs facilitations sont proposées, notamment en permettant l'accès simplifié aux attributs de la couche. Par ailleurs, pour répondre à la problématique des prépositions soulevées en partie \ref{sec:experimentation_preparation_patron}, il est possible d'utiliser le réalisateur de texte JSRealB \citep{molins2015} pour segmenter tout ou partie du texte en syntagmes et permettre la gestion des prépositions, des pluriels, des déterminants, des conjonctions, etc. Enfin, Il est possible d'ajouter au texte un ensemble de métadonnées qu permettrons de le sélectionner lors de l'étape d'assemblage. En sortie du traitement, la couche d'origine est complétée de deux champs supplémentaires au format JSON:
 
 \begin{itemize}
-    \item "description" contient le texte établi pour chaque ligne au format défini par JSRealB pour permettre sa réalisation ultérieure.
-    \item "metadata" contient les métadonnées définie précédemment.
+    \item <<~description~>> contient le texte établi pour chaque ligne au format défini par JSRealB pour permettre sa réalisation ultérieure.
+    \item <<~metadata~>> contient les métadonnées définie précédemment.
 \end{itemize}
 
 La figure \ref{fig:experimentation_qgis2desc_conception} est une capture d'écran qui montre l'usage du traitement pour obtenir la description générale du carrefour.
@@ -212,13 +216,13 @@ La figure \ref{fig:experimentation_qgis2desc_conception} est une capture d'écra
 \begin{figure}[ht]
     \centering
     \resizebox{7cm}{!}{\includegraphics{images/experimentation/qgis2desc_conception.png}}
-    \caption{Dans le patron, on remarque l'usage des fonctions \texttt{CP} et \texttt{C} qui vont permettre de réaliser la coordination entre les noms de branche. Pour deux branche, on obtiendra le texte "branche 1 et branche 2". Pour trois branches et plus, on obtiendra le texte "branche 1, branche 2, branche 3, (...) et branche n"}
+    \caption[Fenêtre QGIS de conception de description]{Dans le patron, on remarque l'usage des fonctions \texttt{CP} et \texttt{C} qui vont permettre de réaliser la coordination entre les noms de branche. Pour deux branche, on obtiendra le texte <<~branche 1 et branche 2~>>. Pour trois branches et plus, on obtiendra le texte <<~branche 1, branche 2, branche 3, (...) et branche n~>>}
     \label{fig:experimentation_qgis2desc_conception}
 \end{figure}
 
 \newpar{}
 
-Le second s'appelle "Assembler des descriptions" et va permettre de générer le document final. Il prend en entrée plusieurs couches issues de "Concevoir une description", un ensemble de métadonnées correspondantes à celles définies à l'étape précédente et qui va permettre de sélectionner les descriptions à prendre en compte, et un plan de description. Le plan de description correspond à un tableau ordonné dont le format est indiqué par le tableau \ref{experimentation:table_plan_description}. Chaque entrée du tableau est prise en compte de haut en bas et définit la couche décrite, le titre de la partie, et la forme que prendra le texte (actuellement un texte brut et une liste simple ou numérotée). La figure \ref{fig:experimentation_assemblage} présente un exemple d'assemblage de la description.
+Le second s'appelle <<~Assembler des descriptions~>> et va permettre de générer le document final. Il prend en entrée plusieurs couches issues de <<~Concevoir une description~>>, un ensemble de métadonnées correspondantes à celles définies à l'étape précédente et qui va permettre de sélectionner les descriptions à prendre en compte, et un plan de description. Le plan de description correspond à un tableau ordonné dont le format est indiqué par le tableau \ref{experimentation:table_plan_description}. Chaque entrée du tableau est prise en compte de haut en bas et définit la couche décrite, le titre de la partie, et la forme que prendra le texte (actuellement un texte brut et une liste simple ou numérotée). La figure \ref{fig:experimentation_assemblage} présente un exemple d'assemblage de la description.
 
 \begin{table}
     \begin{center}
@@ -231,7 +235,7 @@ Le second s'appelle "Assembler des descriptions" et va permettre de générer le
         crossings & Description des traversées & numbered\_list
     \end{tabular}
     \end{center}
-    \caption{Le plan de la description défini précédemment serait le suivant dans le traitement établi.}
+    \caption[Schéma tabulaire du plan de la description]{Le plan de la description défini précédemment serait le suivant dans le traitement établi.}
     \label{experimentation:table_plan_description}
 \end{table}
 
@@ -240,7 +244,7 @@ Le second s'appelle "Assembler des descriptions" et va permettre de générer le
     \begin{subfigure}[t]{.49\linewidth}
         \centering
         \includegraphics[width=0.6\textwidth]{images/experimentation/qgis2desc_assemblage.png}
-        \caption{La fenêtre de "Assembler les descriptions" présente ses différents paramètres.}
+        \caption{La fenêtre de <<~Assembler les descriptions~>> présente ses différents paramètres.}
         \label{fig:experimentation_assemblage_fenetre}
     \end{subfigure}
     \begin{subfigure}[t]{.49\linewidth}
@@ -249,7 +253,7 @@ Le second s'appelle "Assembler des descriptions" et va permettre de générer le
         \caption{La sortie HTML obtenue respecte le formatage défini dans le plan.}
         \label{fig:experimentation_assemblage_html}
     \end{subfigure}
-    \caption{Le traitement actuel permet d'obtenir en sortie un document HTML, mais son code est cependant extensible pour permettre la génération d'autres types de documents.}
+    \caption[Fenêtre QGIS de l'assemblage des descriptions]{Le traitement actuel permet d'obtenir en sortie un document HTML, mais son code est cependant extensible pour permettre la génération d'autres types de documents.}
     \label{fig:experimentation_assemblage}
 \end{figure}
 
@@ -260,7 +264,7 @@ Le second s'appelle "Assembler des descriptions" et va permettre de générer le
 \begin{figure}[ht]
     \centering
     \resizebox{8cm}{!}{\includegraphics{images/experimentation/qgis2desc_modele_assemblage.png}}
-    \caption{Le modèle graphique contient les patrons de plusieurs couches. On remarque également plusieurs patrons pour une même couche. Ceux-ci pourront être sélectionnés à l'aide des métadonnées lors de l'étape d'assemblage pour personnaliser la description.}
+    \caption[Modèle graphique QGIS pour générer une description]{Le modèle graphique contient les patrons de plusieurs couches. On remarque également plusieurs patrons pour une même couche. Ceux-ci pourront être sélectionnés à l'aide des métadonnées lors de l'étape d'assemblage pour personnaliser la description.}
     \label{fig:experimentation_qgis2desc_modele_assemblage}
 \end{figure}
 
@@ -279,7 +283,7 @@ L'intégralité du processus réalisé par l'utilisateur final est illustré en 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/pipeline_utilisateur.pdf}
-    \caption{L'exécution de la chaîne complète est simplifiée par les outils réalisés en amont par le géomaticien. Les complexités des traitements de données et de la réalisation du texte sont masquées derrière des boîtes à outils dont la prise en main est facilitée.}
+    \caption[Étapes d'exécution de la chaîne de description par l'utilisateur]{L'exécution de la chaîne complète est simplifiée par les outils réalisés en amont par le géomaticien. Les complexités des traitements de données et de la réalisation du texte sont masquées derrière des boîtes à outils dont la prise en main est facilitée.}
     \label{fig:experimentation_processus_realisation_utilisateur}
 \end{figure}
 
@@ -293,7 +297,7 @@ En parallèle des outils implémentés sous QGIS, nous avons proposé une second
 
 % Le Pigeon Nelson
 
-Par ailleurs, le serveur permet également de renvoyer les données au format attendu par l'application "Le Pigeon Nelson". Le Pigeon Nelson est une application libre pour smartphone\footnote{https://github.com/Le-Pigeon-Nelson/le-pigeon-nelson} qui permet de jouer un son relatif à la position de l'utilisateur et aux valeurs des capteurs du téléphone. Il fonctionne en mode client-serveur et la majorité de la logique se trouve côté serveur (se référer à la documentation pour plus de détails). Lors d'une requête vers le serveur CrWeb, l'application envoie sa position GPS. Le pipeline tel que décrit précédemment est alors exécuté sur la position envoyée avec les paramètres par défaut de crseg, et le serveur renvoie un fichier JSON adapté contenant le texte généré pour le carrefour le plus proche. Ce JSON est interprété par l'application, qui lit la description obtenue par synthèse vocale. Une capture de l'application en cours d'utilisation est présentée en figure \ref{fig:experimentation_pigeonnelson}.
+Par ailleurs, le serveur permet également de renvoyer les données au format attendu par l'application <<~Le Pigeon Nelson~>>. Le Pigeon Nelson est une application libre pour smartphone\footnote{https://github.com/Le-Pigeon-Nelson/le-pigeon-nelson} qui permet de jouer un son relatif à la position de l'utilisateur et aux valeurs des capteurs du téléphone. Il fonctionne en mode client-serveur et la majorité de la logique se trouve côté serveur (se référer à la documentation pour plus de détails). Lors d'une requête vers le serveur CrWeb, l'application envoie sa position GPS. Le pipeline tel que décrit précédemment est alors exécuté sur la position envoyée avec les paramètres par défaut de crseg, et le serveur renvoie un fichier JSON adapté contenant le texte généré pour le carrefour le plus proche. Ce JSON est interprété par l'application, qui lit la description obtenue par synthèse vocale. Une capture de l'application en cours d'utilisation est présentée en figure \ref{fig:experimentation_pigeonnelson}.
 
 \begin{figure}[ht]
     \centering
@@ -309,7 +313,7 @@ Par ailleurs, le serveur permet également de renvoyer les données au format at
         \caption{L'application lors de l'échange avec le serveur n'affiche aucune information. Ici, le son joué correspond au texte affiché par la figure de gauche.}
         \label{fig:experimentation_pigeonnelson}
     \end{subfigure}
-    \caption{Deux exemples d'interfaces permettant d'afficher ou d'écouter les descriptions générées à l'aide des outils présentés.}
+    \caption[Interfaces simplifiées de génération de description]{Deux exemples d'interfaces permettant d'afficher ou d'écouter les descriptions générées à l'aide des outils présentés.}
     \label{fig:experimentation_crweb_pigeon}
 \end{figure}
 
@@ -321,12 +325,12 @@ Le projet ACTIVmap, dans lequel s'inscrit cette thèse, est porté par trois act
 
 \label{sec:experimentation_poc1}
 
-\gls{deri} \cite{Brock2012} est une application développée au sein de l'\gls{irit}. Elle permet de transformer une tablette tactile en support tactile interactif. Son fonctionnement est le suivant: au sein de l'application est ouvert un fichier spécifique qui définit sur l'écran des interacteurs qui à l'appui déclenchent un son enregistré ou synthétisé. Plusieurs types d'appui sont pris en compte (simple appui, double appui), et il est possible sur un interacteur de déclencher des sons différents selon le type d'appui. Un document tactile correspondant au fichier et imprimé sur papier thermogonflé est posé sur l'écran et maintenu par la coque. L'épaisseur du papier permet aux interactions d'être détectée par l'écran tactile et de jouer les sons déclenchés par l'utilisateur lors de l'appui sur un interacteur. La figure \ref{fig:experimentation_exemple_deri} présente le dispositif.
+\gls{deri} \citep{Brock2012} est une application développée au sein de l'\gls{irit}. Elle permet de transformer une tablette tactile en support tactile interactif. Son fonctionnement est le suivant: au sein de l'application est ouvert un fichier spécifique qui définit sur l'écran des interacteurs qui à l'appui déclenchent un son enregistré ou synthétisé. Plusieurs types d'appui sont pris en compte (simple appui, double appui), et il est possible sur un interacteur de déclencher des sons différents selon le type d'appui. Un document tactile correspondant au fichier et imprimé sur papier thermogonflé est posé sur l'écran et maintenu par la coque. L'épaisseur du papier permet aux interactions d'être détectée par l'écran tactile et de jouer les sons déclenchés par l'utilisateur lors de l'appui sur un interacteur. La figure \ref{fig:experimentation_exemple_deri} présente le dispositif.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/exemple_deri.pdf}
-    \caption{À gauche, contenu d'un fichier .deri et extrait du fichier XML d'interaction pour la légende de la carte de droite. On remarque que sont définis séparément les interacteurs (Poi) et les textes à jouer (Text), liés ensemble par une interaction (Trigger). À droite, une tablette \gls{deri} assemblée et en cours d'utilisation. Source: preuve de concept ACTIVmap.}
+    \caption[Exemple de fichier DERi]{À gauche, contenu d'un fichier .deri et extrait du fichier XML d'interaction pour la légende de la carte de droite. On remarque que sont définis séparément les interacteurs (Poi) et les textes à jouer (Text), liés ensemble par une interaction (Trigger). À droite, une tablette \gls{deri} assemblée et en cours d'utilisation. Source: preuve de concept ACTIVmap.}
     \label{fig:experimentation_exemple_deri}
 \end{figure}
 
@@ -344,7 +348,7 @@ La réalisation d'une carte audiotactile à partir des travaux cités soulève l
     \item \textbf{Quels éléments décrire ?} \\
     Le choix des éléments à décrire dépendra de la taille et de l'usage de la carte (voir les exemples présentés en partie \ref{sec:experimentation_exemples_cartes_audiotactiles}). Les outils présentés en partie \ref{sec:implementation_segmentation}, en particulier les traitements intégrés à QGIS2Desc, permettent d'étendre les possibilités de description à des données non-intégrées à crmodel aujourd'hui. Outre l'accessibilité, il est alors possible de décrire d'autres points d'intérêts pouvant servir de repère tels que les commerces ou les arrêts de bus.
     \item \textbf{Où et comment placer les interacteurs pour maintenir la lisibilité de la carte ?} \\
-    Les sons joués par \gls{deri} sont déclenchés par des interacteurs. Les interacteurs sont intégrés à une couche indépendante des données géographiques à décrire. Par exemple, l'interacteur permettant de décrire un passage piéton peut être placé à côté de celui-ci et non-pas sur le symbole représentant le passage piéton pour ne pas gêner sa lisibilité. Une grande densité d'interacteurs peut également poser des problèmes de lisibilité, et il est alors souhaitable de les fusionner. Le placement des interacteur est un problème qui n'a aujourd'hui pas encore été abordé et fait partie des perspectives évoquées par \cite{Jiang2023}. Leur placement est ici défini à la main.
+    Les sons joués par \gls{deri} sont déclenchés par des interacteurs. Les interacteurs sont intégrés à une couche indépendante des données géographiques à décrire. Par exemple, l'interacteur permettant de décrire un passage piéton peut être placé à côté de celui-ci et non-pas sur le symbole représentant le passage piéton pour ne pas gêner sa lisibilité. Une grande densité d'interacteurs peut également poser des problèmes de lisibilité, et il est alors souhaitable de les fusionner. Le placement des interacteur est un problème qui n'a aujourd'hui pas encore été abordé et fait partie des perspectives évoquées par \citet{Jiang2023}. Leur placement est ici défini à la main.
     \item \textbf{Comment définir le texte d'un interacteur ?} \\
     En partant des mêmes données pour la carte et pour le texte, il existe un identifiant commun issu d'\gls{osm} pour chaque entité  permettant d'effectuer une correspondance automatique. Cependant, certaines descriptions n'ont pas d'accroche sous la forme d'un objet issu d'\gls{osm}. Il peut s'agir par exemple de la description générale du carrefour, ou des description de branches. L'identifiant permettant de faire la correspondance avec le texte doit alors être décidé en amont pour être commun aux deux données.
 \end{itemize}
@@ -356,7 +360,7 @@ Une illustration de la chaîne de traitement partant des données jusqu'au lien 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/pipeline_creation_deri1.pdf}
-    \caption{Cette chaîne présente la méthode choisie pour définir le texte des interacteurs de la carte tactile en fonction des objets qu'ils représentent. Ce lien est fait en utilisant l'idenfiant \gls{osm} commun au texte et à la carte.}
+    \caption[Chaîne de traitement SIG pour générer un DERi]{Cette chaîne présente la méthode choisie pour définir le texte des interacteurs de la carte tactile en fonction des objets qu'ils représentent. Ce lien est fait en utilisant l'idenfiant \gls{osm} commun au texte et à la carte.}
     \label{fig:experimentation_lien_carte_texte}
 \end{figure}
 
@@ -396,7 +400,7 @@ Les méthodes présentées dans cette partie ont été appliquées à la génér
         \centering
         \includegraphics[width=\textwidth]{images/experimentation/poc1_a5.png}
     \end{subfigure}
-    \caption{Deux cartes audiotactiles réalisées par Markie Jiang \cite{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
+    \caption[Exemples de cartes audiotactiles]{Deux cartes audiotactiles réalisées par Markie Jiang \citep{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
     \label{fig:experimentation_exemples_cartes_audiotactiles}
 \end{figure}
 
@@ -413,7 +417,7 @@ Dans l'expérimentation précédente, nous avons proposé les méthodes permetta
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/exemple_deri2.pdf}
-    \caption{Le fichier JSON d’interaction décrit un graphe de texte navigable par interaction. La carte de droite illustre le passage d'un texte à un autre selon l'interaction réalisée. Source: Contributeurs OpenStreetMap.}
+    \caption[Exemple de fichier DERi 2]{Le fichier JSON d’interaction décrit un graphe de texte navigable par interaction. La carte de droite illustre le passage d'un texte à un autre selon l'interaction réalisée. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_deri2_exemple}
 \end{figure}
 
@@ -437,7 +441,7 @@ La construction de ce graphe peut être automatisée sous QGIS et présentée à
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/exemple_graphe_poc2.pdf}
-    \caption{Exemple de graphe généré pour une branche. Seules la topologie et la sémantique comptent pour la navigation, la géométrie présentée dans cette exemple est factice pour être lisible. Source: Contributeurs OpenStreetMap.}
+    \caption[Exemple de graphe de description de branche]{Exemple de graphe généré pour une branche. Seules la topologie et la sémantique comptent pour la navigation, la géométrie présentée dans cette exemple est factice pour être lisible. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_deri2_graphe_branche}
 \end{figure}
 
@@ -458,11 +462,13 @@ Les méthodes détaillées ci-dessus n'ont pas été automatisée mais appliqué
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/exemple_poc2.pdf}
-    \caption{La carte tactile en version A5 limitant la représentation des branches, le graphe permet de naviguer au-delà pour prendre connaissance des commerces qu'elle peut contenir.}
+    \caption[Carte tactile A5 et graphe de description de branche]{La carte tactile en version A5 limitant la représentation des branches, le graphe permet de naviguer au-delà pour prendre connaissance des commerces qu'elle peut contenir.}
     \label{fig:experimentation_deri2_exemple_carte}
 \end{figure}
 
 \section{Le carrefour dont vous êtes le héros: naviguer dans une description égocentrée}
+
+\label{sec:experimentation_le_carrefour_dont_vous_etes_le_heros}
 
 La navigation dans un graphe de texte a été explorée dans la partie précédente en mobilisant les nouvelles fonctions permises par \gls{deri} 2. Cette dernière repose d'une part sur les interactions avec une carte, et d'autre part sur un texte forcément exocentré où chaque nœud contient un texte indépendant du contexte. Dans cette partie, en se détachant du medium tactile, nous proposons une expérimentation permettant de naviguer dans un graphe de texte sous la forme d'une description égocentrée. L'objectif est de permettre à l'utilisateur de naviguer dans une description textuelle d'un carrefour en se déplaçant virtuellement à l'intérieur de celui-ci. 
 
@@ -479,11 +485,11 @@ La particularité de la description égocentrée au regard des précédentes con
         \footnotesize
         Le prochain passage piéton se trouve légèrement à gauche.\\\\\\\\
     \end{minipage}
-    \caption{Exemple de descriptions égocentrées passant sur le même passage piéton. On remarque que la description est contextualisée par rapport à l'endroit d'où l'utilisateur provient. Un élément n'est ainsi pas toujours décrit par le même texte. Source: IGN BD Ortho 2020.}
+    \caption[Exemple de description égocentrée]{Exemple de descriptions égocentrées passant sur le même passage piéton. On remarque que la description est contextualisée par rapport à l'endroit d'où l'utilisateur provient. Un élément n'est ainsi pas toujours décrit par le même texte. Source: IGN BD Ortho 2020.}
     \label{fig:experimentation_description_egocentree}
 \end{figure}
 
-Une problématique de la description égocentrée concerne les angles et les distances. Les \gls{pcdv} ont une capacité de discrimination angulaire et d’estimation des distances très dépendante des conditions de l’environnement \cite{ratelle_manuel_2019}. Sur ces aspects, nous pouvons choisir de laisser l'indication floue pour ne pas induire en erreur l'utilisateur, par exemple en indicant <<~Tourner légèrement à gauche~>> plutôt que <<~Tourner à 45 degrés à gauche~>>. Par ailleurs, les données mobilisées seront de toutes façons trop imprécises pour permettre un haut niveau de détail dans les descriptions métriques.
+Une problématique de la description égocentrée concerne les angles et les distances. Les \gls{pcdv} ont une capacité de discrimination angulaire et d’estimation des distances très dépendante des conditions de l’environnement \citep{ratelle_manuel_2019}. Sur ces aspects, nous pouvons choisir de laisser l'indication floue pour ne pas induire en erreur l'utilisateur, par exemple en indicant <<~Tourner légèrement à gauche~>> plutôt que <<~Tourner à 45 degrés à gauche~>>. Par ailleurs, les données mobilisées seront de toutes façons trop imprécises pour permettre un haut niveau de détail dans les descriptions métriques.
 
 \newpar{}
 
@@ -525,7 +531,7 @@ Cette information peut être matérialisée sous la forme d'un tableau de donné
             2 & 1 & 3 & << Aller en direction du trottoir opposé. >> & << Tournez à gauche pour accéder au passage piéton. Vous pouvez le repérer à l'aide de la bande d'éveil de vigilance. >>
         \end{tabular}
     \end{center}
-    \caption{Pour matérialiser les listes imbriquées précédentes, une ligne correspond pour un nœud à une source et une destination. Ainsi, si un nœud a trois voisins, il sera représenté par trois lignes par voisin, soit neuf lignes.}
+    \caption[Schéma tabulaire pour la génération d'une description égocentrée]{Pour matérialiser les listes imbriquées précédentes, une ligne correspond pour un nœud à une source et une destination. Ainsi, si un nœud a trois voisins, il sera représenté par trois lignes par voisin, soit neuf lignes.}
     \label{tab:experimentation_desc_egocentree}
 \end{table}
 
@@ -548,7 +554,7 @@ Sur la base des données préparées en partie précédente, il serait possible 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/experimentation/carrefour_heros.png}
-    \caption{L'application web permet de naviguer dans un carrefour à la manière d'un livre dont vous êtes le héros.}
+    \caption[Démonstrateur de navigation virtuelle dans un carrefour]{L'application web permet de naviguer dans un carrefour à la manière d'un livre dont vous êtes le héros.}
     \label{fig:experimentation_egocentre_screen}
 \end{figure}
 

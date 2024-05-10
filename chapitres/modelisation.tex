@@ -13,13 +13,13 @@ Le carrefour peut être un espace d'interaction entre piétons et véhicules. Da
 
 % Pour définir les éléments de mon modèle, j'ai utilisé des méthodo de travail : je suis allé interroger des professionnels, etc. Mentionner le fait d'être allé rencontrer des personnes du CRDV, autres professionnels.
 
-Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu où se croisent plusieurs rues ou plusieurs routes, généralement aménagé en vue d'éviter les risques de collision, et parfois d'améliorer le débit}. Une particularité concernant nos travaux est que le carrefour nous intéresse du point de vue du piéton, et notamment du piéton concerné par la déficience visuelle, dont les spécificités doivent être prise en compte dans la définition d'un carrefour tel que nous le concevons. Lors des travaux préliminaires à ce mémoire, nous avons interrogé des personnes concernées et professionnels du \gls{crdv} de Clermont-Ferrand pour établir cette définition. Pour ces dernières, la limite d'un carrefour correspond à l'étendue de ce qu'une personne peut entendre. Bien qu'il existe des travaux de modélisation accoustique \cite{Bullen1977} orientés notamment sur la propagation du bruit, cette approche nous semble difficile à généraliser dans un premier temps. Nous avons donc choisi de nous concentrer tout d'abord sur la structure du carrefour du point de vue du piéton, en en proposant une représentation sous forme de graphe, puis en s'intéressant aux élements d'accessibilité spécifiques à la mobilité des \glspl{pcdv}.
+Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu où se croisent plusieurs rues ou plusieurs routes, généralement aménagé en vue d'éviter les risques de collision, et parfois d'améliorer le débit}. Une particularité concernant nos travaux est que le carrefour nous intéresse du point de vue du piéton, et notamment du piéton concerné par la déficience visuelle, dont les spécificités doivent être prise en compte dans la définition d'un carrefour tel que nous le concevons. Lors des travaux préliminaires à ce mémoire, nous avons interrogé des personnes concernées et professionnels du \gls{crdv} de Clermont-Ferrand pour établir cette définition. Pour ces dernières, la limite d'un carrefour correspond à l'étendue de ce qu'une personne peut entendre. Bien qu'il existe des travaux de modélisation accoustique \citep{Bullen1977} orientés notamment sur la propagation du bruit, cette approche nous semble difficile à généraliser dans un premier temps. Nous avons donc choisi de nous concentrer tout d'abord sur la structure du carrefour du point de vue du piéton, en en proposant une représentation sous forme de graphe, puis en s'intéressant aux élements d'accessibilité spécifiques à la mobilité des \glspl{pcdv}.
 
 \subsection{Le graphe du carrefour du point de vue d'un piéton}
 
 \label{sec:modelisation_definitions}
 
-Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de nous reposer sur une approche graphe afin de le définir et de le délimiter dans un réseau routier. Les définitions suivantes en définissent la structure :
+Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de nous reposer sur une approche graphe afin de le définir et de le délimiter dans un réseau routier. Les définitions suivantes en définissent la structure:
 
 \begin{definition}
     On appelle \textbf{couverture} d'un graphe $G_0 = (V_0,E_0)$ et plongé dans le plan un ensemble de sous-graphes $\mathcal{G_0}$ tels que:
@@ -61,10 +61,10 @@ Remarque: l'intersection entre $V_r$ et $V_p$ peut ne pas être vide.
 \noindent
 Exemple: couverture d'un graphe piéton qui n'est pas un ensemble de trottoirs couvrants (voir Figure \ref{fig:mod_ex_trottoirs_couvrants}).
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Ces deux trottoirs ne sont pas couvrants car ils possèdent un noeud en commun.}
+    \includegraphics[width=\textwidth]{images/modelisation/graphe/trottoirs_non_couvrants.pdf}
+    \caption[Ensemble de trottoirs non-couvrants]{L'ensemble des trottoirs n'est pas couvrant car les trottoirs 2 et 3 possèdent un noeud en commun.}
     \label{fig:mod_ex_trottoirs_couvrants}
 \end{figure}
 
@@ -98,24 +98,13 @@ Exemple: couverture d'un graphe piéton qui n'est pas un ensemble de trottoirs c
 Remarque: un cœur de carrefour ne peut pas être un chemin.
 
 \noindent
-Exemples:
-\begin{itemize}
-    \item Une couverture routière qui n'est pas complète (voir Figure \ref{fig:mod_ex_couverture_routiere_incomplete})
-    \item Une couverture routière à plusieurs carrefours, dites de quartier (voire Figure \ref{fig:mod_ex_couverture_routiere_quartier})
-\end{itemize}
+Exemple: Une couverture routière à plusieurs carrefours, dite de quartier (voire figure \ref{fig:mod_ex_couverture_quartier}).
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \begin{subfigure}[t]{.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Couverture routière incomplète: deux branches ne peuvent pas être connectées.\label{fig:mod_ex_couverture_routiere_incomplete}}
-    \end{subfigure}
-    \begin{subfigure}[t]{.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Une couverture de quartier comprend plusieurs carrefours. \label{fig:mod_ex_couverture_routiere_carrefour}}
-    \end{subfigure}
-    \caption{On remarque la différence entre une couverture routière incomplète et une couverture routière complète.}
-    \label{fig:mod_ex_couverture_routiere_quartier}
+    \includegraphics[width=\textwidth]{images/modelisation/graphe/couverture_quartier.pdf}
+    \caption[Couverture d'un quartier]{Une couverture de quartier comprend plusieurs carrefours.}
+    \label{fig:mod_ex_couverture_quartier}
 \end{figure}
 
 \begin{definition}
@@ -136,10 +125,10 @@ Exemples:
     Un \textbf{carrefour} est un graphe multimodal composé d'une couverture routière complète ne contenant qu'un seul cœur de carrefour, d'une couverture piétonne complète et d'un ensemble de traversées (voir Figure \ref{fig:mod_ex_graphe_carrefour}).
 \end{definition}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Le graphe multimodal d'un carrefour.}
+    \includegraphics[width=\textwidth]{images/modelisation/graphe/graphe_multimodal.pdf}
+    \caption[Graphe multimodal d'un carrefour]{Un graphe multimodal d'un carrefour. Les chemins $(p_1, p_2, p_3)$, $(p_4, p_5, p_6)$, $(p_7, p_8, p_9, p_{10})$ et $(p_{11}, p_{12}, p_{13})$ sont des traversée.}
     \label{fig:mod_ex_graphe_carrefour}
 \end{figure}
 
@@ -149,22 +138,22 @@ Exemples:
 
 Pour effectuer une traversée du carrefour en sécurité, il existe un certain nombre d'équipements d'accessibilité pouvant être mobilisés par une \gls{pcdv}. Ces équipements ont des rôles divers, comme permettre de repérer une traversée, ou d'y accéder par un nivellement adapté (dans le cas d'une \gls{pmr} par exemple). Pour répondre aux besoins des différents usagers, ces équipements font appel à des sens différents: l'ouïe pour les signaux sonores, le toucher pour les éléments tactiles, mais également la vue pour les potelets contrastés ou les passages piétons matérialisés par de la pleinture au sol qui peut être mobilisée par les \glspl{pcdv} présentant un résidu visuel. Plusieurs équipements pouvant être rencontrés sur un carrefour sont présentés au sein de la table \ref{tab:modelisation_objets}.
 
-\begin{table}
+\begin{table}[ht]
     \begin{center}
     \scriptsize
     \begin{tabular}{ | m{2cm} | m{10cm} }
         Image & Description \tabularnewline
         \hline
         \resizebox{2cm}{!}{\includegraphics{images/modelisation/mod_bev.jpeg}} & Une \gls{bev} permet de détecter au pied ou à la canne la présence d'un passage piéton. On remarque sur l'image ci-contre qu'elle est abîmée, ce qui peut altérer sa détectabilité.\tabularnewline
-        \resizebox{2cm}{!}{\includegraphics{images/modelisation/mod_poteau.jpeg}} & Les pôteaux parfois présents aux abords des passages piétons permettent à l'inster des \gls{bev} de signaler leur présence. Leur sommet est contrasté avec le corps pour permettre à une personne malvoyante de les distinguer.\tabularnewline
+        \resizebox{2cm}{!}{\includegraphics{images/modelisation/mod_poteau.jpeg}} & Les pôteaux parfois présents aux abords des passages piétons permettent à l'instar des \glspl{bev} de signaler leur présence. Leur sommet est contrasté avec le corps pour permettre à une personne malvoyante de les distinguer.\tabularnewline
         \resizebox{2cm}{!}{\includegraphics{images/modelisation/mod_feu_pieton.jpeg}} & Les feux de signalisation piéton peuvent être équipés d'une balise sonore. Le message joué par celle-ci varie, mais peut indiquer le nom de la rue traversée lorsque le feu est rouge. Un son de cloche est émis lorsque le feu est vert.\tabularnewline
     \end{tabular}
     \end{center}
-    \caption{Équipements d'accessibilité au sein du carrefour.}
+    \caption[Équipements d'accessibilité d'un carrefour]{Équipements d'accessibilité au sein du carrefour.}
     \label{tab:modelisation_objets}
 \end{table}
 
-Au-delà des équipements d'accessibilité, le cycle des feux est également utile aux \glspl{pcdv} pour analyser la circulation et traverser en sécurité \cite{ratelle_manuel_2019}. Le cycle des feux correspond aux états successifs de chaque feu et permet de savoir quelles voies sont actuellement passantes. Il existe des modèles permettant la représentation de cette donnée, notamment au sein des outils de simulation de traffic routier \cite{Lopez2018}. Cependant, il n'existe actuellement aucun territoire la rendant accessible au sein d'une source de données ouverte.
+Au-delà des équipements d'accessibilité, le cycle des feux est également utile aux \glspl{pcdv} pour analyser la circulation et traverser en sécurité \citep{ratelle_manuel_2019}. Le cycle des feux correspond aux états successifs de chaque feu et permet de savoir quelles voies sont actuellement passantes. Il existe des modèles permettant la représentation de cette donnée, notamment au sein des outils de simulation de traffic routier \citep{Lopez2018}. Cependant, il n'existe actuellement aucun territoire la rendant accessible au sein d'une source de données ouverte.
 
 \section{La modélisation d’un carrefour au sein d’OpenStreetMap}
 
@@ -177,24 +166,16 @@ Au-delà des équipements d'accessibilité, le cycle des feux est également uti
 
 \subsection{Une forte capacité de représentation}
 
-Plus qu'une base de données géographique, \gls{osm} est une base de données topologique pouvant être représentée sous la forme d'un graphe non-connexe. 3 types d'objets peuvent être manipulés pour cartographier une entité : les points (node), les lignes (way), et les relations, chacun pouvant contenir une sémantique sous la forme de clés et de valeurs associées (voir Figure \ref{fig:mod_ex_donnee_osm})
-
-% Illustration qui représente une ligne de bus, composée de ways aggrégées au sein d'une relation.
-\begin{figure}
-    \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{Les différents objets d'\gls{osm} peuvent chacun contenir des attributs.}
-    \label{fig:mod_ex_donnee_osm}
-\end{figure}
+Plus qu'une base de données géographique, \gls{osm} est une base de données topologique pouvant être représentée sous la forme d'un graphe non-connexe. 3 types d'objets peuvent être manipulés pour cartographier une entité: les points (node), les lignes (way), et les relations, chacun pouvant contenir une sémantique sous la forme de clés et de valeurs associées. À noter que les relations n'ont pas de géométrie propre mais référencent un ensemble de points et de lignes indépendants de celles-ci
 
 % L'accessibilité piétonne dans OSM
 
 OpenStreetMap est très souple concernant la représentation de l'accessibilité piétonne, et permet de cartographier finement de nombreux aménagements. Il est ainsi possible de représenter un graphe piéton contenant sous forme linéaire les trottoirs et les passages piétons. Au-delà de la géométrie, la sémantique associée permet de compléter les informations liées à l'accessibilité. Sur un passage piéton, cela peut permettre d'indiquer la présence de \glspl{bev} (\osmkey{tactile\_paving}), d'un feu piéton (\osmvalue{traffic\_signals} pouvant être associée à plusieurs clés), et de préciser si ce dernier est sonorisé (\osmkey{traffic\_signals:sound}). On peut également faire figurer la bordure du trottoir (\osmkey{kerb}) et son élévation par rapport à la chaussée.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/mod_anatomie_carrefour_osm.pdf}}
-    \caption[Anatomie d'un carrefour dans OSM.]{Exemple de carrefour et des attributs associés dans OpenStreetMap. Outre le graphe piéton, des indications sur l'équipement d'accessibilité ou la largeur des voies (lanes) sont également présentes. Source : Contributeurs OpenStreetMap.}
+    \caption[Anatomie d'un carrefour dans OpenStreetMap]{Exemple de carrefour et des attributs associés dans OpenStreetMap. Outre le graphe piéton, des indications sur l'équipement d'accessibilité ou la largeur des voies (lanes) sont également présentes. Source: Contributeurs OpenStreetMap.}
     \label{fig:modelisation_anatomie_carrefour_osm}
 \end{figure}
 
@@ -204,7 +185,7 @@ Au-delà de l'accessibilité de la voirie, la sémantique permet également de p
 
 % L'évolution de la sémantique sur OSM
 
-Les clés et valeurs que nous évoquons se reposent sur la documentation établie par la communauté au sein du wiki d'\gls{osm}\footnote{https://wiki.openstreetmap.org/}. Si certaines clés et valeurs se sont imposées par l'usage (dit "de fait"\footnote{https://wiki.openstreetmap.org/wiki/Category:Key\_descriptions\_with\_status\_\%22de\_facto\%22}), la pratique usuelle pour faire évoluer la sémantique consiste à soumettre au vote de la communauté via le wiki une proposition de clés et valeurs supplémentaires pour représenter une nouvelle entité ou modifier un standard actuellement en vigueur. Nous pouvons illustrer cette pratique avec une donnée utile pour un piéton déficient visuel: le cycle des feux (evoqué en partie \ref{sec:mod_repere_carrefour}). S'il n'est pas possible avec la sémantique actuelle de représenter le cycle des feux sur \gls{osm}, un utilisateur propose en 2017 d'introduire une relation \osmkey{type}=\osmvalue{timing} \footnote{https://wiki.openstreetmap.org/wiki/Proposal:Traffic\_Signal\_Timings} pour modéliser cette information. Elle n'est pas, à l'heure actuelle, validée par la communauté car potentiellement inapplicables sur plusieurs territoires.
+Les clés et valeurs que nous évoquons se reposent sur la documentation établie par la communauté au sein du wiki d'\gls{osm}\footnote{https://wiki.openstreetmap.org/}. Si certaines clés et valeurs se sont imposées par l'usage (dit <<~de fait~>>\footnote{https://wiki.openstreetmap.org/wiki/Category:Key\_descriptions\_with\_status\_\%22de\_facto\%22}), la pratique usuelle pour faire évoluer la sémantique consiste à soumettre au vote de la communauté via le wiki une proposition de clés et valeurs supplémentaires pour représenter une nouvelle entité ou modifier un standard actuellement en vigueur. Nous pouvons illustrer cette pratique avec une donnée utile pour un piéton déficient visuel: le cycle des feux (evoqué en partie \ref{sec:mod_repere_carrefour}). S'il n'est pas possible avec la sémantique actuelle de représenter le cycle des feux sur \gls{osm}, un utilisateur propose en 2017 d'introduire une relation \osmkey{type}=\osmvalue{timing} \footnote{https://wiki.openstreetmap.org/wiki/Proposal:Traffic\_Signal\_Timings} pour modéliser cette information. Elle n'est pas, à l'heure actuelle, validée par la communauté car potentiellement inapplicables sur plusieurs territoires.
 
 \newpar{}
 
@@ -212,10 +193,10 @@ Les clés et valeurs que nous évoquons se reposent sur la documentation établi
 
 La représentation des carrefours sur OpenStreetMap est en partie possible, mais ne correspond pas entièrement à notre besoin. Il existe la clé \osmkey{junction}, qui permet de pointer un carrefour voire de le délimiter (Figure \ref{fig:modelisation_carrefours_osm_paris}). Elle permet, au-delà de la valeur \osmvalue{yes} qui signifie que l'objet concerné est un carrefour, d'indiquer certains types de carrefour, en particulier les ronds-points avec la valeur \osmvalue{roundabout}\footnote{https://wiki.openstreetmap.org/wiki/Key:junction}. Cependant, la sémantique actuelle ne permet pas de modéliser les branches associées au carrefour. Par ailleurs, la plupart des carrefours ne sont pas représentés de cette manière. Un exemple de cartographie de carrefour dans \gls{osm} est présenté en figure \ref{fig:modelisation_anatomie_carrefour_osm}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/mod_carrefours_osm_paris.pdf}}
-    \caption[Les carrefours OSM à Paris.]{À Paris, bien qu'il y ait beaucoup d'objets portant la clé \osmkey{junction}, la majorité des carrefours ne sont pas représentés sous cette forme. Source : Contributeurs OpenStreetMap.}
+    \caption[Les carrefours dans OpenStreetMap à Paris]{À Paris, bien qu'il y ait beaucoup d'objets portant la clé \osmkey{junction}, la majorité des carrefours ne sont pas représentés sous cette forme. Source: Contributeurs OpenStreetMap.}
     \label{fig:modelisation_carrefours_osm_paris}
 \end{figure}
 
@@ -233,21 +214,23 @@ Pour un même objet, plusieurs modélisations sont possibles voire peuvent coexi
 
 Les trottoirs peuvent être représentés de trois manières différentes: sous une forme sémantique sur le filaire automobile, sous la forme d'un filaire séparé de la route, mais également sous la forme d'un polygone. Cette modélisation guidera également celle des passages piétons qui pourront être représentés comme un nœud sur le filaire automobile, potentiellement complété d'un filaire. Ces différentes modélisations sont illustrées en figure \ref{fig:modelisation_trottoir_osm}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.32\linewidth}
         \resizebox{4.5cm}{!}{\includegraphics{images/modelisation/sw_semantic.pdf}}
         \caption{Les trottoirs sont ici présents sur les attributs \osmkey{sidewalk} de la route.}
     \end{subfigure}
+    \hfill
     \begin{subfigure}[t]{.32\linewidth}
         \resizebox{4.5cm}{!}{\includegraphics{images/modelisation/sw_line.pdf}}
         \caption{Les trottoirs sont tracés parallèlement à la route et portent la valeur \osmkey{footway}=\osmvalue{sidewalk}.}
     \end{subfigure}
+    \hfill
     \begin{subfigure}[t]{.32\linewidth}
         \resizebox{4.5cm}{!}{\includegraphics{images/modelisation/sw_polygon.pdf}}
         \caption{Les trottoirs sont tracés en surfaces. Ils contiennent les mêmes valeurs que les trottoirs linéaire, complétés de \osmvalue{area}=\osmvalue{yes}}
     \end{subfigure}
-    \caption{Illustration des différentes modélisations de trottoirs possibles sur \gls{osm}. Source: Contributeurs OpenStreetMap.}
+    \caption[Différentes modélisation de trottoirs sur OpenStreetMap]{Illustration des différentes modélisations de trottoirs possibles sur \gls{osm}. Source: Contributeurs OpenStreetMap.}
     \label{fig:modelisation_trottoir_osm}
 \end{figure}
 
@@ -257,7 +240,7 @@ Les trottoirs peuvent être représentés de trois manières différentes: sous 
 
 Par ailleurs, les pratiques sont localement variées. Le journal d'un utilisateur d'OpenStreetMap\footnote{\url{https://www.openstreetmap.org/user/Hungerburg/diary/395540}} présente l'historique de cartographie des trottoirs jusqu'à 2021 en comparant l'évolution des trottoirs cartographiés en sémantique sur la route et les trottoirs filaires sur la Grande-Bretagne et la Pologne (voir figure \ref{fig:modelisation_osm_gb_pologne}). On note dans tous les cas une évolution significative de l'intérêt pour cette thématique au fil du temps.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \includegraphics[width=\textwidth]{images/modelisation/Sidewalks-Length-Britain.png}
@@ -267,7 +250,7 @@ Par ailleurs, les pratiques sont localement variées. Le journal d'un utilisateu
         \includegraphics[width=\textwidth]{images/modelisation/Sidewalks-Length-Poland.png}
         \caption{Évolution de la cartographie des trottoirs en Pologne. \label{fig:modelisation_osm_pologne}}
     \end{subfigure}
-    \caption{Les pratiques de cartographies peuvent être localisées sur OSM. En Pologne, le filaire piéton s'est majoritairement développé au contraire de la Grande-Bretagne où il reste majoritairement présent en sémantique du réseau routier. Source: \url{https://www.openstreetmap.org/user/Hungerburg/diary/395540}.}
+    \caption[Variation des pratiques de contribution sur OpenStreetMap]{Les pratiques de cartographies peuvent être localisées sur OSM. En Pologne, le filaire piéton s'est majoritairement développé au contraire de la Grande-Bretagne où il reste majoritairement présent en sémantique du réseau routier. Source: \url{https://www.openstreetmap.org/user/Hungerburg/diary/395540}.}
     \label{fig:modelisation_osm_gb_pologne}
 \end{figure}
 
@@ -275,11 +258,11 @@ Par ailleurs, les pratiques sont localement variées. Le journal d'un utilisateu
 
 \label{sec:modelisation_crmodel}
 
-Pour utiliser la donnée \gls{osm} dans un contexte spécifique, il est préconisé de la manipuler à l'aide d'un modèle de donnée spécialisé intermédiaire \cite{Touya2014}. Nous proposons dans un premier temps une modélisation objet générique de la donnée \gls{osm}, que nous appliquons dans un second temps à la modélisation du carrefour. Enfin, nous présentons les méthodes permettant d'instancier ce modèle depuis OpenStreetMap.
+Pour utiliser la donnée \gls{osm} dans un contexte spécifique, il est préconisé de la manipuler à l'aide d'un modèle de donnée spécialisé intermédiaire \citep{Touya2014}. Nous proposons dans un premier temps une modélisation objet générique de la donnée \gls{osm}, que nous appliquons dans un second temps à la modélisation du carrefour. Enfin, nous présentons les méthodes permettant d'instancier ce modèle depuis OpenStreetMap.
 
-\subsection{OSM-Objet : une modélisation objet de la donnée OpenStreetMap}
+\subsection{OSM-Objet: une modélisation objet de la donnée OpenStreetMap}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \begin{plantuml}
 
@@ -309,15 +292,15 @@ Pour utiliser la donnée \gls{osm} dans un contexte spécifique, il est préconi
 \label{fig:modelisation_osm_objet}
 \end{figure}
 
-Comme présenté dans la partie \ref{sec:modelisation_osm}, les objets représentés au sein d'\gls{osm} sont définis par un ensemble de clés et de valeurs. Ainsi, pour manipuler chaque objet, il est nécessaire de déterminer l'ensemble des clés et valeurs qui vont le définir. En ce sens, il est plus commode de manipuler un modèle intermédiaire pour lequel cet ensemble est prédéfini. Cette problématique a déjà été abordée au sein des ontologies réalisées autour d'\gls{osm}\cite{Codescu2011,Hombiat2017} ou des travaux qui s'appuient sur ces données \cite{Touya2014}. Cependant, une particularité des capacités sémantique d'OpenStreetMap est qu'il est possible que la somme des clés et des valeurs d'une entité corresponde à plusieurs objets dans la vie réelle. Un exemple typique concerne les passages piétons représentés par un nœud et dont la sémantique contient souvent à la fois celle associée au passage piéton, ainsi que celle associée au feu de circulation. Pour gérer cette particularité, nous proposons un modèle de données orienté objet appelé OSM-Objet.
+Comme présenté dans la partie \ref{sec:modelisation_osm}, les objets représentés au sein d'\gls{osm} sont définis par un ensemble de clés et de valeurs. Ainsi, pour manipuler chaque objet, il est nécessaire de déterminer l'ensemble des clés et valeurs qui vont le définir. En ce sens, il est plus commode de manipuler un modèle intermédiaire pour lequel cet ensemble est prédéfini. Cette problématique a déjà été abordée au sein des ontologies réalisées autour d'\gls{osm}\citep{Codescu2011,Hombiat2017} ou des travaux qui s'appuient sur ces données \citep{Touya2014}. Cependant, une particularité des capacités sémantique d'OpenStreetMap est qu'il est possible que la somme des clés et des valeurs d'une entité corresponde à plusieurs objets dans la vie réelle. Un exemple typique concerne les passages piétons représentés par un nœud et dont la sémantique contient souvent à la fois celle associée au passage piéton, ainsi que celle associée au feu de circulation. Pour gérer cette particularité, nous proposons un modèle de données orienté objet appelé OSM-Objet.
 
 \newpar{}
 
-OSM-Objet se repose sur le patron de conception du décorateur \cite{Gamma1994a}. Le décorateur permet d'ajouter dynamiquement des fonctionnalités à un objet sans passer par une sous-classe, et en conservant la même interface pour le manipuler. Dans notre cas, comme l'illustre la figure \ref{fig:modelisation_osm_objet}, nous pouvons manipuler un nœud, qui peut être simultanément un passage piéton et un feu de signalisation.
+OSM-Objet se repose sur le patron de conception du décorateur \citep{Gamma1994a}. Le décorateur permet d'ajouter dynamiquement des fonctionnalités à un objet sans passer par une sous-classe, et en conservant la même interface pour le manipuler. Dans notre cas, comme l'illustre la figure \ref{fig:modelisation_osm_objet}, nous pouvons manipuler un nœud, qui peut être simultanément un passage piéton et un feu de signalisation.
 
 \subsection{Application à la modélisation du carrefour}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{plantuml}
         @startuml
@@ -439,11 +422,11 @@ Comme évoqué en partie \ref{sec:modelisation_variation_pieton_osm} l'infrastru
 
 \newpar{}
 
-Cette partie est issue de travaux réalisés en collaboration avec Jean-Marie Favreau et publiés dans \cite{Favreau2022} et \cite{Kalsron2022}.
+Cette partie est issue de travaux réalisés en collaboration avec Jean-Marie Favreau et publiés dans \citep{Favreau2022} et \citep{Kalsron2022}.
 
 \subsection{Étapes d'une segmentation multi-échelle de carrefour}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/orthophoto-1.pdf}
@@ -453,18 +436,18 @@ Cette partie est issue de travaux réalisés en collaboration avec Jean-Marie Fa
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/orthophoto-2.pdf}
         \caption{Un carrefour dont les bordures sont définies par deux passages piétons (lignes vertes) et une branche sans marquage (ligne rouge). \label{fig:modelisation_limite_carrefourB}}
     \end{subfigure}
-    \caption{Les bordures des carrefours sont situées au niveau des infrastructures, si elles existent. Fond de plan: Géoportail © IGN. Source: \cite{Favreau2022}.}
+    \caption[Définition des bordures d'un carrefour]{Les bordures des carrefours sont situées au niveau des infrastructures, si elles existent. Fond de plan: Géoportail © IGN. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_limite_carrefour}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/region.pdf}}
-    \caption{Exemple de région définie dans le graphe. Source: \cite{Favreau2022}.}
+    \caption[Régions du graphe de carrefour]{Exemple de région définie dans le graphe. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_region_segmentation}
 \end{figure}
 
-On considère un graphe routier $G_r = (V_r,E_r)$ dont les nœuds et les arêtes contiennent des informations sémantiques sous la forme de clés-valeurs. Nous définission une segmentation du graphe routier en identifiant pour chaque région de la segmentation un ensemble non-vide de nœuds et un ensemble possiblement vide d'arêtes, avec la contrainte suivante : si une arête appartient à une région, ses deux nœuds lui appartiennent également.
+On considère un graphe routier $G_r = (V_r,E_r)$ dont les nœuds et les arêtes contiennent des informations sémantiques sous la forme de clés-valeurs. Nous définission une segmentation du graphe routier en identifiant pour chaque région de la segmentation un ensemble non-vide de nœuds et un ensemble possiblement vide d'arêtes, avec la contrainte suivante: si une arête appartient à une région, ses deux nœuds lui appartiennent également.
 Pour chaque région, nous identifions deux types de nœuds: les \textbf{nœuds internes} (uniquement connectés aux arêtes appartenant à la région), et les \textbf{nœuds de bordure} (connectés à au moins une arête appartenant à la région, et une arête n'appartenant pas à la région) (voir figure \ref{fig:modelisation_region_segmentation}).
 Les \textbf{arêtes adjacentes} d'une région sont identifiées comme les arêtes qui n'appartiennent pas à la région, mais dont un une des extrêmités en fait partie.
 
@@ -479,7 +462,7 @@ Cette première identification nous permet de caractériser:
     \item Les nœuds avec une cardinalité supérieure à deux, et dont les arêtes adjacentes ont des noms de rue distincts, comme probablement nœuds internes d'un carrefour, et considérés comme nœuds graine dans les étapes suivantes de l'algorithme
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/segmentation-step1.pdf}
@@ -489,7 +472,7 @@ Cette première identification nous permet de caractériser:
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/segmentation-step2.pdf}
         \caption{Carrefours élémentaires générés depuis le graphe de gauche. \label{fig:modelisation_segmentation_step2}}
     \end{subfigure}
-    \caption{Résultat de la segmentation d'un carrefour élémentaire. Source: \cite{Favreau2022}.}
+    \caption[Segmentation d'un carrefour élémentaire]{Résultat de la segmentation d'un carrefour élémentaire. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_segmentation_step1&2}
 \end{figure}
 
@@ -497,7 +480,7 @@ Cette première identification nous permet de caractériser:
 
 Cette première identification (voir figure \ref{fig:modelisation_segmentation_step1}) permet de construire les carrefours élémentaires, en utilisant la sémantique de la voie pour guider la décision d'étendre et consolider la segmentation de chaque nœud graine (voir figure \ref{fig:modelisation_segmentation_step2}). En revanche, elle ne correspond pas réellement à l'intuition d'un piéton. En effet, elle produit plusieurs petites régions souvent proches les unes des autres. Cependant, nous pouvons identifier ces dernières comme des sous-parties d'un carrefour plus complexe. En utilisant la sémantique, la géométrie et la topologie des arêtes adjacentes à chaque carrefour, nous proposons un algorithme pour assembler les carrefours élémentaires en carrefours fonctionnels.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/segmentation-step3.pdf}
@@ -507,7 +490,7 @@ Cette première identification (voir figure \ref{fig:modelisation_segmentation_s
         \includegraphics[width=\textwidth]{images/modelisation/segmentation/segmentation-step4.pdf}
         \caption{Résultat de la seconde étape d'assemblage des carrefours de gauche.\label{fig:modelisation_segmentation_step4}}
     \end{subfigure}
-    \caption{Résultat de l'assemblage des carrefours élémentaires. Source: \cite{Favreau2022}.}
+    \caption[Assemblage de carrefours élémentaires]{Résultat de l'assemblage des carrefours élémentaires. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_segmentation_step3&4}
 \end{figure}
 
@@ -517,14 +500,14 @@ La première étape d'assemblage consiste à identifier des couples de carrefour
 
 \newpar{}
 
-Dans ces deux étapes d'assemblage, la notion de "court" est construite proportionnelement à la largeur de la voie, et en considérant la sémantique des arêtes appartenant au carrefour. Par exemple, si une arête est labellisée comme partie d'un carrefour, alors sa longueur est diminuee. Le chemin résultant est comparé à la largeur de la voie (voir \ref{sec:implementation_segmentation}).
+Dans ces deux étapes d'assemblage, la notion de <<~court~>> est construite proportionnelement à la largeur de la voie, et en considérant la sémantique des arêtes appartenant au carrefour. Par exemple, si une arête est labellisée comme partie d'un carrefour, alors sa longueur est diminuee. Le chemin résultant est comparé à la largeur de la voie (voir \ref{sec:implementation_segmentation}).
 
 \subsubsection{Segmentation des branches}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/segmentation-step5.pdf}}
-    \caption{Segmentation des branches depuis le carrefour fonctionnel de la figure \ref{fig:modelisation_segmentation_step4} et utilisant les noms de rue donnés en figure {\ref{fig:modelisation_segmentation_step1}}. Source: \cite{Favreau2022}.}
+    \caption[Segmentation des branches d'un carrefour]{Segmentation des branches depuis le carrefour fonctionnel de la figure \ref{fig:modelisation_segmentation_step4} et utilisant les noms de rue donnés en figure {\ref{fig:modelisation_segmentation_step1}}. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_segmentation_step5}
 \end{figure}
 
@@ -564,10 +547,10 @@ Chaque nœud appartenant à un carrefour (\textit{faible oui} ou supérieur), ou
 
 Si un possible nœud de bordure identifié n'est pas fortement considéré comme faisant partie de la bordure (par exemple si c'est un feu de signalisation), la recherche est poursuivie le long du chemin, au cas où un nœud de bordure fortement considéré soit présent un peu plus loin.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/segmentation-details.pdf}}
-    \caption{Deux nœuds graines où des régions élémentaires seront calculées. Source: \cite{Favreau2022}.}
+    \caption[Nœuds graines utilisés pour la segmentation de carrefour]{Deux nœuds graines où des régions élémentaires seront calculées. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_boundarySelection}
 \end{figure}
 
@@ -632,11 +615,11 @@ En pratique, nous avons noté que $\mathcal{C}_1=2$  donne de bons résultats da
 
 Une nouvelle région est ainsi créé en assemblant tous les nœuds et arêtes qui constituent les carrefours initiaux, et en ajoutant les nœuds et arêtes qui constituent le chemin qui connecte les carrefours fusionnés.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/angles-merge.pdf}}
-    \caption{
-        Deux carrefours élémentaires dont la proximité entre les nœuds graines nécessite la prise en compte de la configuration des arêtes adjacentes. Ces deux carrefours élémentaires ont deux paires d'arêtes adjacentes ($\{\alpha, \beta\}$ et $\{\gamma, \delta\}$) avec le même nom, des directions consistantes, et des directions significativement différentes au regard du segment défini par les deux graines initiales. Source: \cite{Favreau2022}.}
+    \caption[Assemblage de deux carrefours élémentaires]{
+        Deux carrefours élémentaires dont la proximité entre les nœuds graines nécessite la prise en compte de la configuration des arêtes adjacentes. Ces deux carrefours élémentaires ont deux paires d'arêtes adjacentes ($\{\alpha, \beta\}$ et $\{\gamma, \delta\}$) avec le même nom, des directions consistantes, et des directions significativement différentes au regard du segment défini par les deux graines initiales. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_elementary_edges_relative_angle}
 \end{figure}
 
@@ -682,7 +665,7 @@ Les carrefours fonctionnels sont alors le résultat de l'assemblage des carrefou
 
 L'approche que nous proposons a l'avantage de gérer à la fois les carrefours complexes contenant des voies de tourne-à-droite (voir figure~\ref{fig:modelisation_segmentation_step4}), les carrefours complexes qui contiennent des polylignes décrivant les chemins internes du carrefour, mais aussi les ronds-points ( voir figure~\ref{fig:modelisation_roundAbout}).
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \begin{subfigure}[t]{\columnwidth}
         \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/rond-point.pdf}}
@@ -692,7 +675,7 @@ L'approche que nous proposons a l'avantage de gérer à la fois les carrefours c
         \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/rond-point-1.pdf}}
         \caption{Transformation pas-à-pas du rond-point en carrefour. Après avoir identifié les huit nœuds graines, chaque carrefour élémentaire est construit, ajoutant un chemin vers le passage piéton le plus proche. Chaque paire de carrefours ayant une voie adjacente portant le même nom de rue, elles sont assemblées en quatre carrefours. Enfin, une boucle est identifiée en connectant ces carrefours le long du chemin du rond-point.}
     \end{subfigure}
-    \caption{Illustration du processus dans un rond-point. Source: \cite{Favreau2022}.}
+    \caption[Processus de segmentation d'un rond-point]{Illustration du processus dans un rond-point. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_roundAbout}
 \end{figure}
 
@@ -702,10 +685,10 @@ L'approche que nous proposons a l'avantage de gérer à la fois les carrefours c
 
 Enfin, pour chaque carrefour assemblé de cette manière, on identifie ses banches en construisant une liste de toutes ses arêtes externes connectées à un nœud appartenant à une arête du carrefour. Ces arêtes sont alors assemblées en les groupant ensemble si elles portent le même nom et sont orientés dans une direction similaire (avec un angle relatif inférieur à 90°), comme illustré en figure \ref{fig:modelisation_mergeBranches}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/segmentation/merge-branches.pdf}}
-    \caption{La sémantique de chaque arête adjacente de ce carrefour contient le nom de la rue. On peut alors les grouper en utilisant ces noms et une direction consistante pour calculer les branches correspondantes: $\{a, b\}$, $\{c\}$, $\{d, e\}$, $\{f\}$. Source: \cite{Favreau2022}.}
+    \caption[Identification des branches d'un carrefour]{La sémantique de chaque arête adjacente de ce carrefour contient le nom de la rue. On peut alors les grouper en utilisant ces noms et une direction consistante pour calculer les branches correspondantes: $\{a, b\}$, $\{c\}$, $\{d, e\}$, $\{f\}$. Source: \citep{Favreau2022}.}
     \label{fig:modelisation_mergeBranches}
 \end{figure}
 
@@ -717,10 +700,10 @@ Enfin, pour chaque carrefour assemblé de cette manière, on identifie ses banch
 
 \subsubsection{Aggrégation des trottoirs}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/calcul_pieton/sidewalks.pdf}}
-    \caption{Étapes de génération des trottoirs. Source: \cite{Kalsron2022}.}
+    \caption[Génération de trottoirs]{Étapes de génération des trottoirs. Source: \citep{Kalsron2022}.}
     \label{fig:modelisation_calcul_pieton_trottoirs}
 \end{figure}
 
@@ -730,21 +713,21 @@ La génération est réalisée de la manière suivante: d'abord, les branches is
 
 \subsubsection{Génération des îlots}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/calcul_pieton/islands.pdf}}
-    \caption{Étapes de génération des îlots. Source: \cite{Kalsron2022}.}
+    \caption[Génération d'îlots]{Étapes de génération des îlots. Source: \citep{Kalsron2022}.}
     \label{fig:modelisation_calcul_pieton_ilots}
 \end{figure}
 
-En dehors de la clé \osmkey{crossing:island} qui indique la présence d'un îlot au milieu d'une traversée mais dont la présence est marginale, les îlots sont absents de la sémantique d'\gls{osm}. En revanche, l'usage montre que les îlots sont représentés par les faces du graphe routier et peuvent être déduits de cette manière \cite{Vitalis2022}. Pour cela, il faut tout d'abord fermer les branches composées de plusieurs arêtes (voir figure \ref{fig:modelisation_calcul_pieton_ilots}.1) pour obtenir des faces et détecter l'intégralité des îlots (voir figure \ref{fig:modelisation_calcul_pieton_ilots}.2).
+En dehors de la clé \osmkey{crossing:island} qui indique la présence d'un îlot au milieu d'une traversée mais dont la présence est marginale, les îlots sont absents de la sémantique d'\gls{osm}. En revanche, l'usage montre que les îlots sont représentés par les faces du graphe routier et peuvent être déduits de cette manière \citep{Vitalis2022}. Pour cela, il faut tout d'abord fermer les branches composées de plusieurs arêtes (voir figure \ref{fig:modelisation_calcul_pieton_ilots}.1) pour obtenir des faces et détecter l'intégralité des îlots (voir figure \ref{fig:modelisation_calcul_pieton_ilots}.2).
 
 \subsubsection{Génération des traversées}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/calcul_pieton/crossings.pdf}}
-    \caption{Étapes de génération des traversées. Source: \cite{Kalsron2022}.}
+    \caption[Génération de traversées]{Étapes de génération des traversées. Source: \citep{Kalsron2022}.}
     \label{fig:modelisation_calcul_pieton_traversees}
 \end{figure}
 

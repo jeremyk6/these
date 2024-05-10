@@ -11,12 +11,12 @@ Dans le chapitre \ref{chap:implementation}, nous avons présenté les implément
 
 \newpar{}
 
-Nous avons développé un outil d'évaluation aléatoire qui nous permet de comparer les résultats de notre algorithme avec l'œil d'un expert. L'outil permet à l'utilisateur de charger le résultat calculé sur une zone d'intérêt fixe, et propose ensuite d'évaluer dans un ordre aléatoire les carrefours traités. L'interface d'évaluation (figure~\ref{fig:evaluationTool}) est composée de deux panneaux : à gauche, un formulaire simple permet à l'utilisateur d'indiquer en quelques clics les défauts éventuels du résultat, et à droite le carrefour est représenté par un ensemble de polylignes dont les couleurs correspondent au carrefour lui-même et aux différentes branches de ce carrefour. L'ensemble est dessiné sur une orthophotographie, et une série de boutons peut être utilisée à la demande pour afficher le carrefour dans les outils web habituels (\gls{osm}, Google Maps, Google Street View).
+Nous avons développé un outil d'évaluation aléatoire qui nous permet de comparer les résultats de notre algorithme avec l'œil d'un expert. L'outil permet à l'utilisateur de charger le résultat calculé sur une zone d'intérêt fixe, et propose ensuite d'évaluer dans un ordre aléatoire les carrefours traités. L'interface d'évaluation (figure~\ref{fig:evaluationTool}) est composée de deux panneaux: à gauche, un formulaire simple permet à l'utilisateur d'indiquer en quelques clics les défauts éventuels du résultat, et à droite le carrefour est représenté par un ensemble de polylignes dont les couleurs correspondent au carrefour lui-même et aux différentes branches de ce carrefour. L'ensemble est dessiné sur une orthophotographie, et une série de boutons peut être utilisée à la demande pour afficher le carrefour dans les outils web habituels (\gls{osm}, Google Maps, Google Street View).
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/evaluation/evaluation-xxx.png}
-    \caption{Interface de l'outil d'évaluation. Source: \cite{Favreau2022}.}
+    \caption[Interface de l'outil d'évaluation]{Interface de l'outil d'évaluation. Source: \citep{Favreau2022}.}
     \label{fig:evaluationTool}
 \end{figure}
 
@@ -27,13 +27,13 @@ L'outil génère un fichier d'évaluation pour chaque zone d'intérêt, qui peut
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/evaluation/eval-browser-xxx.png}
-    \caption{Interface pour explorer les évaluations réalisées. Source: \cite{Favreau2022}.}
+    \caption[Interface pour explorer les évaluations réalisées]{Interface pour explorer les évaluations réalisées. Source: \citep{Favreau2022}.}
     \label{fig:explorer}
 \end{figure}
 
 \subsection{Évaluation de crseg}
 
-Pour l'évaluation statistique, nous avons sélectionné trois villes de taille représentative des villes françaises : la ville 1 (Paris, 10 785 092 habitants dans l'aire urbaine), la ville 2 (Nantes, 650 081 habitants dans l'aire urbaine) et la ville 3 (Clermont-Ferrand, 268 696 habitants dans l'aire urbaine). Sur chacune d'entre elles, nous avons sélectionné un point et récupéré toutes les données \gls{osm} dans un rayon de deux kilomètres autour de ce point (voir figure~\ref{fig:regions}).
+Pour l'évaluation statistique, nous avons sélectionné trois villes de taille représentative des villes françaises: la ville 1 (Paris, 10 785 092 habitants dans l'aire urbaine), la ville 2 (Nantes, 650 081 habitants dans l'aire urbaine) et la ville 3 (Clermont-Ferrand, 268 696 habitants dans l'aire urbaine). Sur chacune d'entre elles, nous avons sélectionné un point et récupéré toutes les données \gls{osm} dans un rayon de deux kilomètres autour de ce point (voir figure~\ref{fig:regions}).
 
 \newpar{}
 
@@ -41,7 +41,7 @@ Pour l'évaluation statistique, nous avons sélectionné trois villes de taille 
     \centering
     \begin{subfigure}[t]{0.49\linewidth}
         \includegraphics[width=\textwidth]{images/evaluation/crseg/clermont.pdf}
-        \caption{Région sélectionnée centrée sur le centre historique de Clermont-Ferrand. La région contient des rues qui font partie des villes suivantes : Clermont-Ferrand, Aubière, Beaumont, Ceyrat, Royat et Chamalières.\label{fig:clermontRegion}}
+        \caption{Région sélectionnée centrée sur le centre historique de Clermont-Ferrand. La région contient des rues qui font partie des villes suivantes: Clermont-Ferrand, Aubière, Beaumont, Ceyrat, Royat et Chamalières.\label{fig:clermontRegion}}
     \end{subfigure}
     \begin{subfigure}[t]{0.49\linewidth}
         \includegraphics[width=\textwidth]{images/evaluation/crseg/nantes.pdf}
@@ -51,11 +51,11 @@ Pour l'évaluation statistique, nous avons sélectionné trois villes de taille 
         \includegraphics[width=\textwidth]{images/evaluation/crseg/paris.pdf}
         \caption{Région sélectionnée centrée sur Paris.\label{fig:parisRegion}}
     \end{subfigure}
-    \caption{Régions sélectionnées pour l'évaluation statistique. Source: \cite{Favreau2022}.}
+    \caption[Régions sélectionnées pour l'évaluation statistique]{Régions sélectionnées pour l'évaluation statistique. Source: \citep{Favreau2022}.}
     \label{fig:regions}
 \end{figure}
 
-Nous avons appliqué le processus de segmentation sur chacune des régions, obtenant un total de 5 553 carrefours. Le tableau~\ref{tab:initRegions} donne pour chaque région la répartition des carrefours selon leur complexité : carrefours avec un seul noeud, carrefours avec plusieurs noeuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs noeuds de cardinalité supérieure à 2.
+Nous avons appliqué le processus de segmentation sur chacune des régions, obtenant un total de 5 553 carrefours. Le tableau~\ref{tab:initRegions} donne pour chaque région la répartition des carrefours selon leur complexité: carrefours avec un seul noeud, carrefours avec plusieurs noeuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs noeuds de cardinalité supérieure à 2.
 
 \newpar{}
 
@@ -73,7 +73,7 @@ Nous avons appliqué le processus de segmentation sur chacune des régions, obte
      \hline
      ratio & & 33.2\% & 65.9\% & 0.8\% \\
     \end{tabular}
-    \caption{Complexité des carrefours générés dans chaque région : carrefours avec un seul nœud, carrefours avec plusieurs nœuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs nœuds de cardinalité supérieure à 2. Source: \cite{Favreau2022}.}
+    \caption[Complexité des carrefours générés dans chaque région]{Complexité des carrefours générés dans chaque région: carrefours avec un seul nœud, carrefours avec plusieurs nœuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs nœuds de cardinalité supérieure à 2. Source: \citep{Favreau2022}.}
     \label{tab:initRegions}
 \end{table}
 
@@ -91,7 +91,7 @@ Nous avons appliqué le processus de segmentation sur chacune des régions, obte
      \hline
      ratio & &  32.7\% & 66\% & 1.3\%\\
     \end{tabular}
-    \caption{Complexité des carrefours choisis au hasard : carrefours avec un seul nœud, carrefours avec plusieurs nœuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs nœuds de cardinalité supérieure à 2. Source: \cite{Favreau2022}.}
+    \caption[Complexité des carrefours choisis au hasard]{Complexité des carrefours choisis au hasard: carrefours avec un seul nœud, carrefours avec plusieurs nœuds dont un seul a une cardinalité supérieure à 2, carrefours avec plusieurs nœuds de cardinalité supérieure à 2. Source: \citep{Favreau2022}.}
     \label{tab:selectedRegions}
 \end{table}
 
@@ -122,7 +122,7 @@ Sur ces 300 carrefours, 245 ont été évalués comme valides en comparant la se
          2 & 1,778 & 100 & 76 \\
          3 & 1,957 & 100 & 88 \\
     \end{tabular}
-    \caption{Description du jeu de données : pour chaque région, le nombre de carrefours obtenus par notre algorithme, le nombre de carrefours sélectionnés aléatoirement (100), et le nombre de segmentations valides par rapport à l'orthophotographie. Source: \cite{Favreau2022}.}
+    \caption[Description du jeu de données d'évaluation]{Description du jeu de données: pour chaque région, le nombre de carrefours obtenus par notre algorithme, le nombre de carrefours sélectionnés aléatoirement (100), et le nombre de segmentations valides par rapport à l'orthophotographie. Source: \citep{Favreau2022}.}
     \label{tab:nbRegions}
 \end{table}
 
@@ -132,7 +132,7 @@ Après analyse, 11 carrefours sont concernés par des passages piétons manquant
 
 \newpar{}
 
-Parmi les carrefours restants, 21 ont été considérés comme ayant des parties manquantes ou comme étant à une échelle trop grande ou trop petite. Il y a plusieurs causes à cela : 
+Parmi les carrefours restants, 21 ont été considérés comme ayant des parties manquantes ou comme étant à une échelle trop grande ou trop petite. Il y a plusieurs causes à cela: 
 \begin{itemize}
     \item pour 2 d'entre eux, il s'agit d'une voie manquante dans la modélisation \gls{osm}, 
     \item pour 3 autres, une rue adjacente a été identifiée dans \gls{osm} comme n'étant pas accessible aux voitures, 
@@ -169,13 +169,13 @@ En résumé (figure~\ref{fig:camembert}), la segmentation de 23 carrefours peut 
         blue!45, 
         gray, orange}]{81.6/A, 6/B, 4.6/C, 7.7/D}
     \end{tikzpicture}
-    \caption{Répartition des carrefours considérés lors de notre processus d'évaluation (Table~\ref{tab:nbRegions}) en fonction de leur typologie. A (245 carrefours) : segmentation correspondant à l'orthophotographie, B (18 carrefours) : manque ou imprécision dans \gls{osm}, C (14 carrefours) : régions non supportées, D (23 carrefours) : nécessite un ajustement local des paramètres. Source: \cite{Favreau2022}.}
+    \caption[Répartition des carrefours considérés lors du processus d'évaluation]{Répartition des carrefours considérés lors de notre processus d'évaluation (Table~\ref{tab:nbRegions}) en fonction de leur typologie. A (245 carrefours): segmentation correspondant à l'orthophotographie, B (18 carrefours): manque ou imprécision dans \gls{osm}, C (14 carrefours): régions non supportées, D (23 carrefours): nécessite un ajustement local des paramètres. Source: \citep{Favreau2022}.}
     \label{fig:camembert}
 \end{figure}
 
 \subsection{Évaluation de crmodel}
 
-L'évaluation de l'implémentation de crmodel permet d'estimer sa capacité à générer des descriptions satisfaisantes au regard des données disponibles dans OpenStreetMap. Nous avons choisi de réaliser l'évaluation sur trois villes françaises : Lyon (522 969 habitants), Clermont-Ferrand (147 865 habitants) et Brive-la-Gaillarde (46 330 habitants).
+L'évaluation de l'implémentation de crmodel permet d'estimer sa capacité à générer des descriptions satisfaisantes au regard des données disponibles dans OpenStreetMap. Nous avons choisi de réaliser l'évaluation sur trois villes françaises: Lyon (522 969 habitants), Clermont-Ferrand (147 865 habitants) et Brive-la-Gaillarde (46 330 habitants).
 
 \newpar{}
 
@@ -198,7 +198,7 @@ La qualité de la description a été évaluée en fonction de sa conformité av
         blue!45, 
         gray}]{53.7/A, 14.8/B, 31.5/C}
     \end{tikzpicture}
-    \caption{Distribution des types de problèmes rencontrés au cours du processus d'évaluation. A (29 carrefours) : objets ou attributs manquants dans OpenStreetMap, B (8 carrefours) : problèmes d'implémentation, soit des attributs non supportés, soit des erreurs d'algorithme, C (17 carrefours) : erreurs mélangeant l'implémentation, la segmentation et les problèmes de données.}
+    \caption[Types de problèmes rencontrés au cours du processus d'évaluation]{Distribution des types de problèmes rencontrés au cours du processus d'évaluation. A (29 carrefours): objets ou attributs manquants dans OpenStreetMap, B (8 carrefours): problèmes d'implémentation, soit des attributs non supportés, soit des erreurs d'algorithme, C (17 carrefours): erreurs mélangeant l'implémentation, la segmentation et les problèmes de données.}
     \label{fig:camissues}
 \end{figure}
 
@@ -218,7 +218,7 @@ La description du nombre et des noms des branches est celle qui donne les meille
             \hline
             Nombre de carrefours & 60 & 60 & 60
         \end{tabular}
-        \caption{Qualité de la description par type de données.}
+        \caption[Qualité de la description par type de données]{Qualité de la description par type de données.}
         \label{tab:descqualitybydesctype}
     \end{center}
 \end{table}
@@ -239,7 +239,7 @@ Les résultats globaux indiquent que seuls 6 carrefours de l'échantillon ont é
             Nombre de problèmes & 17 & 17 & 20 \\
             Nombre de carrefours & 20 & 20 & 20
         \end{tabular}
-        \caption{Problèmes rencontrés et leur relation avec les données \gls{osm} par ville.}
+        \caption[Relation entre les problèmes rencontrés et les données OpenStreetMap]{Problèmes rencontrés et leur relation avec les données \gls{osm} par ville.}
         \label{tab:osmqualityissues}
     \end{center}
 \end{table}
@@ -256,7 +256,7 @@ Le plan de description que nous avons présenté dans le chapitre \ref{chap:impl
 
 L'enquête a été réalisée avec l'outil en ligne LimeSurvey. Elle présente aux utilisateurs deux descriptions de carrefours générées par la chaîne présentée en partie \ref{sec:implementation_segmentation}. Les deux carrefours choisis et leurs descriptions associées sont illustrés en figure \ref{fig:evaluation_carrefours_enquete}. Pour chacun des carrefours, l'enquête présente une orthophotographie Google Satellite interactive centrée sur le carrefour et une vue immersive Google StreetView au même emplacement pour permettre aux participants de se familiariser avec le carrefour. Elle présente enfin la description du carrefour telle que générée par la chaîne présentée en partie \ref{sec:implementation_segmentation}, et invite les participants à modifier cette description pour l'adapter à leurs besoins et leurs pratiques. Il est à noter que les descriptions ont été générées le 8 juillet 2022.
 
-\begin{figure}[H]
+\begin{figure}
     \begin{subfigure}[t]{\linewidth}
         \centering
         \includegraphics[width=\linewidth]{images/evaluation/ortho_carrefours_eval.png}
@@ -346,7 +346,7 @@ L'enquête a été réalisée avec l'outil en ligne LimeSurvey. Elle présente a
             La branche numéro cinq se traverse en une fois. Les passages piétons ne sont pas protégés par des feux. Il y a des bandes d'éveil de vigilance.
         \end{minipage}
     \end{subfigure}
-    \caption{Les deux carrefours de Clermont-Ferrand choisis pour l'enquête présentent deux configurations différentes. Il s'agit dans les deux cas de carrefours complexes présentant des îlots et des particularités dans leurs cheminements. Source: BD Ortho IGN.}
+    \caption[Carrefours choisis pour l'enquête auprès des instructeurs]{Les deux carrefours de Clermont-Ferrand choisis pour l'enquête présentent deux configurations différentes. Il s'agit dans les deux cas de carrefours complexes présentant des îlots et des particularités dans leurs cheminements. Source: BD Ortho IGN.}
     \label{fig:evaluation_carrefours_enquete}
 \end{figure}
 
@@ -379,10 +379,10 @@ Les étiquettes produites ci-dessus permettent de classer les modifications prop
 
 Les reformulations simples sont des modifications de texte qui ne nécessitent aucun traitement supplémentaire sur les données et peuvent s'appuyer sur les formes déjà préparées. Elles s'opérent donc dans l'implémentation du patron de l'information décrite (voir figure \ref{fig:evaluation_reformulation_simple}). 
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{La reformulation simple s'effectue dans l'implémentation du patron de l'information décrite.}
+    \includegraphics[width=\textwidth]{images/evaluation/pipeline/pipeline_reformulation_simple.pdf}
+    \caption[Reformulation simple dans la chaîne de description]{La reformulation simple s'effectue dans l'implémentation du patron de l'information décrite.}
     \label{fig:evaluation_reformulation_simple}
 \end{figure}
 
@@ -398,92 +398,63 @@ La complexité de la modification peut cependant varier:
 
 Les reformulations complexes, au contraire des reformulations simples, ne s'appuient pas directement sur les formes de données déjà préparées mais sur la fusion de celles-ci pour proposer un texte plus élaboré. Elles s'opérent sur la transformation des données pour fusionner les informations nécessaires, sur l'implémentation du patron pour concevoir le nouveau texte en accord avec le nouveau schéma, et sur l'assemblage des descriptions pour transformer le plan en accord avec le nouveau texte (voir figure \ref{fig:evaluation_reformulation_complexe}).
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{La reformulation complexe agit sur de nombreuses brique de la chaîne de description.}
+    \includegraphics[width=\textwidth]{images/evaluation/pipeline/pipeline_reformulation_complexe.pdf}
+    \caption[Reformulation complexe dans la chaîne de description]{La reformulation complexe agit sur de nombreuses brique de la chaîne de description.}
     \label{fig:evaluation_reformulation_complexe}
 \end{figure}
 
 \newpar{}
 
-Une modification fournie par la réponse ID 52 sur le carrefour 1 propose de fusionner les descriptions des voies et des traversées en un seul paragraphe. Cette modification nécessite la réalisation de plusieurs étapes présentées en figure \ref{fig:evaluation_ex_reformulation_complexe}
+Une modification fournie par la réponse ID 52 sur le carrefour 1 propose de fusionner les descriptions des voies et des traversées en un seul paragraphe. Cette modification nécessite la réalisation de plusieurs étapes:
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Les données des voies (table \ref{tab:experimentation_desc_branches}) et des traversées (table \ref{tab:experimentation_desc_traversées}) sont fusionnées pour être prêtes à être utilisées dans le patron de description.}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Un nouveau patron de description est implémenté au regard de la donnée fusionnée.}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=0.5\textwidth]{images/placeholder.jpg}
-        \caption{Lors de l'étape d'assemblage, le plan de description est modifié pour prendre en compte le nouveau patron.}
-    \end{subfigure}
-    \caption{Les différentes étapes de modification du canevas pour intégérer une reformulation complexe.}
-    \label{fig:evaluation_ex_reformulation_complexe}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Transformation des données}: Les tables des branches (table \ref{tab:experimentation_desc_branches}) et des traversées (table \ref{tab:experimentation_desc_traversées}) doivent être jointes en une seule table pour permettre leur description simultanée.
+    \item \textbf{Implémentation du patron}: La nouvelle table de description des branches et des traversées ne dispose d'aucun patron de description. En accord avec le texte proposé par la réponse ID 52, un nouveau patron doit être implémenté pour générer le texte souhaité.
+    \item \textbf{Assemblage des descriptions}: La réponse ID 52 propose un plan remanié, où les parties dédiées à la description des branches et à la description des traversées sont remplacées par une unique partie décrivant les deux simultanément. L'étape d'assemblage doit donc être modifiée pour remplacer l'appel aux deux patrons précédents par le nouveau.
+\end{itemize}
 
 \subsubsection{Nouvelle information sans ajout de données}
 
 Formuler une nouvelle information sans ajout de données consiste à se reposer sur les entrées déjà disponibles dans la chaîne pour générer un nouveau texte contenant une information absente de la description d'origine. Cela signifie qu'il est nécessaire d'appliquer de nouveaux algorithmes aux données en entrées pour faire émerger ces informations. Cette dernière étape s'opère donc dans la transformation des données, puis dans l'implémentation du patron pour générer le nouveau texte en accord avec le nouveau schéma. L'assemblage des descriptions peut également être modifié si la nouvelle information nécessite de revoir la structure du plan de description (voir figure \ref{fig:evaluation_nouvelle_information_sans_ajout}).
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{La formulation d'une nouvelle information sans ajout de données agit sur les mêmes briques que la reformulation complexe. En revanche, des traitements algorithmiques plus complexes sont appliquées aux données d'entrées pour générer l'information nécessaire.}
+    \includegraphics[width=\textwidth]{images/evaluation/pipeline/pipeline_reformulation_complexe.pdf}
+    \caption[Formulation d'une nouvelle information sans ajout de données dans la chaîne de description]{La formulation d'une nouvelle information sans ajout de données agit sur les mêmes briques que la reformulation complexe. En revanche, des traitements algorithmiques plus complexes sont appliquées aux données d'entrées pour générer l'information nécessaire.}
     \label{fig:evaluation_nouvelle_information_sans_ajout}
 \end{figure}
 
 \newpar{}
 
-Une modification fournie par la réponse ID 39 sur le carrefour 1 propose d'ajouter des précisions sur les voies reliant deux branches (dites <<~voies de raccourci~>>) aux paragraphes de description des branches. Les étapes d'implémententation de cette modification sont détaillées en figure \ref{fig:evaluation_ex_nouvelle_information_sans_ajout}.
+Une modification fournie par la réponse ID 39 sur le carrefour 1 propose d'ajouter des précisions sur les voies reliant deux branches (dites <<~voies de raccourci~>>) aux paragraphes de description des branches. Les étapes d'implémententation de cette modification sont les suivantes:
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Un algorithme doit être élaboré pour déterminer si un segment routier permet de relier deux branches sans passer par le centre du carrefour. Si c'est le cas, la  table de données des branches doit refléter cette information.}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Le patron décrivant une branche est modifié pour refléter la présence d'une voie de raccourci.}
-    \end{subfigure}
-    \caption{Les différentes étapes de modification du canevas pour intégérer une nouvelle information sans ajouter de nouvelle donnée à la chaîne de description.}
-    \label{fig:evaluation_ex_nouvelle_information_sans_ajout}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Transformation des données}: Les voies de raccourci sont présentes dans le graphe du carrefour généré par crseg, mais pas sémantiquement délimitées ni par crseg ni par crmodel. Une étape au sein du SIG est donc ici nécessaire pour calculer si un segment routier permet de relier deux branches sans passer par le centre du carrefour. Si c'est le cas, la table de données des branches doit être modifiée pour refléter cette information.
+    \item \textbf{Modification du patron}: Le patron décrivant une branche doit être modifié pour refléter la présence d'une voie de raccourci, sous la forme d'un nouvel attribut dans la table.
+\end{itemize}
 
 \subsubsection{Nouvelle information avec ajout de données}
 
 Formuler une nouvelle information avec ajout de données consiste à ajouter de nouvelles données en entrée pour générer un nouveau texte contenant une information absente de la description d'origine. Cela signifie qu'il est nécessaire, à l'instar du processus présenté en partie \ref{sec:implementation_segmentation}, de les transformer pour les adapter à la description que l'on souhaite en faire. Il peut par ailleurs être nécessaire de les fusionner aux données originellement présente en entrée de la chaîne. Ces étapes peuvent  donc s'opérer sur l'intégralité de la chaîne, de la transformation des données à l'assemblage des descriptions (voir figure \ref{fig:evaluation_nouvelle_information_avec_ajout}).
 
-\begin{figure}[ht]
+\begin{figure}
     \centering
-    \includegraphics{images/placeholder.jpg}
-    \caption{La formulation d'une nouvelle information avec ajout de données agit sur les mêmes briques que la catégorie précédente. En revanche, l'ajout de nouvelles données implique de revoir l'intégralité de la chaîne.}
+    \includegraphics[width=\textwidth]{images/evaluation/pipeline/pipeline_ajout_donnees.pdf}
+    \caption[Formulation d'une nouvelle information avec ajout de donnée dans la chaîne de description]{La formulation d'une nouvelle information avec ajout de données agit sur les mêmes briques que la catégorie précédente. En revanche, l'ajout de nouvelles données implique de revoir l'intégralité de la chaîne.}
     \label{fig:evaluation_nouvelle_information_avec_ajout}
 \end{figure}
 
 \newpar{}
 
-Des modifications fournie par les réponses ID 52 et ID 56 proposent d'ajouter des informations sur les feux sonores aux descriptions des traversées. Ces informations sont présentes dans \gls{osm} mais ne sont pas intégrées à CrModel. Il est donc nécessaire de les acquérir et de les traiter pour les intégrer à la description. Les étapes d'implémentation de cette modification sont détaillées en figure \ref{fig:evaluation_ex_nouvelle_information_avec_ajout}.
+Des modifications fournie par les réponses ID 52 et ID 56 proposent d'ajouter des informations sur les feux sonores aux descriptions des traversées. Ces informations sont présentes dans \gls{osm} mais ne sont pas intégrées à CrModel. Il est donc nécessaire de les acquérir et de les traiter pour les intégrer à la description. Les étapes d'implémentation de cette modification sont détaillées ci-dessous:
 
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Les données des feux sonores sont acquises et traitées pour être prêtes à être utilisées dans le patron de description.}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.49\linewidth}
-        \includegraphics[width=\textwidth]{images/placeholder.jpg}
-        \caption{Le patron décrivant une traversée est modifié pour refléter la présence ou l'absence d'un feu sonore.}
-    \end{subfigure}
-    \caption{Les différentes étapes de modification du canevas pour intégérer les feux sonores dans la description.}
-    \label{fig:evaluation_ex_nouvelle_information_avec_ajout}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Intégration des données}: Les feux sonores sont présents dans \gls{osm} sous la forme d'une clé (\osmkey{traffic\_signals:sound}) sur les passages piéton. Il est possible de télécharger les passages piéton sur la zone d'intérêt pour les intégrer au SIG.
+    \item \textbf{Transformation des données}: crmodel conserve pour chaque objet issu d'\gls{osm} les identifiants qui lui sont associées. Il est donc possible de réaliser une jointure entre les données nouvellement importées et les traversées existantes pour ajouter un champ à la couche indiquant la présence ou l'absence de feux sonores sur la traversée.
+    \item \textbf{Modification du patron}: Le patron décrivant une traversée doit être modifié en accord avec le nouveau champ créé pour refléter la présence ou l'absence de feux sonores.
+\end{itemize}
 
 \section{Conclusion du chapitre}
 

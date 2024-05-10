@@ -4,10 +4,10 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
-\usepackage[numbers]{natbib}
+\usepackage[natbib, style=alphabetic]{biblatex}
 \usepackage{hyperref}
 \usepackage{pdfcomment}
-\usepackage{glossaries}
+\usepackage[nonumberlist]{glossaries}
 \usepackage{lipsum}
 \usepackage{array}
 \usepackage{csquotes}
@@ -17,21 +17,18 @@
 \usepackage{subcaption}
 \usepackage{listings}
 \usepackage{makecell}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
 \usepackage{pgf-pie}
 \usepackage{soulutf8}
 \usepackage{appendix}
-%algorithm2e (francisable)
+\usepackage[french, onelanguage]{algorithm2e} %(francisable)
+
+% Style des citations
+\addbibresource{bibliography/bibliographie.bib}
+\renewcommand*{\labelalphaothers}{}
 
 % Alignement des cellules makecell à gauche
 \renewcommand{\cellalign}{tl}
 \renewcommand{\theadalign}{tl}
-
-% Francisation des commandes algorithmiques
-\algrenewcommand\algorithmicfor{\textbf{pour}}
-\algrenewcommand\algorithmicdo{\textbf{faire}}
-\algrenewcommand\algorithmicend{\textbf{fin}}
 
 % Défini le format des pages (A4, marges)
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
@@ -52,9 +49,6 @@
 
 % Dossier des images
 \graphicspath{ {images/} }
-
-% Bibliographie
-\bibliographystyle{unsrtnat}
 
 % Commandes de commentaires
 % Exemple d'utilisation : \jmf{Voici un commentaire}
@@ -115,4 +109,5 @@
 \newacronym{ign}{IGN}{Institut National de l’Information Géographique et Forestière}
 \newacronym{irit}{IRIT}{Institut de Recherche en Informatique de Toulouse}
 \newacronym{deri}{DERi}{Document En Relief Interactif}
+\newacronym{inja}{INJA}{Institut National des Jeunes Aveugles}
 \makenoidxglossaries
