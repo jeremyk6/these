@@ -3,19 +3,21 @@
 
 \label{chap:etat_art}
 
+Ce chapitre présente l'état de l'art des travaux existants sur la génération de représentations accessibles de données géographiques pour les personnes aveugles et malvoyantes. Nous commençons par définir la déficience visuelle et les mécanismes cognitifs mobilisés par les personnes concernées pour se repérer dans l'espace urbain. Nous abordons ensuite les pratiques des professionnels qui accompagnent les personnes concernées dans leur déplacement. Nous nous intéressons ensuite aux données géographiques et à leur accessibilité, en définissant ce qu'est une donnée d'accessibilité et en présentant les bases de données existantes. Enfin, nous abordons les travaux existants qui s'intéressent à la génération de représentations tactiles et textuelles de données géographiques, en particulier celles qui concernent les carrefours.
+
 \section{Se repérer dans l'espace urbain pour une personne déficiente visuelle}
 
 %
 % Qu'est-ce que la déficience visuelle ? Comment différencier malvoyants et non-voyants ? Qu'est-ce qu'un résidu visuel ?
 %
 
-La déficience visuelle correspond à la perte de tout ou partie de la vue. On quantifie la capacité à discriminer les objets à l'aide de l'indicateur d'acuité visuelle. Ce dernier est notamment utilisé par l'OMS pour définir la déficience visuelle, et au-delà la malvoyance et la cécité. Ainsi, on parle de malvoyance lorsque l'œil le plus performant a un score de 3/10\up{ème}, et de cécité lorsqu'il a un score inférieur à 1/20\up{ème}. Selon le degré de cécité, il peut subsister un résidu visuel qui correspond à une perception de la lumière ou du contour des objets.
+La déficience visuelle correspond à la perte de tout ou partie de la vue. On quantifie la capacité à discriminer les objets à l'aide de l'indicateur d'acuité visuelle. Ce dernier est notamment utilisé par l'\gls{oms} pour définir la déficience visuelle, et au-delà la malvoyance et la cécité. Ainsi, on parle de malvoyance lorsque l'œil le plus performant après correction a un score inférieur ou égal à 3/10\up{ème}, et de cécité lorsqu'il a un score inférieur à 1/20\up{ème}. L'étude Homère \citep{homere_2023}, qui s'intéresse à l'impact de la déficience visuelle sur la qualité de vie des personnes concernées, montre que les personnes aveugles et malvoyantes sévères (<<~acuité visuelle inférieure à 1/10\up{ème} et supérieure ou égale à 1/20\up{ème} au meilleur œil après correction~>>) sont significativement plus impactées dans leurs déplacements en autonomie que les malvoyants moyens (<<~acuité inférieure à 3/10\up{ème} et supérieure ou égale à 1/10\up{ème} au meilleur œil après correction~>>) et avec une acuité visuelle supérieure. Par ailleurs, la présence de handicaps associés (troubles moteurs, cognitifs, auditifs) peuvent également contribuer à rendre le déplacement plus difficile, et nécessitent une prise en compte de besoins spécifiques.
 
 \newpar{}
 
-La sévérité de l'atteinte visuelle affecte la capacité des personnes à se déplacer en autonomie \citep{homere_2023}. Au-delà de l'atteinte visuelle, les handicaps associés peuvent également contribuer à rendre le déplacement plus difficile. En ce sens, les besoins peuvent varier d'une personne à une autre.
+Dans cette thèse, nous nous intéressons aux déplacements des personnes aveugles et malvoyantes sévères, ayant éventuellement des handicaps associés. Nous utiliserons le terme \gls{pcdv} pour les désigner.
 
-\subsection{Les mécanismes cognitifs mobilisés par les PSDV}
+\subsection{Les mécanismes cognitifs mobilisés par les \gls{pcdv}}
 
 %
 % Stratégies de déplacement (technique de la canne blanche, chien guide, écholocation)
@@ -25,7 +27,7 @@ Plusieurs stratégies sont mises en place par les personnes concernées lors de 
 
 \newpar{}
 
-Mais la canne blanche n'est pas suffisante pour se repérer dans l'espace. Son champ d'action se limite à une surface réduite face à l'utilisateur. Elle est complétée par l'ouïe qui va permettre à la personne d'appréhender l'espace en écoutant les sons de l'environnement urbain. Détecter un moteur à l'arrêt peut par exemple permettre de repérer un passage piéton en aval d'une voiture. Les dispositifs sonores en ville qui équipent certains feux vont permettre à la fois de repérer une traversée, mais également de la réaliser en sécurité (voir partie \ref{ea_dispositifs_in_situ}). L'ouïe joue également un rôle fort dans l'écholocation, c’est-à-dire la capacité à utiliser les échos pour percevoir les objets \citep{Brazier2008}.
+Mais la canne blanche n'est pas suffisante pour se repérer dans l'espace. Son champ d'action se limite à une surface réduite face à l'utilisateur. Elle est complétée par l'ouïe qui va permettre à la personne d'appréhender l'espace en écoutant les sons de l'environnement urbain. Détecter un moteur à l'arrêt peut par exemple permettre de repérer un passage piéton en aval d'une voiture. Les dispositifs sonores en ville qui équipent certains feux vont permettre à la fois de repérer une traversée, mais également de la réaliser en sécurité (voir partie \ref{ea_dispositifs_in_situ}). L'ouïe joue également un rôle fort dans l'écholocation\footnote{On parle aussi d'écholocalisation, mais l'anglicisme écholocation est globalement plus utilisé par les personnes concernées et les professsionnels.}, c’est-à-dire la capacité à utiliser les échos pour percevoir les objets \citep{Brazier2008}. Les \glspl{pcdv} peuvent utiliser l'écholocation passive, c'est-à-dire en écoutant les sons de l'environnement, mais aussi active en émettant un son (en général un clic avec la bouche) pour en percevoir l'écho \citep{thaler2016}.
 
 % Au-delà de l'écholocation, parler de proprioception
 
@@ -33,7 +35,11 @@ Mais la canne blanche n'est pas suffisante pour se repérer dans l'espace. Son c
 
 \newpar{}
 
-En cognition spatiale, une carte mentale correspond à un modèle conceptuel d'un espace et des objets qui le composent \citep{Jacobson1998}. Pour se déplacer en autonomie dans un environnement urbain, avoir conscience de la position relative des espaces connus pour pouvoir s'orienter. Un aspect important de cette carte mentale concerne les repères. Ceux-ci vont permettre, à l'aide des notions d'indices et de preuves \citep{Giudice2010}, de confirmer sa position et sa direction. Les repères peuvent faire appel au sens du toucher (un objet que l'on va sentir à la canne), de l'ouïe (une fontaine en fonctionnement), ou de l'odorat (en boulangerie ouverte). On peut également définir les repères à l'aide de trois attributs: Permanents, Caractéristiques et Fiables (PCF) \citep{Denis2023}. Ainsi, un repère qui respecte ces trois critères sera tout le temps mobilisables, au contraire d'une fontaine ou d'un commerce qui peuvent être intermittents. 
+Dans le processus d'appropriation de l'espace, la cognition spatiale est un élément central qui peut être structuré autour d'une carte mentale. Une carte mentale correspond à un modèle conceptuel d'un espace et des objets qui le composent \citep{Jacobson1998}. Elle encode notamment leurs propriétés métriques et leurs relations topologique \citep{Denis1992}. Ainsi, pour se déplacer en autonomie dans un environnement urbain, il faut avoir conscience de la position relative des espaces connus pour pouvoir s'orienter. Cette carte mentale est fortement alimentée par la vue pour une personne voyante, les repères visuels dans l'espace public étant beaucoup plus nombreux \citep{thinus1997}. Ne pouvant pas compter sur la vue, les \glspl{pcdv} utilisent principalement l'ouïe et le toucher au cours de leurs trajet pour percevoir leur environnement. Cependant, la construction de la carte mentale d'un lieu peut également s'opérer ex-situ, par exemple à l'aide de descriptions verbales détaillées ou de cartes en relief (voir partie \ref{ea_description_autosuffisante} et \ref{ea_cartetactile}).
+
+\newpar{}
+
+Un aspect important de cette carte mentale concerne les repères. Ceux-ci vont permettre, à l'aide des notions d'indices et de preuves \citep{Giudice2010}, de confirmer sa position et sa direction. Les repères peuvent faire appel au sens du toucher (un objet que l'on va sentir à la canne), de l'ouïe (une fontaine en fonctionnement), ou de l'odorat (en boulangerie ouverte). On peut également définir les repères à l'aide de trois attributs: Permanents, Caractéristiques et Fiables (PCF) \citep{Denis2023}. Ainsi, un repère qui respecte ces trois critères sera tout le temps mobilisables, au contraire d'une fontaine ou d'un commerce qui peuvent être intermittents. 
 
 % La carte mentale peut être alimentée par les déplacements habituels des personnes qui repèrent l'environnement. Mais elle peut également l'être à l'aide de différents dispositifs. Une carte tactile peut aider à comprendre un espace non familier. Mais les personnes peuvent également utiliser un GPS piéton qui pourra décrire en cours de route l'itinéraire, l'infrastructure et les points d'intérêt croisés sur le chemin.
 
@@ -43,7 +49,7 @@ En cognition spatiale, une carte mentale correspond à un modèle conceptuel d'u
 
 \label{pratiques_ipas}
 
-L'\gls{afiadv} est issue de la fusion de l'\gls{aildv} et de l'\gls{avjadv}. Ces dernières formaient respectivement les \glspl{il} et les \glspl{iavj}. L'\gls{afiadv} forme aujourd'hui des \glspl{ia} dont la profession regroupe les deux expertises précédentes. Il y a peu de littérature francophone sur les pratiques des \gls{il}, dont le métier était uniquement centré sur la locomotion. Les actuels \gls{ia} correspondent davantage au modèle nord-américains des instructeurs en orientation et mobilité. À ce titre, le manuel d'orientation et mobilité proposé par \citet{ratelle_manuel_2019} est une référence actuelle sur les pratiques de la nouvelle génération d'instructeur en France.
+L'\gls{afiadv} est issue de la fusion de l'\gls{aildv} et de l'\gls{avjadv} opérée en 2021. Ces dernières formaient respectivement les \glspl{il} et les \glspl{iavj}. L'\gls{afiadv} forme aujourd'hui des \glspl{ia} dont la profession regroupe les deux expertises précédentes. Il y a peu de littérature francophone sur les pratiques des \gls{il}, dont le métier était uniquement centré sur la locomotion. Les actuels \gls{ia} correspondent davantage au modèle nord-américains des instructeurs en orientation et mobilité. À ce titre, le manuel d'orientation et mobilité proposé par \citet{ratelle_manuel_2019} est une référence actuelle sur les pratiques de la nouvelle génération d'instructeur en France.
 
 \begin{figure}[ht]
     \centering
@@ -54,19 +60,17 @@ L'\gls{afiadv} est issue de la fusion de l'\gls{aildv} et de l'\gls{avjadv}. Ces
 
 \newpar{}
 
-Dans ce contexte, le rôle de l'\gls{ia} est d'accompagner la personne aveugle ou malvoyante dans la compensation de la perte de la vue par l'usage des autres sens. Elle peut, pour cela, mobiliser des cartes en relief. S'il existe des outils de conception automatisée (voir partie \ref{ea_cartetactile}), la pratique de réalisation des cartes en relief est aujourd'hui majoritairement artisanale. Lors d'une séance de locomotion, un \gls{ia} réalise parfois une carte de situation en utilisant des aimants (voir figure \ref{fig:il_carte}). Ce dispositif permet notamment une interaction avec l'apprenant qui peut les déplacer selon sa compréhension du lieu. Pour représenter une zone plus complexe et faire une carte plus exploratoire, les \glspl{ia} réalisent des cartes imprimées sur du papier thermogonflé. Ces cartes sont aujourd'hui réalisées en décalquant une photographie aérienne et complétées par connaissance du terrain, notamment sur les zones couvertes par la végétation
-
-\newpar{}
-
-Pour les carrefours spécifiquement, à l'instar des aménageurs, les \ipas{} mobilisent à la fois les typologies standards et les branches. 
+Dans ce contexte, le rôle de l'\gls{ia} est d'accompagner la personne aveugle ou malvoyante dans la compensation de la perte de la vue par l'usage des autres sens. Elle peut, pour cela, mobiliser des cartes en relief. S'il existe des outils de conception automatisée (voir partie \ref{ea_cartetactile}), la pratique de réalisation des cartes en relief est aujourd'hui majoritairement artisanale. Lors d'une séance de locomotion, un \gls{ia} réalise parfois une carte de situation en utilisant des aimants (voir figure \ref{fig:il_carte}). Ce dispositif permet notamment une interaction avec l'apprenant qui peut les déplacer selon sa compréhension du lieu. Pour représenter une zone plus complexe et faire une carte plus exploratoire, les \glspl{ia} réalisent des cartes imprimées sur du papier thermogonflé. Ne disposant généralement pas de compétences spécifiques en cartographie, les \glspl{ia} réalisent ces cartes au sein de traitements de textes ou d'outils de dessins vectoriels pour décalquer une photographie aérienne, en complétant les zones couvertes par la végétation par leur connaissance du terrain. 
 
 \section{Les données géographiques et l'accessibilité}
+
+La dimension géographique des données est un élément central dans la conception de cartes et de dispositifs d'aide au déplacement. Dans cette partie, nous nous intéressons à la manière dont les données géographiques peuvent être modélisées pour représenter l'accessibilité, et aux bases de données existantes. 
 
 \subsection{Que sont les données d'accessibilité ?}
 
 % Définir les données géographiques et leur type : couche, graphe, etc.
 
-Dans un \gls{sig}, les données sont généralement représentées sous la forme de couches dont l'empilement compose la carte, à la manière des logiciels de dessin assisté par ordinateur (voir figure \ref{fig:geodatalayers}). On distingue principalement les données raster et les données vectorielles. Les premières correspondent à une grille dont chaque cellule contient une valeur, et permettent de stocker par exemple des images ou des reliefs. Les secondes correspondent à des données structurées ou non auxquelles est accolée une abstraction géométrique de la réalité. Il s'agit principalement de données tabulaires avec une ou plusieurs colonnes de géométrie, ces dernières pouvant être des points, des lignes ou des polygones. Une couche est ainsi une table telle qu'on peut la définir dans un \gls{sgbdr} \citep{AschanLeygonie2019}. Le paradigme en couches n'est pas la seule manière de représenter les données géographiques: il est par exemple possible de les représenter sous forme de graphe \citep{Palacio2003}.
+Dans un \gls{sig}, les données sont généralement représentées sous la forme de couches dont l'empilement compose la carte, à la manière des logiciels de dessin assisté par ordinateur (voir figure \ref{fig:geodatalayers}). On distingue principalement les données raster et les données vectorielles. Les premières correspondent à une grille dont chaque cellule contient une valeur, et permettent de stocker par exemple des images ou des reliefs. Les secondes correspondent à des données structurées ou non auxquelles est accolée une abstraction géométrique de la réalité. Il s'agit principalement de données tabulaires avec une ou plusieurs colonnes de géométrie, ces dernières pouvant être des points, des lignes ou des polygones. Une couche correspond ainsi à une table telle qu'on peut la définir dans un \gls{sgbdr} \citep{AschanLeygonie2019}. Le paradigme en couches n'est pas la seule manière de représenter les données géographiques: il est par exemple possible de les représenter sous forme de graphe, comme le propose notamment \gls{osm} (voir partie \ref{sec:modelisation_osm}).
 
 \begin{figure}[ht]
     \centering
@@ -79,12 +83,12 @@ Dans un \gls{sig}, les données sont généralement représentées sous la forme
 
 % Parler des dispositifs d'accessibilité (BEV, etc., voir CEREMA): pas d'exhaustivité sur les dispositifs, précision plus forte dans Modélisation
 
-Une donnée d'accessibilité est une donnée géographique qui décrit les conditions d'accès d'un lieu au regard des nécessités des personnes ayant des besoins spécifiques, comprenant les personnes en situation de handicap, mais également les personnes avec une poussette ou un bagage \citep{Ding2014}. L'espace urbain dispose d'infrastructures pour permettre à une \gls{pcdv} de se repérer et de confirmer le cheminement qu'elles suit. À ce titre, en France, le \gls{cerema} produit des documents techniques à destination des aménageurs pour les guider sur les dispositifs existants et les bonnes pratiques pour les implanter (voir figure \ref{fig:ea_exemple_cerema_bev}).
+Une donnée d'accessibilité est une donnée géographique qui décrit les conditions d'accès d'un lieu au regard des nécessités des personnes ayant des besoins spécifiques, comprenant les personnes en situation de handicap, mais également les personnes avec une poussette ou un bagage \citep{Ding2014}. L'espace urbain dispose d'infrastructures pour permettre à une \gls{pcdv} de se repérer et de confirmer le cheminement qu'elles suit. À ce titre, en France, le \gls{cerema} produit des documents techniques à destination des aménageurs pour les informer sur les dispositifs existants et les bonnes pratiques pour les implanter (voir figure \ref{fig:ea_exemple_cerema_bev}).
 
 \begin{figure}[ht]
     \centering
     \resizebox{\linewidth}{!}{\includegraphics{images/ea_exemple_cerema_bev.png}}
-    \caption[Bonnes pratiques d'implantation des pavages tactiles]{Exemple issu du \citet{CEREMA2022} sur les bonnes pratiques d'implation de \gls{bev}.}
+    \caption[Bonnes pratiques d'implantation des pavages tactiles]{Exemple issu du \gls{cerema} sur les bonnes pratiques d'implation de \gls{bev}. Source: \citep{CEREMA2022}.}
     \label{fig:ea_exemple_cerema_bev}
 \end{figure}
 
@@ -97,11 +101,7 @@ Une donnée d'accessibilité est une donnée géographique qui décrit les condi
 % Je cite les principaux modèles (note de bas de page pour citer d'autres modèles -CityJSON-).
 % Géostandard, NeTEx, GTFS, CityGML, OSM
 
-Les modèles de données standardisés utilisés dans les domaines de l'urbanisme et du transport peuvent intégrer une dimension liée à l'accessibilité. En France, la \gls{lom}, promulguée en 2019, impose aux collectivités de collecter et publier les données d'accessibilité de la voirie à 200 mètres autour des arrêts de transports en commun. Le formalisme utilisé, le géostandard accessibilité normalisé par le \gls{cnig}, est un dérivé du \gls{netex} pensé pour la description fine des cheminements piéton. Le \gls{netex} est un format européen de description des réseaux de transports qui couvre un périmètre fonctionnel plus large que le géostandard du \gls{cnig}. Il permet déjà de représenter les cheminements piétons, mais avec une précision sémantique moindre. Il vise à supplanter en Europe la norme \gls{gtfs}, prévue pour le même usage, mais moins précise sur les questions d'accessibilité. D'autres formalisme plus généraux peuvent être mobilisés. CityGML \citep{Groeger2012}, pensé pour proposer une représentation 3D de l'espace urbain, est prévu pour être étendu à des usages spécifiques \citep{Biljecki2018}. Cette possibilité est par exemple exploitée par \citet{Wheeler2020} pour y intégrer les cheminements piéton et leurs conditions d'accessibilité.
-
-\newpar{}
-
-L'émergence de l'\gls{igv} a apporté une nouvelle perspective à la collecte de données, permettant d'augmenter leur disponibilité sur des zones et des thèmes auparavant peu couverts \citep{Goodchild2007}, dont l'accessibilité. \gls{osm} est une base de données géographique généraliste, libre et collaborative couvrant une échelle mondiale. Son modèle repose sur un système de clés-valeurs\footnote{Sur \gls{osm}, une clé est nommée tag.} souple, dont les associations permettent de décrire une très grande diversité d'objets. L'utilisation des clés et leur valeur associée pour un objet est discutée et documentée sur le wiki du projet \citep{Ballatore2015}.
+Les modèles de données standardisés utilisés dans les domaines de l'urbanisme et du transport peuvent intégrer une dimension liée à l'accessibilité. En France, la \gls{lom}, promulguée en 2019, impose aux collectivités de collecter et publier les données d'accessibilité de la voirie à 200 mètres autour des arrêts de transports en commun. Le formalisme utilisé, le géostandard accessibilité normalisé par le \gls{cnig}, est un dérivé du \gls{netex} pensé pour la description fine des cheminements piéton, ces derniers pouvant être représentés sous la forme de linéaire indépendants du réseau routier et embarquant une sémantique décrivant des attributs liés à leur accessiblité. Le \gls{netex} est un format européen de description des réseaux de transports qui couvre un périmètre fonctionnel plus large que le géostandard du \gls{cnig}. Le \gls{netex} permet déjà de représenter les cheminements piétons, mais avec une précision sémantique moindre. Il vise à supplanter en Europe la norme \gls{gtfs}, prévue pour le même usage, mais moins précise sur les questions d'accessibilité. D'autres formalisme plus généraux peuvent être mobilisés. CityGML \citep{Groeger2012}, pensé pour proposer une représentation 3D de l'espace urbain, est prévu pour être étendu à des usages spécifiques \citep{Biljecki2018}. Cette possibilité est par exemple exploitée par \citet{Wheeler2020} pour y intégrer les cheminements piéton et leurs conditions d'accessibilité.
 
 \subsection{Les bases de données existantes}
 
@@ -114,11 +114,11 @@ L'acquisition des données géographiques est un processus généralement mené 
 
 \newpar{}
 
-Sur \gls{osm}, \citet{Mobasheri2017} montre que les données d'accessibilité sont également éparses, leur complétude pouvant varier d'une ville à l'autre. Par ailleurs, leur modélisation et leur précision sont également hétérogènes \citep{Biagi2020} en ce qui concerne les trottoirs.
+L'émergence de l'\gls{igv} a apporté une nouvelle perspective à la collecte de données, permettant d'augmenter leur disponibilité sur des zones et des thèmes auparavant peu couverts \citep{Goodchild2007}, dont l'accessibilité. \gls{osm} est une base de données géographique généraliste, libre et collaborative couvrant une échelle mondiale. Son modèle repose sur un système de clés-valeurs\footnote{Sur \gls{osm}, une clé est nommée tag.} souple, dont les associations permettent de décrire une très grande diversité d'objets. L'utilisation des clés et leur valeur associée pour un objet est discutée et documentée \citep{Ballatore2015} sur le wiki du projet\footnote{https://wiki.openstreetmap.org}. Sur \gls{osm}, \citet{Mobasheri2017} montre que les données d'accessibilité sont également éparses, leur complétude pouvant varier d'une ville à l'autre. Par ailleurs, leur modélisation et leur précision sont également hétérogènes \citep{Biagi2020} en ce qui concerne les trottoirs.
 
 % Justification utilisation OSM : plein de paradigmes de modélisation de cartographie fine (CityGML, Netex, etc.). Le plus fexible pour nos besoins = OSM.
 
-\section{Les dispositifs pour rendre accessibles les données géographiques}
+\section{Les représentations accessibles de données géographiques}
 
 % Dans cette partie, chaque sous section se termine avec un focus sur l'existant au sujet des carrefours.
 % Introduire les données géographiques et les bases de données les plus communes (OpenStreetMap)
@@ -135,21 +135,35 @@ Les données géographiques peuvent être utilisées pour concevoir des cartes, 
 
 % Une description verbale/textuelle aide à la construction d'une carte mentale
 
-Une carte mentale construite à partir d'une description verbale partage ses propriétés avec une carte mentale dérivée d'une expérience visuelle, dont les relations spatiales entre les entités \citep{Denis1992}. Par ailleurs, elle permet d'inférer des relations spatiales non-explicitement indiquées dans la description, et ainsi d'adopter un point de vue exocentré \citep{Avraamides2004}. Une description verbale peut ainsi être mobilisée par les \pcdvs{} afin de construire une représentation mentale d'un espace.
+Une carte mentale construite à partir d'une description verbale partage ses propriétés avec une carte mentale dérivée d'une expérience visuelle, dont les relations spatiales entre les entités \citep{Denis1992}. Par ailleurs, elle permet d'inférer des relations spatiales non-explicitement indiquées dans la description, et ainsi d'adopter un point de vue exocentré \citep{Avraamides2004} (voir partie \ref{sec:description_textuelle}). Une description verbale peut ainsi être mobilisée par les \glspl{pcdv} afin de construire une représentation mentale d'un espace.
 
 \newpar{}
 
 % Concevoir une description pour une PCDV
 
-La littérature se concentre principalement sur la description d'itinéraires. Du point des sciences cognitives, de nombreux travaux se sont intéressés aux principes et pratiques pour communiquer efficacement la connaissance d’un itinéraire, en analysant les éléments qui le constituent et influent sur sa qualité \citep{Allen2000,Lovelace1999}. Les recherches qui se focalisent sur la question de la déficience visuelle abordent la description d'itinéraires en fonction des environnements intérieurs ou extérieurs.
+La littérature sur la conception de description à destination de \gls{pcdv} se concentre principalement sur la description d'itinéraires. Du point de vue des sciences cognitives, de nombreux travaux se sont intéressés aux principes et pratiques pour communiquer efficacement la connaissance d’un itinéraire, en analysant les éléments qui le constituent et influent sur sa qualité \citep{Allen2000,Lovelace1999}. Les recherches qui se focalisent sur la question de la déficience visuelle abordent la description d'itinéraires en fonction des environnements intérieurs ou extérieurs.
 
 \newpar{}
 
-Un modèle pour la création de description d'itinéraires en intérieur est proposé par \citet{Troeger2020}. Il repose sur des descriptions validées par des utilisateurs concernés et comprend plusieurs séquences de directions augmentées de repères. Une approche similaire est abordée par \citet{Kulyukin2008} pour le guidage au sein d'un commerce, dont les descriptions sont générées automatiquement à l'aide d'un graphe topologique représentant ce dernier.
+Un modèle pour la création de description d'itinéraires en intérieur est proposé par \citet{Troeger2020}. Il repose sur des descriptions validées par des utilisateurs concernés et comprend plusieurs séquences de directions augmentées de repères. Une approche similaire est abordée par \citet{Kulyukin2008} pour le guidage au sein d'un commerce, dont les descriptions sont générées automatiquement en utilisant des textes à trous complétés par les attributs du graphe topologique représentant le commerce (voir figure \ref{fig:ea_kulyukin_graph}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/etat_art/kulyukin_graph.png}
+    \caption[Graphe topologique de l'intérieur d'un commerce]{Le graphe topologique de l'intérieur d'un commerce proposé par \citet{Kulyukin2008} est utilisé pour générer une description de celui-ci. Source: \citep{Kulyukin2008}.}
+    \label{fig:ea_kulyukin_graph}
+\end{figure}
 
 \newpar{}
 
-Pour le guidage extérieur, \citet{gaunet_verbal_2006} décrit une suite d’instructions de guidage auxquelles sont associées une forme verbale, permettant de décrire un cheminement au sein de la ville. Celui-ci peut notamment comprendre une indication d’orientation angulaire ou relative à une voie de circulation. Une autre grammaire de description est élaborée par \citet{Constantinescu2019}. \citet{Balata2016} proposent une approche similaire et génèrent automatiquement les descriptions à l'aide d'un graphe piéton enrichi par des repères. Chaque instruction est basée sur un patron et déclenchée selon le type de segment parcouru.
+Pour le guidage extérieur, \citet{gaunet_verbal_2006} propose une grammaire de description d'itinéraire sous la forme de fonctions de guidage dont le déclenchement est associé à une position et un type de situation précises. Une forme verbale est associée à ces fonctions, permettant de décrire un cheminement au sein de la ville, et peut notamment comprendre une indication d’orientation angulaire ou relative à une voie de circulation (voir figure \ref{fig:ea_ex_desc_gaunet}). \citet{Balata2016} proposent une approche similaire et génèrent automatiquement les descriptions à l'aide d'un graphe piéton enrichi par des repères. Chaque instruction est basée sur un patron et déclenchée selon le type de segment parcouru.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/etat_art/exemple_itineraire_gaunet.png}
+    \caption[Exemple de description issu de la littérature]{Exemple de fonctions de guidage et de formes verbales associées proposées par \citet{gaunet_verbal_2006}. Parmi celles-ci figure une description de carrefour présentant le nombre de branches et leur orientation. Source: \citep{gaunet_verbal_2006}.}
+    \label{fig:ea_ex_desc_gaunet}
+\end{figure}
 
 % Quels sont les dispositifs proposant des descriptions pour le guidage (plutôt dans la partie in situ ?)
 
@@ -157,22 +171,15 @@ Pour le guidage extérieur, \citet{gaunet_verbal_2006} décrit une suite d’ins
 
 \newpar{}
 
-Il existe peu de littérature visant spécifiquement la manière de décrire un carrefour. On peut cependant citer les travaux de \citet{gaunet_verbal_2006} qui intègrent au sein de l'itinéraire une description basique des carrefours, indiquant leur nombre de branches ainsi que l'orientation de chacune d'elle (voir figure \ref{fig:exdesccarrefour}).
-
-\begin{figure}[ht]
-    \centering
-    \resizebox{10cm}{!}{\includegraphics{images/ea_description.png}}
-    \caption[Une description de carrefour issue de la littérature]{La description des carrefours proposée par \citet{gaunet_verbal_2006} est intégrée à l'itinéraire. Les branches du carrefour sont indiquées.}
-    \label{fig:exdesccarrefour}
-\end{figure}
+Il existe peu de littérature visant spécifiquement la manière de décrire un carrefour. Cependant, la grammaire de description proposée par \citet{gaunet_verbal_2006} intègre une description basique des carrefours, indiquant leur nombre de branches ainsi que l'orientation de chacune d'elle (voir figure \ref{fig:ea_ex_desc_gaunet}).
 
 \newpar{}
 
-La génération automatique de description de carrefours est adressée par \citet{Guth2019}. En se basant sur la littérature en instruction et mobilité, ils proposent un schéma de base de données non relationnel contenant les principaux attributs permettant de décrire le carrefour, sa forme et les équipements permettant de le traverser. La description générée n'est pas phrasée mais verbalisée sous la forme de séquence d'éléments. Par ailleurs, la base de donnée n'est pas dérivée de données réelles.
+La génération automatique de description de carrefours est adressée par \citet{Guth2019}. En se basant sur la littérature en instruction et mobilité, les auteurs proposent de générer une description succincte d'un carrefour pensée pour un usage in-situ. Pour cela, ils construisent deux tables de données permettant de définir respectivement pour le carrefour et chaque traversée leur principaux attributs et l'infrastructure qui les composent. La description générée correspond à l'assemblage des différents champs de ces tables, et est découpée en une description générale du carrefour puis une description par passage piéton. Les auteurs ont choisi de remplir manuellement les tables de données, les bases disponibles sur leurs zones d'études n'étant pas satisfaisantes. Ils notent également une difficulté à choisir une terminologie adaptée, les termes de description de carrefours n'étant pas standardisés chez les \glspl{pcdv}, les \glspl{ia} et les aménageurs, et effectivement variés dans le panel des personnes participant à l'étude.
 
 \subsection{Les cartes en relief}
 
-Les cartes en reliefs (voir figure \ref{fig:excartestactiles}) permettent d'explorer une représentation de la donnée géographique accessible au toucher. Elles sont souvent réalisées manuellement par les \ipas{} et les \adts{} (voir partie \ref{pratiques_ipas}). La revue de littérature de \citet{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
+Les cartes en reliefs (voir figure \ref{fig:excartestactiles}) permettent d'explorer une représentation de la donnée géographique accessible au toucher. Elles sont souvent réalisées manuellement par les \glspl{ia} et les adaptateurs-transcripteurs (voir partie \ref{pratiques_ipas}). La revue de littérature de \citet{Wabinski2022} rappelle qu'elles répondent à des règles de conception précises afin de permettre à leur lecteur de les comprendre et d'en distinguer les différents éléments.
 
 \begin{figure}[ht]
     \centering
@@ -194,11 +201,11 @@ Les cartes en reliefs (voir figure \ref{fig:excartestactiles}) permettent d'expl
 
 \newpar{}
 
-La génération automatique de cartes en relief basées sur des données géographiques présente de nombreux défis scientifiques et techniques. Une revue de littérature proposée par \citet{Wabinski2019} présente de manière exhaustive les différentes approches existantes. Si d'autres travaux ont adressé la génération de carte à petite échelle, l'état de l'art ci-dessous se concentre sur l'échelle de la rue.
+La génération automatique de cartes en relief basée sur des données géographiques présente de nombreux défis scientifiques et techniques. Une revue de littérature proposée par \citet{Wabinski2019} présente de manière exhaustive les différentes approches existantes. Si d'autres travaux ont adressé la génération de carte à petite échelle, l'état de l'art ci-dessous se concentre sur l'échelle de la rue qui est celle visée pour la conception de carte audiotactile dans le projet ACTIVmap.
 
 \newpar{}
 
-La proposition de \citet{Miele2004}, TMAP, permet la réalisation à la demande de cartes tactiles des linéaires de rues. Un service interactif permet à l'utilisateur de définir une emprise et de personnaliser la conception, par exemple au niveau de l'échelle et des éléments labellisés. Ces options vont servir à styliser la donnée, puis la carte est réalisée à l'aide d'une embosseuse braille\footnote{Une embosseuse braille est une imprimante qui permet de retranscrire en relief des caractères brailles. Les machines étant coûteuses et bruyantes, l'embossage tend à être remplacé par le thermogonflage.}. Cependant, le linéaire de rues utilisé pour générer les cartes provient d'une base de données limitée au territoire américain. 
+La proposition de \citet{Miele2004}, TMAP, permet la réalisation à la demande de cartes tactiles de rues, représentées sous forme de géométries linéaires. Un service interactif permet à l'utilisateur de définir une emprise et de personnaliser la conception, par exemple au niveau de l'échelle et des éléments labellisés. Ces options vont servir à styliser la donnée, puis la carte est réalisée à l'aide d'une embosseuse braille\footnote{Une embosseuse braille est une imprimante qui permet de retranscrire en relief des caractères brailles. Les machines étant coûteuses et bruyantes, l'embossage tend à être remplacé par le thermogonflage.}. Cependant, les données utilisées pour générer les cartes proviennent d'une base de données limitée au territoire américain. 
 
 \newpar{}
 
@@ -210,7 +217,7 @@ Les dispositifs précédents sont étendus par \citet{Watanabe2014, Cervenka2016
 
 \newpar{}
 
-Les travaux évoqués jusqu'ici reposent sur une stylisation de la donnée géographique. Cette dernière n'a cependant pas été pensée pour une représentation tactile et peut présenter des formes complexes difficiles à discerner. \citet{Stampach2016} s'appuient sur les approches précédentes en insistant sur l’intérêt du processus de généralisation pour la bonne distinction des différents éléments qui composent la carte. Les processus de généralisation pouvant donner un résultat inadéquat, une édition manuelle de la carte reste possible.
+L'acuité sensorielle est beaucoup plus faible au toucher que pour la vue \missref{}. Or, si les travaux évoqués jusqu'ici reposent sur une stylisation des données géographiques, les géométries de ces données n'ont cependant pas été pensées pour une représentation tactile et peuvent présenter des formes complexes difficiles à discerner. Il faut donc simplifier l'information  au maximum pour la rendre plus facilement lisible avec le doigt. \citet{Stampach2016} s'appuient sur les approches précédentes en insistant sur l’intérêt du processus de généralisation pour la bonne distinction des différents éléments qui composent la carte. Les processus de généralisation pouvant donner un résultat inadéquat, une édition manuelle de la carte reste possible.
 
 \newpar{}
 
@@ -218,7 +225,7 @@ Les travaux évoqués jusqu'ici reposent sur une stylisation de la donnée géog
 
 \newpar{}
 
-Les bases de données vectorielles, bien qu'ayant parfois une couverture mondiale, n'assurent pas une exhaustivité sur leur échelle entière sur le thème de l'accessibilité. L'imagerie aérienne, en fonction de sa résolution, peut permettre de distinguer ces éléments. \citet{FillieresRiveau2020} s'intéressent à cette problématique en proposant de générer des cartes en relief par apprentissage profond en utilisant à la fois une photographie aérienne et un filaire de rues vectoriel. 
+Les bases de données vectorielles actuelles, même si elles offrent parfois une couverture mondiale, ne sont pas exhaustives sur tous les territoires pour les thèmes liés à l’accessibilité. Il est alors possible d'utiliser une imagerie aérienne suffisamment précise pour les compléter. \citet{FillieresRiveau2020} s'intéressent à cette problématique en proposant de générer des cartes en relief représentant notamment les trottoirs et les passages piétons par apprentissage profond en utilisant à la fois une photographie aérienne et un filaire de rues vectoriel. Cependant, cette méthode est limitée notamment par la présence de couverts végétaux ou d'ombres portées de bâtiments qui peuvent masquer les éléments de la voirie.
 
 \newpar{}
 
@@ -226,7 +233,7 @@ Le sujet de la génération de cartes tactiles à l'échelle spécifique du carr
 
 \newpar{}
 
-Les travaux de génération de cartes tactiles reposent sur des techniques différentes. Ils ne s'intéressent pas à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir table \ref{tab:ea_relief}). Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \citep{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \citep{Brock2015}. Ce sujet est abordé dans \ref{ea_cartessonores}.
+Les différents travaux de génération de cartes tactiles reposent sur des techniques variées. Ils ne s'intéressent pas toujours à la même échelle ni à la même emprise. et les supports de réalisation visés sont également variés (voir table \ref{tab:ea_relief}). Dans tous les cas, la carte en relief seule ne permet pas de représenter une haute densité d'informations \citep{Touya2019}, et est plus abordable lorsqu'elle est complétée d'une information sonore \citep{Brock2015}.
 
 \begin{table}[ht]
 \begin{center}
@@ -254,7 +261,7 @@ Les travaux de génération de cartes tactiles reposent sur des techniques diff�
 
 \label{ea_cartessonores}
 
-Un état des lieux des techniques mobilisables pour sonoriser les données géographiques est proposé par \citet{Krygier1994}, qui distingue notamment les sons réalistes, qui peuvent correspondre à une description verbale ou un son imitant le réel, et les sons abstraits.
+Un état des lieux des techniques mobilisables pour sonoriser les données géographiques est proposé par \citet{Krygier1994}, qui distingue notamment les sons réalistes, qui peuvent correspondre à une description verbale ou à un son imitant le réel, et les sons abstraits.
 
 \newpar{}
 
@@ -272,7 +279,7 @@ Ces derniers sont  modulés par des variables sonores telles que le volume ou la
 
 % La cartographie sonore multimodale
 
-Les techniques évoquées ci-dessus visent à explorer des données par le son uniquement. Mais, comme le propose \citet{Krygier1994}, ce dernier peut être utilisé de concert avec un autre dispositif sensoriel pour proposer une représentation multimodale apportant une dimension supplémentaire à la visualisation, cette dernière pouvant être utilisée pour représenter une variable supplémentaire. C'est dans ce sens que la proposition de \citet{Bearman2010} modélise la précision positionnelle de bâtiments en établissant un son spécifique pour chaque valeur de cette variable. Une approche similaire de \citet{Foteinou2022} s'intéresse à la durée des incendies en modulant la longueur du son joué au survol d'une entité.
+Les techniques évoquées ci-dessus visent à explorer des données par le son uniquement. Mais, comme le propose \citet{Krygier1994}, ce dernier peut être utilisé de concert avec un autre dispositif sensoriel pour proposer une représentation multimodale apportant une dimension supplémentaire à la visualisation, cette dernière pouvant être utilisée pour représenter une variable supplémentaire. C'est dans ce sens que \citet{Bearman2010} modélisent la précision positionnelle de bâtiments en établissant un son spécifique pour chaque valeur de cette variable. Une approche similaire \citep{Foteinou2022} s'intéresse à la durée des incendies en modulant la longueur du son joué au survol d'une entité.
 
 \newpar{}
 
@@ -283,7 +290,7 @@ Ces dispositifs multimodaux utilisent une interface d'ordinateur standard pour p
 % Les cartes audiotactiles
 
 Les cartes dites audio-tactiles se sont développées sur la base des dispositifs en relief interactifs. On en trouve de nombreux exemples parmi lesquels les propositions de \citet{Loetzsch1994} ou encore de \citet{Landau2001}, basées sur une interface tactile reliée à un ordinateur et permettant d'interagir avec celui-ci à l'aide d'un programme spécifique.
-Talking TMAP \citep{Miele2006} est une extension de TMAP \citep{Miele2004} permettant d'interagir avec la carte pour obtenir des informations sur l'élément touché par synthèse vocale et repose sur le matériel conçu par \citet{Landau2001}. L'émergence des écrans tactiles grand public a permis la conception d'outils plus accessibles \citep{Brock2015} comme DERi.
+Talking TMAP \citep{Miele2006} est une extension de TMAP \citep{Miele2004} permettant d'interagir avec la carte pour obtenir des informations sur l'élément touché par synthèse vocale et repose sur le matériel conçu par \citet{Landau2001}. L'émergence des écrans tactiles grand public a permis la conception d'outils plus accessibles comme les \glspl{deri} \citep{Brock2015} (voir partie \ref{sec:experimentation_poc1}).
 
 \subsection{Les dispositifs d'aide in-situ}
 
@@ -292,12 +299,12 @@ Talking TMAP \citep{Miele2006} est une extension de TMAP \citep{Miele2004} perme
 % Je veux dire qu'il existe plusieurs familles d'outils : ceux qui ne nécessitent pas d'équipement extérieur à la personne (les cannes, le GPS, les applications smartphones, etc.) et les autres dispositifs comme les balises sonores et autres balises de guidage.
 % Pour les balises sonores, je peux citer la norme. Pour les autres dispositifs, je peux éventuellement citer des brevets.
 
-Pour cheminer en ville, une \gls{pcdv} peut utiliser des outils d'aides in-situ pour s'orienter et éviter les obstacles. Il existe deux principales familles d'outils: les outils indépendants et ceux qui reposent sur un second équipement externe. L'enquête Homère, qui s'est également intéressée aux dispositifs mobilisés lors des déplacements, montre qu'une majorité des personnes concernées utilise des dispositifs de ce type, en particulier les outils de navigation \citep{homere_2023}. Une revue plus exhaustive des dispositifs existants est proposée par \citet{Kuriakose2022}.
+Pour cheminer en ville, une \gls{pcdv} peut utiliser des outils d'aides in-situ pour s'orienter et éviter les obstacles. Il existe deux principales familles d'outils: les outils indépendants et ceux qui reposent sur un second équipement externe comme un capteur. L'enquête Homère, qui s'est également intéressée aux dispositifs mobilisés lors des déplacements, montre qu'une majorité des personnes concernées utilise des dispositifs d'aide in-situ, en particulier les outils de navigation \citep{homere_2023}. Une revue plus exhaustive des dispositifs existants est proposée par \citet{Kuriakose2022}.
 
 \newpar{}
 
 % Les outils indépendants
-On entend par outils indépendants les outils qui ne nécessitent pas d'équipement externe et qui peuvent donc être utilisés en tout lieu. Les principaux représentants de cette catégorie sont les outils de navigation, qui permettent à leur utilisateur de se localiser et d'obtenir un audioguidage vers une destination. La littérature propose plusieurs usages de ces outils pour guider les \glspl{pcdv}, en mobilisant un système de positionnement \gls{gnss} et \gls{sig} \citep{Golledge1998}. Les questions de génération de texte pour ces usages sont abordées dans la section \ref{ea_description_autosuffisante}. Au-delà de la recherche, il existe également des dispositifs spécialisés utilisables au quotidien, qu'il s'agisse d'applications mobiles (voir figure \ref{fig:dispositif_in_situ}) ou de matériels spécifiques comme les \glspl{gps} \citep{Refuveille2012}. 
+On entend par outils indépendants les outils qui ne nécessitent pas d'équipement externe et qui peuvent donc être utilisés en tout lieu. Les principaux représentants de cette catégorie sont les outils de navigation, qui permettent à leur utilisateur de se localiser et d'obtenir un audioguidage vers une destination, comme le propose \citet{Golledge1998} avec un système de positionnement \gls{gnss} et un \gls{sig} pour guider en temps réel une \gls{pcdv}. Les questions de génération de texte pour ces usages sont abordées dans la section \ref{ea_description_autosuffisante}. Au-delà des travaux de recherche, il existe également des dispositifs spécialisés utilisables au quotidien, qu'il s'agisse d'applications mobiles (voir figure \ref{fig:dispositif_in_situ}) ou de matériels spécifiques comme les outils de navigation \glspl{gnss} \citep{Refuveille2012}. 
 
 \newpar{}
 
@@ -306,7 +313,7 @@ Les dispositifs qui se reposent sur des capteurs embarqués permettent le positi
 \newpar{}
 
 % Balises de guidage, balises sonores
-D'autres outils d'aide in-situ se reposent sur des dispositifs qui équipent le lieu visité. Il peut s'agir de balises de guidage qui peuvent servir d'outils d'orientation en extérieur et en intérieur \citep{Ahmetovic2016, Cheraghi2017}. \citet{Shin2022} proposent un système similaire dédié à la traversée des carrefours. De nombreux lieux, tels que les carrefours, sont également équipés de balises sonores. Celles que l'on retrouve en France répondent à la norme NF S32-002 \citep{NFS32002_2004} et s'activent à l'aide d'une télécommande standardisée.
+D'autres outils d'aide in-situ se reposent sur des dispositifs qui équipent le lieu visité. Il peut s'agir de balises de guidage qui peuvent servir d'outils d'orientation en extérieur et en intérieur \citep{Ahmetovic2016, Cheraghi2017}. \citet{Shin2022} proposent un système similaire dédié à la traversée des carrefours. Aujourd'hui, de nombreux lieux, tels que les carrefours, sont également équipés de balises sonores. Celles que l'on retrouve en France répondent à la norme NF S32-002 \citep{NFS32002_2004} et s'activent à l'aide d'une télécommande standardisée. À un passage piéton notamment, elles indiquent à quel moment le feu piéton est vert. Cependant, tous les passages piétons ne sont pas équipés de ces dispositifs, et la proximité de plusieurs balises, sur un carrefour par exemple, peut les rendre difficile à distinguer. Par ailleurs, la fréquence d'activation des balises, 868.3 Mhz, est également utilisée par d'autres dispositifs telles que les portes de garage, ce qui peut générer des interférences et rendre leur activation moins fiable \citep{Rahal2021}.
 
 \begin{figure}[ht]
     \centering
@@ -325,7 +332,7 @@ D'autres outils d'aide in-situ se reposent sur des dispositifs qui équipent le 
 % Références :
 % - The Sound of Being There: Audiovisual Cartography with Immersive Virtual Environments, Hruby, 2019
 
-En l'abscence de vision, il existe d'autres modalités permettant d'explorer un environnement en réalité virtuelle, par le toucher et par le son. On définit ici la réalité virtuelle comme un  moyen immersif et interactif d'explorer un environnement à distance.
+En l'absence de vision, il existe d'autres modalités permettant d'explorer un environnement en réalité virtuelle, par le toucher et par le son. On définit ici la réalité virtuelle comme un  moyen immersif et interactif d'explorer un environnement à distance.
 
 \newpar{}
 
@@ -349,11 +356,20 @@ Le système proposé par \citet{Guerreiro2017} est basé sur une application mob
 
 % Expliquer de manière claire et objective ce que sont mes objectifs de thèse.
 
-Dans cette partie, nous nous sommes intéressés aux problématiques spécifiques aux déplacement des \glspl{pcdv} en milieu urbain. Nous avons vu que le carrefour est une zone particulièrement complexe à traverser et qu'il n'existe, à l'heure actuelle, que peu de travaux s'intéressant spécifiquement à cet espace : les bases de données sont lacunaires sur cet aspect, et les travaux académiques, bien qu'inspirants, ne permettent pas de générer automatiquement une représentation accessible d'un carrefour.
+Dans cette partie, nous nous sommes intéressés aux problématiques spécifiques aux déplacements des \glspl{pcdv} en milieu urbain. Les personnes concernées, notamment après une formation en locomotion, peuvent être capables de mobiliser leurs sens pour se déplacer en autonomie en ville. Cependant, l'infrastructure de la ville, parfois complexe, parfois défaillante, peut rendre ces déplacements difficiles. En particulier, les spécificités et la complexité des carrefours en font des lieux particulièrement problématiques.
 
 \newpar{}
 
-Pour répondre à cette problématique, les travaux présentés dans cette thèse se concentreront sur deux aspects:
+Nous avons vu qu'il existe des formalismes et outils pour permettre aux personnes concernées de s'orienter in-situ, par le biais d'applications mobiles ou de dispositifs spécifiques. En pratique, ces solutions ne sont pas pleinement satisfaisantes pour de multiples raisons liées à la nécessité d'avoir accès à un équipement spécifique ou encore au manque de précision ou de fiabilité des données ou des dispositifs.
+
+\newpar{}
+
+En parallèle des solutions in-situ, nous avons vu qu'il existe des dispositifs utilisables ex-situ permettant de se familiariser avec un lieu avant de le visiter, comme les cartes en relief. Ces dernières, utilisées en séance d'instruction en mobilité, gagnent en efficacité en étant complétées d'une information sonore ou audiodécrite.
+
+\newpar{}
+
+Cependant, la littérature adresse peu la question spécifique de la représentation textuelle des carrefours, et notamment la génération automatique d'une telle description. Dans ce contexte, les travaux de cette thèse visent à proposer une représentation accessible des carrefours sous une forme textuelle pouvant être embarquée dans une carte audiotactile. Un focus particulier sera porté sur l'utilisation de données ouverte pour générer cette représentation, et sur la personnalisation de cette dernière pour répondre aux besoins variés des personnes concernées. Nous illustrerons la faisabilité des approches proposées en nous appuyant sur des implémentations fonctionnelles utilisant les données d'\gls{osm}. Nos travaux se concentreront sur les deux aspects suivants:
+
 \begin{itemize}
     \item Proposer un modèle de données permettant de représenter le carrefour et son accessibilité, en permettant sa génération depuis des données ouvertes.
     \item Proposer une description du carrefour générable à partir du modèle de données précédent, mais également personnalisable pour répondre aux besoins variés des personnes concernées.

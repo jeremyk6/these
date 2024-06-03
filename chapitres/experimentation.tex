@@ -15,7 +15,7 @@ Cette partie présente une expérimentation visant à décrire textuellement un 
 
 \subsubsection{Préparation du texte}
 
-Le texte préparé pour cette expérimentation est issu d'échanges avec des personnes liées à la déficience visuelle, notamment des personnes concernées, des \gls{ia}, des architectes urbains et des entreprises de mobilité. L'objectif est ici d'obtenir un aperçu synthétique de la configuration du carrefour: sa forme, ses branches et les manières de le traverser. Pour décrire la forme du carrefour, bien que non-normalisé, un consensus à la fois mobilisés par les urbanistes et usagers existe autour des appelations <<~en croix~>>, <<~en T~>>, etc \citep{fogliaroni2018}, qui donne à la fois une information sur le nombre de branches et sur la forme générale du carrefour. Pour chaque branche, on détermine le nombre de voies, le type de véhicule qui circule dessus, et les sens de circulation. Enfin, on détermine pour chaque branche s'il existe une traversée, c'est-à-dire la possibilité de passer d'un trottoir à l'autre, et on décrit l'accessibilité des passages piéton qui y sont associés. Par ailleurs, toutes les descriptions ont lieu dans le sens de sens des aiguilles d'une montre en partant de la branche la plus au nord. Le plan de la description est présenté sur la figure \ref{fig:experimentation_plan_description}.
+Le texte préparé pour cette expérimentation est issu d'échanges avec des personnes liées à la déficience visuelle, notamment des personnes concernées, des \gls{ia}, des architectes urbains et des entreprises de mobilité. L'objectif est ici d'obtenir un aperçu synthétique de la configuration du carrefour: sa forme, ses branches et les manières de le traverser. Pour décrire la forme du carrefour, bien que non-normalisé, un consensus à la fois mobilisés par les urbanistes et usagers existe autour des appelations <<~en croix~>>, <<~en T~>>, etc. \citep{fogliaroni2018}, qui donne à la fois une information sur le nombre de branches et sur la forme générale du carrefour. Pour chaque branche, on détermine le nombre de voies, le type de véhicule qui circule dessus, et les sens de circulation. Enfin, on détermine pour chaque branche s'il existe une traversée, c'est-à-dire la possibilité de passer d'un trottoir à l'autre, et on décrit l'accessibilité des passages piéton qui y sont associés. Par ailleurs, toutes les descriptions ont lieu dans le sens de sens des aiguilles d'une montre en partant de la branche la plus au nord. Le plan de la description est présenté sur la figure \ref{fig:experimentation_plan_description}.
 
 \begin{figure}[ht]
     \begin{minipage}[b]{0.45\linewidth}
@@ -47,7 +47,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
 
 \newpar{}
 
-\textbf{La description générale} présente une vue synthétique du carrefour: nom des branches et type de carrefour. Une difficulté réside dans la variabilité du nombre de branches et de leur nom. Nous avons décidé ici de stocker les noms de branche au sein d'un unique champ dans le format JSON. La donnée peut alors suivre le schéma tabulaire défini en table \ref{tab:experimentation_desc_generale}.
+\textbf{La description générale} présente une vue synthétique du carrefour: nom des branches et type de carrefour. Nous avons choisi d'indiquer le type de carrefour par le nombre de branches car dériver le type de carrefour selon la géométrie des branches peut être difficile sur des carrefours complexes. Une difficulté réside également dans la variabilité du nombre de branches et de leur nom. Afin de normaliser la description de cette information dans une structure facilement manipulable par la suite, nous proposons de stocker les noms de branche au sein d'un unique champ dans le format JSON. La donnée peut alors suivre le schéma tabulaire défini en table \ref{tab:experimentation_desc_generale}.
 
 \newpar{}
 
@@ -136,7 +136,7 @@ En disposant du texte final et de la forme des données, on peut maintenant déf
 \label{alg:experimentation_patron_generale}
 \end{algorithm}
 
-On remarque que le patron présenté ci-dessus ne correspond pas exactement au texte souhaité. Exécuté avec les données précédentes, le texte obtenu serait <<~Le carrefour à l'intersection avenue Carnot cours Sablon est un carrefour à 4 branches~>>. Il manque en effet les prépositions pour avenue et cours (<<~de l'~>> et <<~du~>>), de même qu'un <<~et~>> entre les deux noms de branche. Cet aspect est adressé dans l'implémentation présentée en partie suivante.
+On remarque que le patron présenté ci-dessus ne correspond pas exactement au texte souhaité. Exécuté avec les données précédentes, le texte obtenu serait <<~Le carrefour à l'intersection avenue Carnot cours Sablon est un carrefour à 4 branches~>>. Il manque en effet les prépositions pour avenue et cours (<<~de l'~>> et <<~du~>>), de même qu'un <<~et~>> entre les deux noms de branche. Cet aspect est adressé dans l'implémentation présentée en partie \ref{sec:experimentation_implémentation_patron}.
 
 \subsection{Intégration du canevas dans un \gls{sig}}
 
@@ -150,9 +150,9 @@ Le texte préparé implique d'avoir accès à des données liées à la voirie �
 
 Nous avons déjà présenté les méthodes mobilisées pour délimiter un carrefour et ses branches dans la partie \ref{sec:modelisation_crseg}. Ces méthodes ont été implémentées en Python au sein d'un outil nommé crseg et publié sous la forme d'un logiciel libre\footnote{https://github.com/jmtrivial/crossroads-segmentation}, qui permet, à partir du graphe de données issu d'\gls{osm} de délimiter les carrefours et, pour chaque carrefours, séparer son cœur de ses branches. Il présente plusieurs paramètres détaillés en partie \ref{sec:modelisation_crseg} et sur la forge logicielle de l'outil. Il permet, en sortie, d'obtenir pour chaque région du carrefour (cœur du carrefour, branches, bordures) les nœuds correspondants au format JSON (voir figure \ref{fig:experimentation_crseg_json}).
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics{images/experimentation/donnees_crseg.pdf}
+    \includegraphics[width=0.85\textwidth]{images/experimentation/donnees_crseg.pdf}
     \caption[Données produites par crseg]{Les données obtenues par crseg permettent d'identifier les nœuds appartenant à la branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crseg_json}
 \end{figure}
@@ -161,9 +161,9 @@ Nous avons déjà présenté les méthodes mobilisées pour délimiter un carref
 
 Faisant suite à la délimitation du carrefour, nous présentions dans la partie \ref{sec:modelisation_calcul_info_pietonnes} les méthodes permettant à partir des branches d'obtenir sur le carrefour les trottoirs, les îlots, et les traversées de branches. Ces méthodes ont également été implémentées en Python au sein d'un outil nommé crmodel et publié sous la forme d'un logiciel libre\footnote{https://github.com/jeremyk6/crmodel}. crmodel prend en entrée le même graphe de données \gls{osm} utilisé par crseg, ainsi que le JSON de segmentation produit par crseg. Un exemple de résultat calculé par crmodel est présenté en figure \ref{fig:experimentation_crmodel_info_pietonne}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \includegraphics{images/experimentation/donnees_crmodel.pdf}
+    \includegraphics[width=0.85\textwidth]{images/experimentation/donnees_crmodel.pdf}
     \caption[Données produites par crmodel]{Les informations piétonnes calculées à partir de crseg ne forment pas de nouvelle géométrie mais existent sous forme sémantique sur les tronçons originaux. Seules les traversées multiples forment de nouvelles géométries en étant composées des nœuds de passage piéton permettant de passer d'un trottoir à l'autre sur une branche. Source: Contributeurs OpenStreetMap.}
     \label{fig:experimentation_crmodel_info_pietonne}
 \end{figure}
@@ -178,19 +178,20 @@ L'outil crmodel en ligne de commande embarque crseg et permet de visualiser le r
 
 \subsubsection{Transformation des données}
 
-Le format GeoJSON, pratique pour proposer un export rapide de l'intégralité des entités et attributs de CrModel, n'est pas rendu par QGIS d'une manière directement exploitable pour la génération de texte. Cependant, il contient l'intégralité des informations nécessaires à la génération du format de couches établies en partie \ref{sec:experimentation_forme_donnees}. On peut alors exploiter les outils intégrés à QGIS pour transformer l'export dans le format attendu. Cette étape de transformation peut être réalisée manuellement ou intégrée à une chaîne de traitements Processing, l'outil de scripting graphique intégré à QGIS, pour automatiser toute transformation similaire ultérieure et appliquer la transformation sur d'autres territoires. La chaîne de transformation et le résultat obtenu sont illustrés en figure \ref{fig:experimentation_chaine_donnees_qgis}.
+Le format GeoJSON, pratique pour proposer un export rapide de l'intégralité des entités et attributs de CrModel, n'est pas rendu par QGIS d'une manière directement exploitable pour la génération de texte. Cependant, il contient l'intégralité des informations nécessaires à la génération du format de couches établies en partie \ref{sec:experimentation_forme_donnees}. On peut alors exploiter les outils intégrés à QGIS pour transformer l'export dans le format attendu. Cette étape de transformation peut être réalisée manuellement ou intégrée à une chaîne de traitements Processing, l'outil de scripting graphique intégré à QGIS, pour automatiser toute transformation similaire ultérieure et appliquer la transformation sur d'autres territoires. Un extrait de la chaîne de transformation et du résultat obtenu sont illustrés en figure \ref{fig:experimentation_chaine_donnees_qgis}.
 
 \begin{figure}[ht]
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{images/experimentation/pipeline_processing_crmodel.png}
+        \includegraphics[width=0.5\textwidth]{images/experimentation/pipeline_processing_crmodel.png}
         \caption{Automatiser les traitements permet d'exécuter la chaîne sur de nouveaux territoires.}
         \label{fig:experimentation_transformation_qgis}
     \end{subfigure}
+    \hfill
     \begin{subfigure}[t]{.49\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{images/experimentation/resultat_processing_crmodel.png}
+        \raisebox{4mm}{\includegraphics[width=\textwidth]{images/experimentation/resultat_processing_crmodel_br.png}}
         \caption{Les données transformées correspondent au format établi par l'utilisateur en partie \ref{sec:experimentation_forme_donnees}.}
         \label{fig:experimentation_transformation_resultat_qgis}
     \end{subfigure}
@@ -199,6 +200,8 @@ Le format GeoJSON, pratique pour proposer un export rapide de l'intégralité de
 \end{figure}
 
 \subsubsection{Implémentation des patrons et de la description}
+
+\label{sec:experimentation_implémentation_patron}
 
 Les données adaptées à la description en notre possession, nous pouvons maintenant implémenter les patrons de description puis leur assemblage sous QGIS. Pour le permettre, nous avons implémenté une extension à QGIS nommé QGIS2Desc, qui s'intègre à Processing pour proposer deux nouveaux traitements.
 
@@ -215,8 +218,8 @@ La figure \ref{fig:experimentation_qgis2desc_conception} est une capture d'écra
 
 \begin{figure}[ht]
     \centering
-    \resizebox{7cm}{!}{\includegraphics{images/experimentation/qgis2desc_conception.png}}
-    \caption[Fenêtre QGIS de conception de description]{Dans le patron, on remarque l'usage des fonctions \texttt{CP} et \texttt{C} qui vont permettre de réaliser la coordination entre les noms de branche. Pour deux branche, on obtiendra le texte <<~branche 1 et branche 2~>>. Pour trois branches et plus, on obtiendra le texte <<~branche 1, branche 2, branche 3, (...) et branche n~>>}
+    \includegraphics[width=0.7\textwidth]{images/experimentation/qgis2desc_conception.png}
+    \caption[Fenêtre QGIS de conception de description]{Dans le patron, on remarque l'usage des fonctions \texttt{CP} et \texttt{C} qui vont permettre de réaliser la coordination entre les noms de branche. Pour deux branche, on obtiendra le texte <<~branche 1 et branche 2~>>. Pour trois branches et plus, on obtiendra le texte <<~branche 1, branche 2, branche 3, (...) et branche n~>>.}
     \label{fig:experimentation_qgis2desc_conception}
 \end{figure}
 
@@ -224,15 +227,15 @@ La figure \ref{fig:experimentation_qgis2desc_conception} est une capture d'écra
 
 Le second s'appelle <<~Assembler des descriptions~>> et va permettre de générer le document final. Il prend en entrée plusieurs couches issues de <<~Concevoir une description~>>, un ensemble de métadonnées correspondantes à celles définies à l'étape précédente et qui va permettre de sélectionner les descriptions à prendre en compte, et un plan de description. Le plan de description correspond à un tableau ordonné dont le format est indiqué par le tableau \ref{experimentation:table_plan_description}. Chaque entrée du tableau est prise en compte de haut en bas et définit la couche décrite, le titre de la partie, et la forme que prendra le texte (actuellement un texte brut et une liste simple ou numérotée). La figure \ref{fig:experimentation_assemblage} présente un exemple d'assemblage de la description.
 
-\begin{table}
+\begin{table}[ht]
     \begin{center}
     \footnotesize
     \begin{tabular}{ | l | l | l | }
         Couche & Titre & Forme\tabularnewline
         \hline
         general & Description générale & text\\
-        branches & Description des branches & numbered\_list\\
-        crossings & Description des traversées & numbered\_list
+        branches & Description des branches & list\\
+        crossings & Description des traversées & list
     \end{tabular}
     \end{center}
     \caption[Schéma tabulaire du plan de la description]{Le plan de la description défini précédemment serait le suivant dans le traitement établi.}
@@ -243,10 +246,11 @@ Le second s'appelle <<~Assembler des descriptions~>> et va permettre de génére
     \centering
     \begin{subfigure}[t]{.49\linewidth}
         \centering
-        \includegraphics[width=0.6\textwidth]{images/experimentation/qgis2desc_assemblage.png}
+        \includegraphics[width=\textwidth]{images/experimentation/qgis2desc_assemblage.png}
         \caption{La fenêtre de <<~Assembler les descriptions~>> présente ses différents paramètres.}
         \label{fig:experimentation_assemblage_fenetre}
     \end{subfigure}
+    \hfill
     \begin{subfigure}[t]{.49\linewidth}
         \centering
         \includegraphics[width=\textwidth]{images/experimentation/qgis2desc_html.png}
@@ -263,7 +267,7 @@ Le second s'appelle <<~Assembler des descriptions~>> et va permettre de génére
 
 \begin{figure}[ht]
     \centering
-    \resizebox{8cm}{!}{\includegraphics{images/experimentation/qgis2desc_modele_assemblage.png}}
+    \includegraphics[width=\textwidth]{images/experimentation/qgis2desc_modele_assemblage.png}
     \caption[Modèle graphique QGIS pour générer une description]{Le modèle graphique contient les patrons de plusieurs couches. On remarque également plusieurs patrons pour une même couche. Ceux-ci pourront être sélectionnés à l'aide des métadonnées lors de l'étape d'assemblage pour personnaliser la description.}
     \label{fig:experimentation_qgis2desc_modele_assemblage}
 \end{figure}
@@ -274,7 +278,7 @@ Les outils en place, l'utilisateur final (l'\gls{ia}) va pouvoir générer des d
 
 \begin{enumerate}
     \item Utiliser crmodel pour obtenir les données intrinsèques du carrefour, les données piétonnes, et les attributs d'accessibilité. Comme évoqué précédemment, le géomaticien peut avoir préparé une boîte à outil pour l'utiliser de manière graphique.
-    \item Exécuter le premier traitement préparé le géomaticien pour transformer les données  de crmodel en couche prêtes pour la description (figure \ref{fig:experimentation_chaine_donnees_qgis}).
+    \item Exécuter le premier traitement préparé par le géomaticien pour transformer les données  de crmodel en couche prêtes pour la description (figure \ref{fig:experimentation_chaine_donnees_qgis}).
     \item Exécuter le second traitement pour obtenir la description finale. Il est possible de personnaliser le résultat en sélectionnant les patrons préparés, et en ajustant la présence et la forme des parties. 
 \end{enumerate}
 
@@ -297,7 +301,7 @@ En parallèle des outils implémentés sous QGIS, nous avons proposé une second
 
 % Le Pigeon Nelson
 
-Par ailleurs, le serveur permet également de renvoyer les données au format attendu par l'application <<~Le Pigeon Nelson~>>. Le Pigeon Nelson est une application libre pour smartphone\footnote{https://github.com/Le-Pigeon-Nelson/le-pigeon-nelson} qui permet de jouer un son relatif à la position de l'utilisateur et aux valeurs des capteurs du téléphone. Il fonctionne en mode client-serveur et la majorité de la logique se trouve côté serveur (se référer à la documentation pour plus de détails). Lors d'une requête vers le serveur CrWeb, l'application envoie sa position GPS. Le pipeline tel que décrit précédemment est alors exécuté sur la position envoyée avec les paramètres par défaut de crseg, et le serveur renvoie un fichier JSON adapté contenant le texte généré pour le carrefour le plus proche. Ce JSON est interprété par l'application, qui lit la description obtenue par synthèse vocale. Une capture de l'application en cours d'utilisation est présentée en figure \ref{fig:experimentation_pigeonnelson}.
+Le serveur permet également de renvoyer les données au format attendu par l'application <<~Le Pigeon Nelson~>>. Le Pigeon Nelson est une application libre pour smartphone\footnote{https://github.com/Le-Pigeon-Nelson/le-pigeon-nelson} à laquelle nous avons contribué qui permet de jouer un son relatif à la position de l'utilisateur et aux valeurs des capteurs du téléphone. Il fonctionne en mode client-serveur et la majorité de la logique se trouve côté serveur (se référer à la documentation pour plus de détails). Lors d'une requête vers le serveur CrWeb, l'application envoie sa position GPS. Le pipeline tel que décrit précédemment est alors exécuté sur la position envoyée avec les paramètres par défaut de crseg, et le serveur renvoie un fichier JSON adapté contenant le texte généré pour le carrefour le plus proche. Ce JSON est interprété par l'application, qui lit la description obtenue par synthèse vocale. Une capture de l'application en cours d'utilisation est présentée en figure \ref{fig:experimentation_pigeonnelson}.
 
 \begin{figure}[ht]
     \centering
@@ -307,6 +311,7 @@ Par ailleurs, le serveur permet également de renvoyer les données au format at
         \caption{CrWeb permet d'afficher la segmentation du carrefour et le résultat de la description pour un patron figé.}
         \label{fig:experimentation_crweb}
     \end{subfigure}
+    \hfill
     \begin{subfigure}[t]{.49\linewidth}
         \centering
         \includegraphics[width=0.4\textwidth]{images/experimentation/pigeonnelson.png}
@@ -334,7 +339,7 @@ Le projet ACTIVmap, dans lequel s'inscrit cette thèse, est porté par trois act
     \label{fig:experimentation_exemple_deri}
 \end{figure}
 
-\gls{deri} peut être utilisé pour réaliser toute sorte de documents audiotactiles, dont des cartes pour prendre connaissance d'un lieu. En revanche, ces réalisations à l'instar de celles des \gls{ia} sont aujourd'hui manuelles. L'objectif de cette expérimentation est de permettre la génération d'une carte audiotactile de carrefour sous la forme d'un fichier \gls{deri}. La chaîne permettant d'obtenir le document final combine les description développées au \gls{limos} et les cartes tactiles développées à l'\gls{ign}.
+\gls{deri} peut être utilisé pour réaliser toute sorte de documents audiotactiles, dont des cartes pour prendre connaissance d'un lieu. En revanche, ces réalisations à l'instar de celles des \gls{ia} sont aujourd'hui manuelles. L'objectif de cette expérimentation est de permettre la génération d'une carte audiotactile de carrefour sous la forme d'un fichier \gls{deri}. La chaîne permettant d'obtenir le document final combine les description que nous avons développées  et les cartes tactiles développées à l'\gls{ign} \citep{Jiang2023}.
 
 \subsubsection{Assembler la carte et les descriptions}
 
@@ -400,11 +405,13 @@ Les méthodes présentées dans cette partie ont été appliquées à la génér
         \centering
         \includegraphics[width=\textwidth]{images/experimentation/poc1_a5.png}
     \end{subfigure}
-    \caption[Exemples de cartes audiotactiles]{Deux cartes audiotactiles réalisées par Markie Jiang \citep{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site.}
+    \caption[Exemples de cartes audiotactiles]{Deux cartes audiotactiles réalisées par Markie Jiang \citep{jiang:tel-04500971} dans le cadre du projet. La différence de taille entre les deux carte (A4 à gauche, A5 à droite) s'explique par la différence d'usage. La première est pensée pour être utilisée chez soi ou en séance de locomotion. La seconde est plutôt prévue pour un usage sur site. Les interacteurs (ronds blancs) permettent de déclencher des sons générés par nos travaux.}
     \label{fig:experimentation_exemples_cartes_audiotactiles}
 \end{figure}
 
 \subsection{Preuve de concept 2: interactions à partir de données graphe}
+
+\label{sec:experimentation_poc2}
 
 % Inspiré des interactions avec un téléphone
 
@@ -412,7 +419,7 @@ Dans l'expérimentation précédente, nous avons proposé les méthodes permetta
 
 \subsubsection{\gls{deri} 2: un nouveau format pour naviguer dans un graphe de textes}
 
-À l'instar de la première version, un fichier \gls{deri} 2 est également un fichier zip contenant une image du document et un fichier d'interaction. Ce dernier est maintenant au format JSON et comprend les mêmes sections que précédemment. La différence majeure se situe dans la capacité des ressources à être liées à d'autres ressources en fonction d'une nouvelle interaction. En déclenchant depuis un interacteur une ressource donnée, un curseur virtuel est placé sur cette ressource. Une nouvelle interaction réalisée sur le même interacteur pourra déplacer ce curseur vers une nouvelle ressource. Les ressources forment ainsi un graphe au sein duquel il est possible de naviguer par interaction. Outre les appuis, les glisser dans les quatres directions ont été introduits pour permettre la navigation dans le graphe. La figure \ref{fig:experimentation_deri2_exemple} illustre le fonctionnement de ce nouveau format.
+À l'instar de la première version, un fichier \gls{deri} 2 est également un fichier zip contenant une image du document et un fichier d'interaction. Ce dernier est maintenant au format JSON et comprend les mêmes sections que précédemment. La différence majeure se situe dans la capacité des ressources à être liées à d'autres ressources en fonction d'une nouvelle interaction. En déclenchant depuis un interacteur une ressource donnée, un curseur virtuel est placé sur cette ressource. Une nouvelle interaction réalisée sur le même interacteur pourra déplacer ce curseur vers une nouvelle ressource. Les ressources forment ainsi un graphe au sein duquel il est possible de naviguer par interaction. Outre les appuis, les glisser dans les quatre directions ont été introduits pour permettre la navigation dans le graphe. La figure \ref{fig:experimentation_deri2_exemple} illustre le fonctionnement de ce nouveau format.
 
 \begin{figure}[ht]
     \centering
@@ -549,7 +556,7 @@ Pour chaque nœud du graphe, les nœuds voisins sont repérés pour reconstituer
 
 \subsection{Implémentation au sein d'une application web}
 
-Sur la base des données préparées en partie précédente, il serait possible de générer un fichier ad hoc utilsiable un interpréteur pour naviguer dans le carrefour à la manière d'une fiction HTML. En réalité, l'implémentation de cette expérimentation prédate le modèle présenté en partie \ref{sec:implementation_segmentation}. Ici, la description est générée automatiquement à partir d'un graphe dessiné à la main sur QGIS et contenant les informations souhaitées. Ce graphe est ensuite exporté dans un format XML propre à l'implémentation et interprété par une application web. Quatre carrefours ont été réalisés de cette manière et sont accessibles en ligne\footnote{https://carrefours.activmap.limos.fr}. Le code source également disponible sous licence libre\footnote{https://gitlab.limos.fr/jeremyk6/carrefourV2}. Une capture de l'application réalisée est proposée en figure \ref{fig:experimentation_egocentre_screen}.
+Sur la base des données préparées en partie précédente, il serait possible de générer un fichier ad hoc utilisable avec un interpréteur pour naviguer dans le carrefour à la manière d'une fiction HTML. En réalité, l'implémentation de cette expérimentation précède le modèle présenté en partie \ref{sec:implementation_segmentation}. Ici, la description est générée automatiquement à partir d'un graphe dessiné à la main sur QGIS et contenant les informations souhaitées. Ce graphe est ensuite exporté dans un format XML propre à l'implémentation et interprété par une application web. Quatre carrefours ont été réalisés de cette manière et sont accessibles en ligne\footnote{https://carrefours.activmap.limos.fr}. Le code source également disponible sous licence libre\footnote{https://gitlab.limos.fr/jeremyk6/carrefourV2}. Une capture de l'application réalisée est proposée en figure \ref{fig:experimentation_egocentre_screen}.
 
 \begin{figure}[ht]
     \centering
@@ -557,6 +564,10 @@ Sur la base des données préparées en partie précédente, il serait possible 
     \caption[Démonstrateur de navigation virtuelle dans un carrefour]{L'application web permet de naviguer dans un carrefour à la manière d'un livre dont vous êtes le héros.}
     \label{fig:experimentation_egocentre_screen}
 \end{figure}
+
+\newpar{}
+
+Cette implémentation illustre cependant la faisabilité de la proposition. Les données ici modélisées à la main pourraient être générée depuis \gls{osm} en se reposant sur QGIS, à la manière de ce que nous avons présenté dans les parties précédentes.
 
 \section{Conclusion du chapitre}
 
