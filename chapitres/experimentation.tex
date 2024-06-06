@@ -43,7 +43,7 @@ Le texte préparé pour cette expérimentation est issu d'échanges avec des per
 
 \label{sec:experimentation_forme_donnees}
 
-Pour générer le texte préparé, il faut disposer des données nécessaires à la description du carrefour. La conception du plan est divisée en trois parties pouvant chacune représenter une donnée:
+Pour générer le texte préparé, il faut disposer des données nécessaires à la description du carrefour. Cette partie vise à concevoir des données sous forme tabulaire qui permettent avec un minimum de traitement par la suite de générer les phrases de la description. Elles ne visent donc pas à représenter le carrefour mais plutôt le texte à produire. Les données et leur ordre seront donc au plus proche du texte préparé. La conception du plan est divisée en trois parties pouvant chacune représenter une donnée.
 
 \newpar{}
 
@@ -55,7 +55,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
     \begin{center}
         \footnotesize
         \begin{tabular}{ | l | l |}
-            \textbf{Nombre branche} & \textbf{Noms branches}\\
+            \textbf{Nombre branches} & \textbf{Noms branches}\\
             \hline
             4 & 
             \makecell{
@@ -66,7 +66,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
             }
         \end{tabular}
     \end{center}
-    \caption[Schéma tabulaire de la description générale]{Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte.}
+    \caption[Schéma tabulaire de la description générale]{Le nom des branches est séparé en type et en nom afin de permettre la liaison lors de la réalisation du texte (voir partie \ref{sec:experimentation_implémentation_patron}). À l'instar du texte, chaque nom de branche n'apparaît qu'une fois.}
     \label{tab:experimentation_desc_generale}
 \end{table}
 
@@ -79,19 +79,35 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
 \begin{table}[ht]
     \begin{center}
         \footnotesize
-        \begin{tabular}{ | l | l |}
-            \textbf{N° branche} & \textbf{Voies}\\
+        \begin{tabular}{ | l | l | l |}
+            \textbf{N° branche} & \textbf{Nom} & \textbf{Voies}\\
             \hline
             2 & 
             \makecell{
+                \texttt{\{}\\
+                \hspace{0.5cm}\texttt{\{"type": "avenue"\}},\\
+                \hspace{0.5cm}\texttt{\{"name": "Carnot"\}}\\
+                \texttt\}
+            } &
+            \makecell{
                 \texttt[\\
-                \hspace{0.5cm}\texttt{\{"number": 1,"direction": "sortante","type": "bus"\}},\\
-                \hspace{0.5cm}\texttt{\{"number": 1,"direction": "entrante","type": "car"\}}\\
+                \hspace{0.5cm}\texttt{\{}\\
+                \hspace{1cm}\texttt{"direction": "sortant",}\\
+                \hspace{1cm}\texttt{"lanes": [}\\
+                \hspace{1.5cm}\texttt{\{"number": 1, "type": "bus"\}}\\
+                \hspace{1cm}\texttt{]}\\
+                \hspace{0.5cm}\texttt{\},\{}\\
+                \hspace{1cm}\texttt{"direction": "entrant",}\\
+                \hspace{1cm}\texttt{"lanes": [}\\
+                \hspace{1.5cm}\texttt{\{"number": 1, "type": "circulation"\},}\\
+                \hspace{1.5cm}\texttt{\{"number": 1, "type": "bus"\}}\\
+                \hspace{1cm}\texttt{]}\\
+                \hspace{0.5cm}\texttt{\}}\\
                 \texttt]
             }
         \end{tabular}
     \end{center}
-    \caption[Schéma tabulaire de la description des branches]{Le champ voie décrit l'enchainement des voies du la branche. Pour chaque couple de direction et de type, le nombre de voies contigües concernées est indiqué.}
+    \caption[Schéma tabulaire de la description des branches]{Le champ Voies décrit l'enchainement des voies de la branche dans le sens des aiguilles d'une montre. Comme dans le texte, les voies sont regroupées par directions et par types contigüs: pour chaque couple de direction et de type, le nombre de voies contigües concernées est indiqué.}
     \label{tab:experimentation_desc_branches}
 \end{table}
 
@@ -110,7 +126,7 @@ Pour générer le texte préparé, il faut disposer des données nécessaires à
             3 & 2 & complet & complet
         \end{tabular}
     \end{center}
-    \caption[Schéma tabulaire de la description des traversées]{Pour chaque branche, les caractéristiques de la traversée sont renseignées.}
+    \caption[Schéma tabulaire de la description des traversées]{Pour chaque branche, une synthèse des caractéristiques de la traversée est renseignée.}
     \label{tab:experimentation_desc_traversées}
 \end{table}
 
@@ -148,7 +164,7 @@ Le texte préparé implique d'avoir accès à des données liées à la voirie �
 
 \newpar{}
 
-Nous avons déjà présenté les méthodes mobilisées pour délimiter un carrefour et ses branches dans la partie \ref{sec:modelisation_crseg}. Ces méthodes ont été implémentées en Python au sein d'un outil nommé crseg et publié sous la forme d'un logiciel libre\footnote{https://github.com/jmtrivial/crossroads-segmentation}, qui permet, à partir du graphe de données issu d'\gls{osm} de délimiter les carrefours et, pour chaque carrefours, séparer son cœur de ses branches. Il présente plusieurs paramètres détaillés en partie \ref{sec:modelisation_crseg} et sur la forge logicielle de l'outil. Il permet, en sortie, d'obtenir pour chaque région du carrefour (cœur du carrefour, branches, bordures) les nœuds correspondants au format JSON (voir figure \ref{fig:experimentation_crseg_json}).
+Nous avons déjà présenté les méthodes mobilisées pour délimiter un carrefour et ses branches dans la partie \ref{sec:modelisation_crseg}. Ces méthodes ont été implémentées en Python au sein d'un outil nommé \textbf{crseg} et publié sous la forme d'un logiciel libre\footnote{https://github.com/jmtrivial/crossroads-segmentation}, qui permet, à partir du graphe de données issu d'\gls{osm} de délimiter les carrefours et, pour chaque carrefour de le séparer en une cœur et des branches. Il présente plusieurs paramètres détaillés en partie \ref{sec:modelisation_crseg} et sur la forge logicielle de l'outil. Il permet, en sortie, d'obtenir pour chaque région du carrefour (cœur du carrefour, branches, bordures) les nœuds correspondants au format JSON (voir figure \ref{fig:experimentation_crseg_json}).
 
 \begin{figure}[ht]
     \centering
@@ -159,7 +175,7 @@ Nous avons déjà présenté les méthodes mobilisées pour délimiter un carref
 
 \newpar{}
 
-Faisant suite à la délimitation du carrefour, nous présentions dans la partie \ref{sec:modelisation_calcul_info_pietonnes} les méthodes permettant à partir des branches d'obtenir sur le carrefour les trottoirs, les îlots, et les traversées de branches. Ces méthodes ont également été implémentées en Python au sein d'un outil nommé crmodel et publié sous la forme d'un logiciel libre\footnote{https://github.com/jeremyk6/crmodel}. crmodel prend en entrée le même graphe de données \gls{osm} utilisé par crseg, ainsi que le JSON de segmentation produit par crseg. Un exemple de résultat calculé par crmodel est présenté en figure \ref{fig:experimentation_crmodel_info_pietonne}.
+Faisant suite à la délimitation du carrefour, nous présentions dans la partie \ref{sec:modelisation_calcul_info_pietonnes} les méthodes permettant à partir des branches d'obtenir sur le carrefour les trottoirs, les îlots, et les traversées de branches. Ces méthodes ont également été implémentées en Python au sein d'un outil nommé \textbf{crmodel} et publié sous la forme d'un logiciel libre\footnote{https://github.com/jeremyk6/crmodel}. crmodel prend en entrée le même graphe de données \gls{osm} utilisé par crseg, ainsi que le JSON de segmentation produit par crseg. Un exemple de résultat calculé par crmodel est présenté en figure \ref{fig:experimentation_crmodel_info_pietonne}.
 
 \begin{figure}[ht]
     \centering
@@ -174,7 +190,7 @@ crmodel comprend, au-delà de la création de ces nouvelles informations, une se
 
 \newpar{}
 
-L'outil crmodel en ligne de commande embarque crseg et permet de visualiser le résultat de la segmentation avec la commande \texttt{crmodel -c x y} (x et y correspondant à la position approximative du centre du carrefour). Celle-ci peut être ajustée à l'aide des paramètres pour obtenir un résultat satisfaisant. On peut alors ajouter \texttt{-o carrefour.geojson} pour obtenir le fichier à intégrer à QGIS. Pour faciliter son utilisation par un utilisateur final, le géomaticien peut embarquer l'outil dans un traitement graphique exposant ses paramètres.
+L'outil crmodel en ligne de commande embarque crseg et permet de visualiser le résultat de la segmentation avec la commande \texttt{crmodel -c x y} (x et y correspondant à la position approximative du centre du carrefour). Celle-ci peut être ajustée à l'aide des paramètres $C0$ (\texttt{--c0}), $C1$ (\texttt{--c1}) et $C2$ (\texttt{--c2}) (voir partie \ref{sec:modelisation_crseg}) pour obtenir un résultat satisfaisant. On peut alors ajouter \texttt{-o carrefour.geojson} pour obtenir le fichier à intégrer à QGIS. Pour faciliter son utilisation par un utilisateur final, le géomaticien peut embarquer l'outil dans un traitement graphique exposant ses paramètres.
 
 \subsubsection{Transformation des données}
 
@@ -203,7 +219,7 @@ Le format GeoJSON, pratique pour proposer un export rapide de l'intégralité de
 
 \label{sec:experimentation_implémentation_patron}
 
-Les données adaptées à la description en notre possession, nous pouvons maintenant implémenter les patrons de description puis leur assemblage sous QGIS. Pour le permettre, nous avons implémenté une extension à QGIS nommé QGIS2Desc, qui s'intègre à Processing pour proposer deux nouveaux traitements.
+Les données adaptées à la description en notre possession, nous pouvons maintenant implémenter les patrons de description puis leur assemblage sous QGIS. Pour le permettre, nous avons implémenté une extension à QGIS nommé \textbf{QGIS2Desc} et publié sous la forme d’un logiciel libre\footnote{https://github.com/jeremyk6/QGIS2Desc}, qui s'intègre à Processing pour proposer deux nouveaux traitements.
 
 \newpar{}
 
@@ -263,7 +279,7 @@ Le second s'appelle <<~Assembler des descriptions~>> et va permettre de génére
 
 \newpar{}
 
-À l'instar des traitements de données, il est possible d'intégrer les patrons et l'assemblage dans un traitement Processing pour permettre sa réutilisation sur de nouvelles données. Un modèle graphique Processing devient sous QGIS un traitement comme un autre avec des entrées, des sorties, et des paramètres. Il est ainsi possible d'exposer les paramètres de l'assemblage comme les métadonnées à sélectionner ou le plan de la description afin de permettre à un utilisateur final de moduler la description obtenue. La figure \ref{fig:experimentation_qgis2desc_modele_assemblage} illustre un exemple de modèle graphique permettant la description du carrefour.
+À l'instar des traitements de données, il est possible d'intégrer les patrons et l'assemblage dans un traitement Processing pour permettre sa réutilisation sur de nouvelles données. Un modèle graphique Processing devient sous QGIS un traitement comme un autre avec des entrées, des sorties, et des paramètres. Il est ainsi possible d'exposer les paramètres de l'assemblage comme les métadonnées à sélectionner ou le plan de la description afin de permettre à un utilisateur final de moduler la description obtenue. La figure \ref{fig:experimentation_qgis2desc_modele_assemblage} illustre un exemple de modèle graphique permettant la description du carrefour. Les patrons permettant de décrire chaque partie sont présents en annexe \ref{annexe:patrons}.
 
 \begin{figure}[ht]
     \centering
@@ -282,7 +298,7 @@ Les outils en place, l'utilisateur final (l'\gls{ia}) va pouvoir générer des d
     \item Exécuter le second traitement pour obtenir la description finale. Il est possible de personnaliser le résultat en sélectionnant les patrons préparés, et en ajustant la présence et la forme des parties. 
 \end{enumerate}
 
-L'intégralité du processus réalisé par l'utilisateur final est illustré en figure \ref{fig:experimentation_processus_realisation_utilisateur}.
+L'intégralité du processus réalisé par l'utilisateur final est illustré en figure \ref{fig:experimentation_processus_realisation_utilisateur}. Il pourrait par ailleurs être présenté à l'utilisateur sous la forme d'un unique traitement chaînant ces trois étapes et exposant leurs paramètres dans une interface unique. Des exemples de descriptions générées sur plusieurs carrefours sont présentés en annexe \ref{annexe:exemples}.
 
 \begin{figure}[ht]
     \centering
@@ -365,7 +381,7 @@ Une illustration de la chaîne de traitement partant des données jusqu'au lien 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/experimentation/pipeline_creation_deri1.pdf}
-    \caption[Chaîne de traitement SIG pour générer un DERi]{Cette chaîne présente la méthode choisie pour définir le texte des interacteurs de la carte tactile en fonction des objets qu'ils représentent. Ce lien est fait en utilisant l'idenfiant \gls{osm} commun au texte et à la carte.}
+    \caption[Chaîne de traitement SIG pour générer un DERi]{Cette chaîne présente la méthode choisie pour définir le texte des interacteurs de la carte tactile en fonction des objets qu'ils représentent. Ce lien est fait en utilisant l'idenfiant \gls{osm} commun au texte et à la carte. Notre contribution à cette chaîne est représentée par les traitements situés sur la ligne centrale.}
     \label{fig:experimentation_lien_carte_texte}
 \end{figure}
 

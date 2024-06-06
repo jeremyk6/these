@@ -5,7 +5,7 @@ _markdown_main
 *.fls
 *.synctex.gz
 *.toc
-*.bbl
+*.bbl*
 *.bcf
 *.blg
 *.lof
@@ -20,3 +20,4 @@ main-plantuml.*
 .DS_Store
 bibliography/*.pdf
 bibliography/*.sav
+_minted-main

@@ -13,7 +13,7 @@ Un carrefour est une infrastructure urbaine qui peut voir interagir des véhicul
 
 % Pour définir les éléments de mon modèle, j'ai utilisé des méthodo de travail : je suis allé interroger des professionnels, etc. Mentionner le fait d'être allé rencontrer des personnes du CRDV, autres professionnels.
 
-Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu où se croisent plusieurs rues ou plusieurs routes, généralement aménagé en vue d'éviter les risques de collision, et parfois d'améliorer le débit}. Une particularité concernant nos travaux est que le carrefour nous intéresse du point de vue du piéton, et notamment du piéton concerné par la déficience visuelle, dont les spécificités doivent être prise en compte dans la définition d'un carrefour tel que nous le concevons. Lors des travaux préliminaires à ce mémoire, nous avons interrogé des personnes concernées et professionnels du \gls{crdv} de Clermont-Ferrand pour établir cette définition. Pour ces dernières, la limite d'un carrefour correspond à l'étendue de ce qu'une personne peut entendre. Bien qu'il existe des travaux de modélisation accoustique \citep{Bullen1977} orientés notamment sur la propagation du bruit, cette approche nous semble difficile à généraliser dans un premier temps. Nous avons donc choisi de nous concentrer tout d'abord sur la structure du carrefour du point de vue du piéton, en en proposant une représentation sous forme de graphe, puis en s'intéressant aux élements d'accessibilité spécifiques à la mobilité des \glspl{pcdv}.
+Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu où se croisent plusieurs rues ou plusieurs routes, généralement aménagé en vue d'éviter les risques de collision, et parfois d'améliorer le débit}. Une particularité concernant nos travaux est que le carrefour nous intéresse du point de vue du piéton, et notamment du piéton concerné par la déficience visuelle, dont les spécificités doivent être prise en compte dans la définition d'un carrefour tel que nous le concevons. Lors des travaux préliminaires à cette thèse, nous avons interrogé des personnes concernées et professionnels du \gls{crdv} de Clermont-Ferrand pour établir cette définition. Pour ces dernières, la limite d'un carrefour correspond à l'étendue de ce qu'une personne peut entendre. Bien qu'il existe des travaux de modélisation accoustique \citep{Bullen1977} orientés notamment sur la propagation du bruit, cette approche éloignée de notre discipline nous est difficile à appliquer à la caractérisation d'un carrefour. Nous avons donc choisi de nous concentrer tout d'abord sur la structure du carrefour du point de vue du piéton, en en proposant une représentation sous forme de graphe, puis en s'intéressant aux élements d'accessibilité spécifiques à la mobilité des \glspl{pcdv}.
 
 \subsection{Le graphe du carrefour du point de vue d'un piéton}
 
@@ -22,25 +22,32 @@ Un carrefour, tel que défini par le dictionnaire Larousse, est un \pquote{lieu 
 La représentation des réseaux routier sous forme de graphe est une approche classique pour modéliser les déplacements automobiles. Dans le contexte de ce travail, nous nous intéressons aux cheminements piétons. Ces derniers se placent principalement sur des trottoirs et peuvent donc être considérés comme linéaires. On peut alors également assimiler cet espace de circulation à un graphe où les sommets sont des points de bifurcation et les arêtes des trajets représentant le cheminement sur le trottoir. Pour modéliser le carrefour du point de vue d'un piéton, nous avons choisi de nous reposer sur cette approche graphe, en intégrant également le réseau routier afin de formaliser les points de conflit potentiel entre les différentes modalités de déplacement pour en documenter les configurations. Les définitions suivantes en déterminent la structure:
 
 \begin{definition}
+    On défini un \textbf{graphe multimodal} comme un graphe $G = (V,E)$ plongé dans le plan et muni d'une couverture $\{G_r=(V_r, E_r), G_p = (V_p, E_p)\}$ composée d'un \textbf{graphe routier} $G_r$ et d'un \textbf{graphe piéton} $G_p$.
+\end{definition}
+
+\noindent
+Remarque: Dans un graphe multimodal, l'intersection entre l'ensemble des nœuds de son graphe routier et l'ensemble des nœuds de son graphe piéton peut ne pas être vide. Leur intersection correspond aux passages piétons.
+
+\noindent
+Dans la suite, on note $G = (V,E)$ un graphe multimodal sur lequel on défini les autres ensembles et propriétés.
+
+\begin{definition}
+    On appelle $G' = (V',E')$ un sous-graphe de $G = (V,E)$ si $V' \subset V$ et $E' \subset E$.
+\end{definition}
+
+\begin{definition}
     On appelle \textbf{couverture} d'un graphe $G_0 = (V_0,E_0)$ et plongé dans le plan un ensemble de sous-graphes $\mathcal{G_0}$ tels que:
     \begin{itemize}
         \item Si $G_1=(V_1, E_1) \in \mathcal{G_0}$ et $G_2=(V_2, E_2) \in \mathcal{G}_p$, alors $E_1 \cap E_2 = \emptyset$
         \item $\forall e \in E_p$, $\exists!~G_1=(V_1, E_1) \in \mathcal{G}_p$ tel que $e \in E_1$
     \end{itemize}
-    
-    Dans la suite, on appelle $\mathcal{G}_p$ une couverture du graphe piéton, et $\mathcal{G}_r$ une couverture du graphe routier.
-    
-    Dans la suite, on dira que deux sous-graphes sont \textbf{connectés} s'ils partagent au moins un sommet en commun.
-\end{definition}
-
-\begin{definition}
-    On défini un \textbf{graphe multimodal} comme un graphe $G = (V,E)$ plongé dans le plan et muni d'une couverture $\{G_r=(V_r, E_r), G_p = (V_p, E_p)\}$ composée d'un \textbf{graphe routier} $G_r$ et d'un \textbf{graphe piéton} $G_p$.
-
-    Dans la suite, on note $G = (V,E)$ un graphe multimodal sur lequel on défini les autres ensembles et propriétés.
 \end{definition}
 
 \noindent
-Remarque: l'intersection entre $V_r$ et $V_p$ peut ne pas être vide.
+Dans la suite, on appelle $\mathcal{G}_p$ une couverture du graphe piéton, et $\mathcal{G}_r$ une couverture du graphe routier.
+
+\noindent
+Dans la suite, on dira que deux sous-graphes sont \textbf{connectés} s'ils partagent au moins un sommet en commun.
 
 \begin{definition}
     Soient $G_1=(V_1, E_1)$ et $G_2=(V_2, E_2)$ deux sous-graphes de $G=(V, E)$.
@@ -53,6 +60,9 @@ Remarque: l'intersection entre $V_r$ et $V_p$ peut ne pas être vide.
 
     On note $\mathcal{G}_t$ l'ensemble des trottoirs.
 \end{definition}
+
+\noindent
+Remarque: la notion d'adjacence peut-être complétée par une information de position relative grâce au plongement dans le plan du graphe. Cette information d'orientation sera utilisée en parties \ref{sec:modelisation_crmodel} et \ref{sec:modelisation_calcul_info_pietonnes} pour définir les positions relatives des objets dans la modélisation.
 
 \begin{definition}
     Étant donné une couverture $\mathcal{G}_p$ d'un graphe piéton $G_p$, un ensemble de fonctions d'adjacence est dit \textbf{un ensemble de trottoirs couvrants} s'il n'existe pas de sommet $v \in G_p$ appartenant à plus d'un trottoir.
@@ -95,7 +105,7 @@ Exemple: couverture d'un graphe piéton qui n'est pas un ensemble de trottoirs c
 \end{definition}
 
 \noindent
-Remarque: un cœur de carrefour ne peut pas être un chemin.
+Remarque: il n'y a pas unicité de la couverture d'un réseau routier. Les cas qui nous intéresseront seront produits par les algorithmes présentés ultérieurement.
 
 \noindent
 Exemple: Une couverture routière à plusieurs carrefours, dite de quartier (voire figure \ref{fig:mod_ex_couverture_quartier}).
@@ -128,7 +138,7 @@ Exemple: Une couverture routière à plusieurs carrefours, dite de quartier (voi
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{images/modelisation/graphe/graphe_multimodal.pdf}
-    \caption[Graphe multimodal d'un carrefour]{Un graphe multimodal d'un carrefour. Les chemins $(p_1, p_2, p_3)$, $(p_4, p_5, p_6)$, $(p_7, p_8, p_9, p_{10})$ et $(p_{11}, p_{12}, p_{13})$ sont des traversée.}
+    \caption[Graphe multimodal d'un carrefour]{Un graphe multimodal d'un carrefour. Les chemins $(p_1, p_2, p_3)$, $(p_4, p_5, p_6)$, $(p_7, p_8, p_9, p_{10})$ et $(p_{11}, p_{12}, p_{13})$ sont des traversées.}
     \label{fig:mod_ex_graphe_carrefour}
 \end{figure}
 
@@ -204,7 +214,7 @@ La représentation des carrefours sur OpenStreetMap est en partie possible, mais
 \begin{figure}[ht]
     \centering
     \resizebox{15cm}{!}{\includegraphics{images/modelisation/mod_carrefours_osm_paris.pdf}}
-    \caption[Les carrefours dans OpenStreetMap à Paris]{À Paris, bien qu'il y ait beaucoup d'objets portant la clé \osmkey{junction}, la majorité des carrefours ne sont pas représentés sous cette forme. Source: Contributeurs OpenStreetMap.}
+    \caption[Les carrefours dans OpenStreetMap à Paris]{Cette carte présentant les carrefours identifiés sur \gls{osm} à Paris montre que, bien qu'il y ait beaucoup d'objets portant la clé \osmkey{junction}, la majorité des carrefours ne sont pas représentés sous cette forme. Source: Contributeurs OpenStreetMap.}
     \label{fig:modelisation_carrefours_osm_paris}
 \end{figure}
 
@@ -310,6 +320,8 @@ OSM-Objet se repose sur le patron de conception du décorateur \citep{Gamma1994a
 \end{figure}
 
 \subsection{Application à la modélisation du carrefour}
+
+\label{sec:modelisation_crmodel}
 
 Pour modéliser le carrefour, nous proposons CrModel, le modèle de données en figure \ref{fig:modelisation_crmodel}. Il représente un graphe du carrefour, dont la classe Node figure les nœuds et la classe Way figure les tronçons. Nous avons architecturé les nœuds autour d'OSM-Objet. Chaque branche (Branch) est identifiée par un numéro et contient tous les tronçons qui en font partie. Une  branche peut également contenir une traversée (Crossing). Nous avons également introduit certains comportements spécifiques:
 
@@ -604,7 +616,7 @@ Si la rue qui connecte $s_1$ à $s_2$ avait été moins large, l'algorithme n'au
 Les carrefours élémentaires dans le même voisinage sont alors fusionnés en considérant la géométrie de leurs arêtes adjacentes.
 
 Nous comparons pour chaque paire de carrefours élémentaires $i_1$ et $i_2$ la distance euclidienne 
-$|s(i_1), s(i_2)$ entre les graines $s(\cdot)$ avec une mesure de proximité donné dans la formule (\ref{eq:0002}), où $\mathcal{C}_1$ est un paramètre de notre méthode, $w(i)$ est la largeur maximum des rues dans $i$, et $\alpha_{i_1, i_2} \in \{ 1, \frac{1}{2} \}$ en fonction de la présence d'un possible nœud de bordure dans le chemin qui connecte $i_1$ et $i_2$.
+$|s(i_1), s(i_2)|$ entre les graines $s(\cdot)$ avec une mesure de proximité donnée dans la formule (\ref{eq:0002}), où $\mathcal{C}_1$ est un paramètre de notre méthode, $w(i)$ est la largeur maximum des rues dans $i$, et $\alpha_{i_1, i_2} \in \{ 1, \frac{1}{2} \}$ en fonction de la présence d'un possible nœud de bordure dans le chemin qui connecte $i_1$ et $i_2$.
 
 \begin{equation}
  p_{i_1, i_2} = \mathcal{C}_1 \alpha_{i_1, i_2} \mathrm{max} \{ w(i_1), w(i_2) \}
@@ -613,8 +625,8 @@ $|s(i_1), s(i_2)$ entre les graines $s(\cdot)$ avec une mesure de proximité don
 
 La paire de carrefours est alors considérée en fonction de cette proximité:
 \begin{itemize}
-    \item si $|s(i_1), s(i_2) > p_{i_1, i_2}$, les deux carrefours ne sont pas voisins,
-    \item si $|s(i_1), s(i_2) \leq \frac{1}{2} p_{i_1, i_2}$, les deux carrefours élémentaires sont considérés comme faisant partie du même carrefour fonctionnel,
+    \item si $|s(i_1), s(i_2)| > p_{i_1, i_2}$, les deux carrefours ne sont pas voisins,
+    \item si $|s(i_1), s(i_2)| \leq \frac{1}{2} p_{i_1, i_2}$, les deux carrefours élémentaires sont considérés comme faisant partie du même carrefour fonctionnel,
     \item entre ces deux valeurs, on considère les angles et noms des arêtes adjacentes pour décider si les deux carrefours élémentaires font partie du même carrefour fonctionnel. Pour chaque paire de carrefours voisins, on identifie les paires d'arêtes adjacentes portant le même nom, qui sont orientées dans une direction similaire (avec un angle relatif inférieur à 90°), et dont l'orientation relative au segment défini par les graines des deux carrefours est significativement différent (d'un angle supérieur à 45°). Si une telle paire d'arêtes existe, alors les deux carrefours élémentaires font parties du même carrefour fonctionnel. La figure \ref{fig:modelisation_elementary_edges_relative_angle} illustre ce calcul en montrant les deux carrefours élémentaires avec deux paires d'arêtes adjacentes, chacune dans la configuration attendue pour fusionner les carrefours.
 \end{itemize}
 
@@ -652,7 +664,7 @@ Pour piloter la taille des carrefours générés, on définit pour un chemin de 
 \end{equation}
 
 Ensuite, on cherche l'ensemble des cycles qui contiennent une alternance de carrefours et de chemins de liaison, en conservant dans le processus une boucle $l$ si elle satisfait les deux conditions suivantes, pilotées par un paramètre $\mathcal{C}_2$.
-D'abord, on sélectionne uniquement les chemins de liaison courts qui vérifie la formule ref{eq:0004}, où $w_k$ est la largeur maximum des voies dans $k$.
+D'abord, on sélectionne uniquement les chemins de liaison courts qui vérifie la formule \ref{eq:0004}, où $w_k$ est la largeur maximum des voies dans $k$.
 
 \begin{equation}
 \mathrm{length}'(k) \leq w_k \mathcal{C}_2

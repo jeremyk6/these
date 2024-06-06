@@ -1,5 +1,227 @@
 \begin{appendix}
 
+\chapter{Patrons implémentés pour décrire un carrefour}
+\label{annexe:patrons}
+
+\section*{Patron de la description générale}
+
+\begin{minted}[linenos, frame=lines, fontsize=\small]{python}
+def description(f):
+  phrase = S("Le carrefour à l'intersection")
+  # Boucle qui compose la conjonction
+  # Permet d'obtenir un texte type "de a, de b et de c"
+  et = CP(C("et"))
+  for nom in f["noms_branches"]:
+    et.add(
+      # Le syntagme prépositionnel permet d'obtenir la préposition
+      # correspondant au type de voie: "de l'avenue", "du cours", etc.
+      PP(
+        P("de"),
+        D("le"),
+        N(nom["type"]),
+        nom["name"]
+      )
+    )
+  phrase.add(et)
+  phrase.add("est un carrefour à %s branches"%f["nombre_branches"])
+  return(json.dumps(phrase.toJSON()))
+\end{minted}
+
+\section*{Patron de la description des branches}
+
+\begin{minted}[linenos, frame=lines, fontsize=\small]{python}
+def description(f):
+  voies = json.loads(f["voies"])
+  # Composition de la première partie de la phrase: 
+  # "La branche numéro 2 qui s'appelle avenue Roosevelt est composée"
+  phrase = S("La branche numéro",  NO(f["numero_branche"]).nat(True), 
+             "qui s'appelle", f["nom"]["type"], f["nom"]["name"], 
+             "est composée")
+    
+  # Boucle qui compose la conjonction
+  et_global = CP(C("et"))
+  for group in voies:
+    direction = group["direction"]
+    lanes = group["lanes"]
+    et_lanes = CP(C("et"))
+    for lane in lanes:
+      # Pour chaque voie, on ajoute le texte "n voie(s) de type"
+      et_lanes.add(NP( 
+        P("de"), NO(lane["number"]).nat(True), N("voie"), 
+        P("de"), N(lane["type"]) 
+      ))
+    # On ajoute le texte "entrante(s) ou sortante(s)"
+    et_global.add(S(NP (et_lanes, A(direction))))
+  phrase.add(et_global)
+  return(json.dumps(phrase.toJSON()))
+\end{minted}
+
+\section*{Patron de la description des traversées}
+
+\begin{minted}[linenos, frame=lines, fontsize=\small]{python}
+def description(f):
+    texte = []
+    # Première phrase. Indication du nombre de passages piétons de la traversée
+    phrase = S("La branche numéro",  NO(f["numero_branche"]).nat(True), 
+               "se traverse en", NP(NO(f["nombre_passage_pieton"]).nat(True), 
+               N("fois")))
+    texte.append(phrase.toJSON())
+    # Deuxième phrase. Indication de la présence d'un feu piéton.
+    phrase = S("Les passages piéton")
+    if f["feux_pieton"] == "complet" : 
+        phrase.add("sont tous protégés par un feu")
+    elif f["feux_pieton"] == "incomplet" : 
+        phrase.add("ne sont pas tous protégés par un feu")
+    else : phrase.add("ne sont pas protégés par des feux")
+    texte.append(phrase.toJSON())
+    # Troisième phrase. Indication de la présence de BEV.
+    phrase = S("Ils")
+    if f["pavage_tactile"] == "complet" : 
+        phrase.add("ont tous des bandes d'éveil de vigilance")
+    elif f["pavage_tactile"] == "incomplet" : 
+        phrase.add("n'ont pas tous des bandes d'éveil de vigilance")
+    else : phrase.add("n'ont pas de bandes d'éveil de vigilance")
+    texte.append(phrase.toJSON())
+    return(json.dumps(texte))
+\end{minted}
+
+\chapter{Exemples de descriptions générées}
+\label{annexe:exemples}
+
+Cette annexe présente quatre exemples de descriptions de carrefour générées par la chaîne présentée en chapitre \ref{chap:implementation}. Les données \gls{osm} ont été traitées par crseg pour segmenter le carrefour, puis par crmodel pour générer les informations piétonnes. Enfin, les patrons de descriptions détaillés en annexe \ref{annexe:patrons} ont été appliqués pour générer les descriptions. Les figures présentées contiennent les branches et cœur de carrefour produits par crseg. Les traversées, îlots et trottoirs ont été produits par crmodel. Les îlots et trottoirs sont présentés dans les figures de manière graphique pour illustrer leur présence, mais ne sont contenus que sous forme d'attribut dans les tronçons qu'ils longent.
+
+\newpage
+\section*{Exemple 1}
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{images/annexes/carrefour_simple.pdf}
+  \caption{Sur ce carrefour en croix, le résultat correspond à la réalité du terrain.}
+  \label{fig:exemple1}
+\end{figure*}
+
+Le carrefour à l'intersection du cours Sablon et du boulevard Lafayette est un carrefour à 4 branches.
+
+\newpar{}
+
+La branche numéro un qui s'appelle cours Sablon est composée de deux voies de circulation sortantes, et deux voies de circulation entrantes.
+
+La branche numéro deux qui s'appelle boulevard Lafayette est composée de deux voies de circulation sortantes.
+
+La branche numéro trois qui s'appelle cours Sablon est composée de deux voies de circulation sortantes, et deux voies de circulation entrantes.
+
+La branche numéro quatre qui s'appelle boulevard Lafayette est composée de deux voies de circulation entrantes.
+
+\newpar{}
+
+La branche numéro un se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro deux se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro trois se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro quatre se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+\newpage
+\section*{Exemple 2}
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{images/annexes/carrefour_master.pdf}
+  \caption{La contre-allée au nord-ouest du carrefour n'est pas décrite. Le problème provient de la segmentation, qui ne gère pas les parties déconnectées du reste du carrefour.}
+  \label{fig:exemple2}
+\end{figure*}
+
+Le carrefour à l'intersection du cours Sablon et de l'avenue Carnot est un carrefour à 4 branches.
+
+\newpar{}
+
+La branche numéro un qui s'appelle cours Sablon est composée d'une voie de circulation sortante, et trois voies de circulation entrantes.
+
+La branche numéro deux qui s'appelle avenue Carnot est composée d'une voie de bus sortante, et une voie de circulation et une voie de bus entrante.
+
+La branche numéro trois qui s'appelle cours Sablon est composée d'une voie de circulation sortante, et deux voies de circulation entrantes.
+
+La branche numéro quatre qui s'appelle avenue Carnot est composée de quatre voies de circulation sortantes.
+
+\newpar{}
+
+La branche numéro un se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro deux se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro trois se traverse en trois fois. Les passages piétons ne sont pas tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.
+
+La branche numéro quatre se traverse en deux fois. Les passages piétons ne sont pas tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.
+
+\newpage
+\section*{Exemple 3}
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/annexes/carrefour_manon.pdf}
+    \caption{La traversée simultanée des branches 2 et 3 n'est pas décrite sur ce carrefour. Le problème provient de crmodel qui ne gère les traversées que sur une seule branche à la fois.}
+    \label{fig:exemple3}
+\end{figure*}
+
+Le carrefour à l'intersection du boulevard Berthelot, de la rue Jean-Baptiste Torrilhon, de l'avenue Franklin Roosevelt et de l'avenue Joseph Claussat est un carrefour à 5 branches.
+
+\newpar{}
+
+La branche numéro un qui s'appelle boulevard Berthelot est composée d'une voie de circulation sortante, et deux voies de circulation entrantes.
+
+La branche numéro deux qui s'appelle rue Jean-Baptiste Torrilhon est composée d'une voie de circulation sortante.
+
+La branche numéro trois qui s'appelle avenue Franklin Roosevelt est composée d'une voie de circulation entrante.
+
+La branche numéro quatre qui s'appelle boulevard Berthelot est composée de deux voies de circulation sortantes, et une voie de circulation entrante.
+
+La branche numéro cinq qui s'appelle avenue Joseph Claussat est composée d'une voie de circulation sortante, et deux voies de circulation entrantes.
+
+\newpar{}
+
+La branche numéro un se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il n'y a pas de bandes d'éveil de vigilance.
+
+La branche numéro deux ne se traverse pas.
+
+La branche numéro trois ne se traverse pas.
+
+La branche numéro quatre se traverse en deux fois. Les passages piétons sont tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.
+
+La branche numéro cinq se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+\newpage
+\section*{Exemple 4}
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/annexes/carrefour_gauthier.pdf}
+    \caption{La traversée présentée pour la branche 3 est sélectionnée par crmodel car plus courte que les autres solutions. Elle paraît cependant très éloignée du cœur du carrefour et ne serait pas forcément à privilégier.}
+    \label{fig:exemple4}
+\end{figure*}
+
+Le carrefour à l'intersection de l'avenue d'Italie, de l'avenue de l'Union Soviétique, du boulevard Fleury et de l'avenue de Grande-Bretagne est un carrefour à 4 branches.
+
+\newpar{}
+
+La branche numéro un qui s'appelle avenue d'Italie est composée de deux voies de circulation entrantes.
+
+La branche numéro deux qui s'appelle avenue de l'Union Soviétique est composée d'une voie de bus sortante, et deux voies de circulation entrantes.
+
+La branche numéro trois qui s'appelle boulevard Fleury est composée de deux voies de circulation sortantes, et deux voies de circulation entrantes.
+
+La branche numéro quatre qui s'appelle avenue de Grande-Bretagne est composée d'une voie de circulation et une voie de bus sortante, et une voie de circulation et une voie de bus entrante.
+
+\newpar{}
+
+La branche numéro un se traverse en deux fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro deux se traverse en deux fois. Les passages piétons sont tous protégés par un feu. Il manque des bandes d'éveil de vigilance ou celles-ci sont dégradées.
+
+La branche numéro trois se traverse en une fois. Les passages piétons sont tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
+La branche numéro quatre se traverse en trois fois. Les passages piétons ne sont pas tous protégés par un feu. Il y a des bandes d'éveil de vigilance.
+
 \chapter{Réponses au questionnaire envoyé aux \gls{ia}}
 \label{annexe:questionnaire}
 
@@ -145,7 +367,7 @@ La branche numéro un se traverse en deux fois.\qcomment{("cette phrase est faus
 
 \qsansaj{C'est un carrefour à feu,} \qavecaj{sans répétiteur sonore de feu.}
 
-La branche \qsansaj{de devant} \qreformcplx{est large de 5 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage}.
+La branche \qsansaj{de devant} \qreformcplx{est large de 5 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage.}
 
 \newpar{}
 
@@ -153,13 +375,13 @@ La branche \qsansaj{de droite} \qreformcplx{est large de 3 voies de circulation.
 
 \newpar{}
 
-La branche \qsansaj{de derrière} \qreformcplx{se fait en 3 fois. Une première partie large de deux voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage. Elle est séparée par une zone de sécurité de la seconde partie. La seconde partie est large de 2 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage. La troisième partie est séparée par une zone de sécurité. Elle est large d'une voie de circulation} \qsansaj{et pas dans l'axe des deux premières}. \qreformcplx{Pas de feu piéton pour cette partie.}
+La branche \qsansaj{de derrière} \qreform{se fait en 3 fois.} \qsansaj{Une première partie large de deux voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage. Elle est séparée par une zone de sécurité de la seconde partie. La seconde partie est large de 2 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage. La troisième partie est séparée par une zone de sécurité. Elle est large d'une voie de circulation et pas dans l'axe des deux premières. Pas de feu piéton pour cette partie.}
 
 \newpar{}
 
 La branche \qsansaj{de gauche} se traverse en deux fois. \qsansaj{Première partie concerne les véhicules dont la trajectoire est de gauche à derrière.} \qavecaj{Ces véhicules n'ont pas de feu mais un cédez-le-passage. Par conséquent il n'y a pas de feu piéton sur cette partie de la traversée.} \qreformcplx{Ici la largeur est de une voie de circulation.}
 
-\qreformcplx{Seconde partie concerne les véhicules dont la trajectoire est de gauche à droite, et les véhicules dont la trajectoire est de droite à gauche. Ici la largeur est de 4 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage.}
+\qsansaj{Seconde partie concerne les véhicules dont la trajectoire est de gauche à droite, et les véhicules dont la trajectoire est de droite à gauche. Ici la largeur est de 4 voies de circulation. Elle se traverse grâce au feu piéton, ou écoute d'un démarrage.}
 
 \qreform{Présence d'une zone de sécurité entre la première et la seconde partie de la traversée}: \qavecaj{identifiée par des petits terrepleins sur lesquels on ne marche pas et pas forcément dans la trajectoire.} \qsansaj{Il faudra se réorienter entre les deux parties de la traversée : elles ne sont pas alignées.}
 
