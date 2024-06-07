@@ -51,11 +51,11 @@ Dans la suite de ce chapitre, une description sera définie par un texte possibl
 
 \subsection{Spécification du système de conception de description}
 
-Un \gls{sig} est un système informatique permettant l’acquisition, le stockage, l’interrogation, le traitement, l’analyse, et la visualisation de données géographiques \citep{AschanLeygonie2019}. Il peut s’agir d’un logiciel de bureau utilisable au travers d’une interface graphique ou d’un système de gestion de bases de données spatiales. Le modèle de représentation le plus courant au sein d'un \gls{sig} consiste en un empilement de couches thématiques: chaque couche étant un fichier indépendant avec ses propres attributs et métadonnées (projection, sémantique, géométrie). On distingue en général les couches de type raster (image multispectrale dont chaque pixel a une valeur) des couches de type vecteur (donnée tabulaire dont un ou plusieurs champs peuvent contenir une géométrie), ces dernières ayant un fonctionnement proche des tables telles qu’elles existent dans les \gls{sgbdr}. 
+Un \gls{sig} est un système informatique permettant l’acquisition, le stockage, l’interrogation, le traitement, l’analyse, et la visualisation de données géographiques \citep{AschanLeygonie2019}. Il peut s’agir d’un logiciel de bureau utilisable au travers d’une interface graphique ou d’un système de gestion de bases de données spatiales. Le modèle de représentation le plus courant au sein d'un \gls{sig} consiste en un empilement de couches thématiques: chaque couche étant un fichier indépendant avec ses propres attributs et métadonnées (projection, sémantique, géométrie). On distingue en général les couches de type raster (image multispectrale dont chaque pixel a une valeur) des couches de type vecteur (donnée tabulaire dont un ou plusieurs champs peuvent contenir une géométrie), ces dernières ayant un fonctionnement proche des tables telles qu’elles existent dans les \glspl{sgbdr}. 
 
 \newpar{}
 
-Un des intérêts des \gls{sig} concerne la possibilité d’y réaliser des chaînes de traitements, c’est-à-dire une succession de traitements appliqués à un ensemble de données en entrées pour obtenir un nouvel ensemble de données en sorties. Cela peut inclure entre autres des sélections basées sur la sémantique ou la géométrie, des jointures entre couches et des modifications ou des créations de champs attributaires ou géométriques. Ces chaînes permettent de généraliser un traitement complexe pour l’appliquer sur plusieurs ensembles de données et sur plusieurs territoires. À l’instar des traitements qu’elles embarquent, elles peuvent également être paramétriques afin de piloter leur exécution si nécessaire. Des outils se reposant sur ce système de chaînes de traitement \gls{sig} ont déjà été proposés par la littérature, par exemple pour réaliser des « cartes à la carte » \citep{bucher2007} ou généraliser des données géographiques \citep{lee2001,petzold2006}.
+Un des intérêts des \glspl{sig} concerne la possibilité d’y réaliser des chaînes de traitements, c’est-à-dire une succession de traitements appliqués à un ensemble de données en entrées pour obtenir un nouvel ensemble de données en sorties. Cela peut inclure entre autres des sélections basées sur la sémantique ou la géométrie, des jointures entre couches et des modifications ou des créations de champs attributaires ou géométriques. Ces chaînes permettent de généraliser un traitement complexe pour l’appliquer sur plusieurs ensembles de données et sur plusieurs territoires. À l’instar des traitements qu’elles embarquent, elles peuvent également être paramétriques afin de piloter leur exécution si nécessaire. Des outils se reposant sur ce système de chaînes de traitement \gls{sig} ont déjà été proposés par la littérature, par exemple pour réaliser des « cartes à la carte » \citep{bucher2007} ou généraliser des données géographiques \citep{lee2001,petzold2006}.
 
 \newpar{}
 
@@ -220,7 +220,7 @@ Le cadre défini dans la partie \ref{sec:description_geodata_to_text} présente 
 
 \section{Conclusion du chapitre}
 
-Dans ce chapitre, nous avons étudié la problématique de la description textuelle de données géographique, au-delà des carrefours, avec un focus particulier sur l'accessibilité du texte aux \gls{pcdv} à travers la hiérarchisation du texte. 
+Dans ce chapitre, nous avons étudié la problématique de la description textuelle de données géographique, au-delà des carrefours, avec un focus particulier sur l'accessibilité du texte aux \glspl{pcdv} à travers la hiérarchisation du texte. 
 
 \newpar{}
 
@@ -228,4 +228,4 @@ Nous avons proposé un cadre de conception de description intégré à un \gls{s
 
 \newpar{}
 
-Les outils permettant de réaliser la chaîne de traitement ont été implémentés dans le \gls{sig} QGIS et leur fonctionnement technique est présenté au chapitre \ref{chap:implementation}. Cette partie s'intéressera particulièrement à la réalisation de descriptions de carrefours en utilisant les outils présentés précédemment. Par ailleurs, l'évaluation des capacités du dispositif à générer des descriptions effectivement exprimées par des \gls{ia} est présentée en chapitre \ref{chap:evaluation}.
+Les outils permettant de réaliser la chaîne de traitement ont été implémentés dans le \gls{sig} QGIS et leur fonctionnement technique est présenté au chapitre \ref{chap:implementation}. Cette partie s'intéressera particulièrement à la réalisation de descriptions de carrefours en utilisant les outils présentés précédemment. Par ailleurs, l'évaluation des capacités du dispositif à générer des descriptions effectivement exprimées par des \glspl{ia} est présentée en chapitre \ref{chap:evaluation}.
