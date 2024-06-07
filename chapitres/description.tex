@@ -158,7 +158,17 @@ Le processus reprend les trois étapes précédemment décrites:
     \item \textbf{Assemblage du document:} En prenant en entrée la couche dont les entités ont été décrites à l'étape précédente, et un plan de description permettant d'ordonner les couches décrites (même s'il n'y en a qu'une seule dans cet exemple), cette brique permet d'assembler les descriptions au sein d'une description augmentée structurée. On obtient alors un document analogue au texte défini par l'\gls{ia} en figure \ref{fig:desc_canevas_modulaire}.
 \end{enumerate}
 
-\subsubsection{Point de vue adopté par le texte}
+\section{Réaliser différents types de descriptions}
+
+\label{sec:description_cas_utilisation}
+
+Le cadre présenté en partie \ref{sec:description_geodata_to_text} permet de générer du texte brut ou augmenté depuis toute donnée géographique. Si les étapes de traitement des données géographiques et d'applications des patrons sont standards peu importe le type de sortie souhaitée, nous avons évoqué que l'étape d'assemblage est à adapter par le géomaticien selon le type de description à produire. Dans cette partie, nous allons illustrer comment le cadre présenté et cette dernière étape d'assemblage peuvent être adaptés pour produire différents types de descriptions augmentées.
+
+\subsection{Point de vue adopté par le texte}
+
+Les textes de cette partie peuvent être produits en adoptant un point de vue exocentré ou égocentré. Ces deux points de vue correspondent à deux manières de décrire la position des éléments spatiaux.
+
+\newpar{}
 
 % 1. Définition
 On appelle description exocentrée une description dont la position des éléments spatiaux est décrite de manière externe et non de manière relative à un point interne à l'espace décrit. De ce point de vue, la lecture d'une description exocentrée est donc analogue à la lecture d'une carte topographique qui adopte généralement un point de vue également exocentré. Cependant, comme présenté dans la partie \ref{sec:description_geodata_to_text}, une description exocentrée ne décrit pas nécessairement des données brutes. Un traitement adapté au texte voulu peut être réalisé sur celles-ci pour intégrer du contexte spatial. Ainsi, il est possible dans une description exocentrée de décrire une relation spatiale (<<~la boulangerie est dans un quartier~>>) ou une orientation relative aux points cardinaux (<<~au sud du carrefour (...)~>>).
@@ -166,12 +176,6 @@ On appelle description exocentrée une description dont la position des élémen
 \newpar{}
 
 Une description égocentrée est à l'inverse de la description exocentrée une description localisée, relative à un point interne à l'espace décrit. Le sujet est placé au sein de l'environnement, et le texte peut alors mobiliser des prépositions spatiales telles que <<~en face~>>, <<~à droite~>>...
-
-\section{Réaliser différents types de descriptions}
-
-\label{sec:description_cas_utilisation}
-
-Le cadre présenté en partie \ref{sec:description_geodata_to_text} permet de générer du texte brut ou augmenté depuis toute donnée géographique. Si les étapes de traitement des données géographiques et d'applications des patrons sont standards peu importe le type de sortie souhaitée, nous avons évoqué que l'étape d'assemblage est à adapter par le géomaticien selon le type de description à produire. Dans cette partie, nous allons illustrer comment le cadre présenté et cette dernière étape d'assemblage peuvent être adaptés pour produire différents types de descriptions augmentées.
 
 \subsection{La réalisation d'une description linéaire}
 
@@ -181,7 +185,7 @@ La description linéaire est la forme la plus simple de description. Elle consis
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/description/exemple_desc_lineaire.pdf
+    \includegraphics[width=0.9\textwidth]{images/description/exemple_desc_lineaire.pdf
     }
     \caption[Exemple de description linéaire.]{Exemple de description linéaire: le texte annoté en sections est transformé en HTML par la brique d'assemblage.}
     \label{fig:desc_ex_desc_lineaire}
@@ -195,7 +199,7 @@ Une description, si elle conserve des attributs géographiques, peut également 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=\textwidth]{images/description/exemple_desc_spatialise.pdf
+    \includegraphics[width=0.9\textwidth]{images/description/exemple_desc_spatialise.pdf
     }
     \caption[Exemple de description spatialisée.]{Exemple de description intégrée à une carte: la brique d'assemblage permet la production d'un texte formaté pour une représentation spatialisée comme par exemple le format défini par \gls{deri} (voir partie \ref{sec:experimentation_generer_deri}).}
     \label{fig:desc_ex_desc_spatialisee}
