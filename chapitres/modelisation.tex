@@ -672,7 +672,7 @@ La première étape consiste à identifier toutes les composantes connexes du co
 Pour piloter la taille des carrefours générés, on définit pour un chemin de liaison $k$ une longueur adaptée définie par la formule \ref{eq:0003}, en fonction de la probabilité qu'il appartienne à un carrefour. Pour cela, on pondère la longueur $\mathrm{length}(k)$ du lien, où $E_k$ est l'ensemble des arêtes de $k$, $n_k$ est le nombre de nœuds dans $k$ dont la cardinalité est supérieure à trois, et $p_e=\frac{1}{2}$ si $e$ est labellisé comme faisant partie d'un carrefour, et $1$ sinon.
 
 \begin{equation}
- \mathrm{length}'(k) = \frac{\sum_{e \in E_k}\mathrm{length}(e) p_e}{\log e^{n_k +1}}
+ \mathrm{length}'(k) = \frac{\sum_{e \in E_k}\mathrm{length}(e) p_e}{\log ( \exp{} \times (n_k +1) )}
  \label{eq:0003}
 \end{equation}
 
@@ -687,7 +687,7 @@ D'abord, on sélectionne uniquement les chemins de liaison courts qui vérifient
 À partir de ces chemins de liaison, on sélectionne uniquement les cycles courts, en utilisant $\mathcal{C}_2$ comme paramètre de notre méthode, comme décrit par la formule \ref{eq:0005}, où $L_l$ est l'ensemble des chemins de liaison au sein de $l$.
 
 \begin{equation}
-\sum_{k \in L_l} \mathrm{length}'(k) \leq \mathrm{max}_{i \in I_l}\{w_i\} \pi \mathcal{C}_2
+\sum_{k \in L_l} \mathrm{length}'(k) \leq \mathrm{max}_{i \in L_l}\{w_i\} \pi \mathcal{C}_2
 \label{eq:0005}
 \end{equation}
 
